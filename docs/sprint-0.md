@@ -81,3 +81,112 @@ La comprobación de `/docs` se realizó por HTTP; no se inspeccionó visualmente
 ### Pendiente
 
 Implementar y registrar `GET /health` en la S0-04. La recepción de imágenes y la integración de modelos de inteligencia artificial quedan fuera de esta tarea.
+
+## S0-04: endpoint GET /health
+
+### Objetivo
+
+Permitir comprobar que la aplicación está en ejecución y responde solicitudes mediante un endpoint mínimo. No comprueba la disponibilidad de modelos de IA, la capacidad de describir imágenes ni el funcionamiento de dependencias externas.
+
+### Archivos modificados
+
+- `app/api/health.py`: implementa `router` con `APIRouter` y la función `health_check() -> dict[str, str]`, sin parámetros.
+- `app/main.py`: importa y registra el router, conservando los metadatos y la versión `0.1.0`.
+- `README.md`: actualiza el estado y explica cómo consultar el endpoint desde navegador, PowerShell y Swagger UI.
+- `docs/sprint-0.md`: agrega este registro y conserva la sección S0-03 como evidencia histórica del estado anterior.
+
+### Contrato y registro del router
+
+- Método y ruta: `GET /health`, sin parámetros ni cuerpo de petición.
+- Código declarado explícitamente: HTTP 200.
+- Tipo de contenido: `application/json`.
+- Etiqueta OpenAPI: `Health`, con resumen y descripción en español.
+- Respuesta exacta:
+
+```json
+{
+  "status": "ok",
+  "service": "alt-text",
+  "version": "0.1.0"
+}
+```
+
+`app/main.py` importa `router` de `app.api.health` y lo registra mediante `app.include_router(router)`, sin prefijo. Uvicorn entrega la petición a la aplicación FastAPI; la ruta registrada selecciona `health_check`, que devuelve el diccionario y FastAPI lo serializa como JSON.
+
+### Comandos utilizados y verificaciones
+
+Las comprobaciones se ejecutaron con el intérprete de `.venv`, desde la raíz del proyecto y con permisos ampliados para acceder al ejecutable base de Python. No se instalaron dependencias ni se agregó una suite de pruebas.
+
+Se comprobó la importación y se seleccionó un puerto libre mediante un socket local:
+
+```powershell
+.\.venv\Scripts\python.exe -c "import socket, sys; from app.main import app; print('Interpreter:', sys.executable); print('Import: OK'); assert app.version == '0.1.0'; s = socket.socket(); s.bind(('127.0.0.1', 0)); print('Free port:', s.getsockname()[1]); s.close()"
+```
+
+El puerto obtenido fue **54022**. Se inició una instancia propia y su arranque confirmó que pudo utilizarlo:
+
+```powershell
+.\.venv\Scripts\python.exe -m uvicorn app.main:app --reload --port 54022
+```
+
+En otra terminal se ejecutó esta comprobación HTTP directa con la biblioteca estándar de Python:
+
+```powershell
+@'
+import json
+from urllib.request import urlopen
+
+base = "http://127.0.0.1:54022"
+expected = {"status": "ok", "service": "alt-text", "version": "0.1.0"}
+with urlopen(base + "/health", timeout=10) as response:
+    assert response.status == 200
+    assert response.headers.get_content_type() == "application/json"
+    body = json.load(response)
+    assert body == expected
+    print("GET /health: HTTP 200; application/json;", body)
+with urlopen(base + "/docs", timeout=10) as response:
+    assert response.status == 200
+    assert "swagger-ui" in response.read().decode("utf-8")
+    print("GET /docs: HTTP 200; Swagger UI HTML presente")
+with urlopen(base + "/openapi.json", timeout=10) as response:
+    assert response.status == 200
+    schema = json.load(response)
+    assert schema["info"]["title"] == "Tesina Alt-Text IA"
+    assert schema["info"]["version"] == expected["version"]
+    assert set(schema["paths"]) == {"/health"}
+    operation = schema["paths"]["/health"]["get"]
+    assert operation["tags"] == ["Health"]
+    assert "200" in operation["responses"]
+    assert operation["summary"] and operation["description"]
+    assert not operation.get("parameters")
+    assert "requestBody" not in operation
+    print("GET /openapi.json: HTTP 200; GET /health, Health y respuesta 200; sin parametros ni cuerpo; unica ruta propia")
+'@ | .\.venv\Scripts\python.exe -
+```
+
+| Comprobación | Resultado real |
+|---|---|
+| Importar la aplicación con `.venv` | Correcto |
+| Arranque de Uvicorn con `--reload` en el puerto 54022 | Sin errores; `Application startup complete.` |
+| `GET /health` | HTTP 200 |
+| Tipo de contenido de `/health` | `application/json` |
+| Cuerpo de `/health` | Coincide exactamente con los tres campos y valores del contrato |
+| `GET /docs` | HTTP 200; HTML de Swagger UI presente |
+| `GET /openapi.json` | HTTP 200; incluye `/health`, método GET y etiqueta `Health` |
+| Contrato OpenAPI | Respuesta 200, resumen y descripción presentes; sin parámetros ni cuerpo de petición |
+| Rutas propias y metadatos | Única ruta propia: `/health`; título conservado y versión `0.1.0` coincidente con la respuesta |
+| Detención de la instancia propia | Se envió `Ctrl + C`; los registros confirmaron el cierre de la aplicación, del servidor y del proceso de recarga |
+
+Solo se detuvo la instancia iniciada para esta verificación; no se detuvieron servidores ajenos. El puerto 54022 se usó únicamente para las comprobaciones. El comando habitual de desarrollo sigue siendo:
+
+```powershell
+python -m uvicorn app.main:app --reload
+```
+
+Con el entorno virtual activo, ese comando permite consultar [http://127.0.0.1:8000/health](http://127.0.0.1:8000/health) y [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
+
+### Limitaciones y revisión manual
+
+No se inspeccionó visualmente Swagger UI ni se ejecutó su botón “Execute”; las comprobaciones realizadas fueron HTTP y de esquema OpenAPI. Para revisar manualmente la interfaz, iniciar el servidor, abrir `/docs`, expandir `GET /health` bajo `Health`, pulsar “Try it out” y “Execute”, y comprobar el código 200 y el JSON anterior.
+
+La recepción de imágenes y la generación de descripciones siguen pendientes para el sprint 1. Este registro corresponde únicamente a la S0-04 y no declara completado todo el sprint 0.
