@@ -1,0 +1,26 @@
+[
+  {
+    "file": "triangulo.png",
+    "subject": "Geometría",
+    "reference": "Triángulo rectángulo con catetos de 3 y 4 cm e hipotenusa de 5 cm.",
+    "source": "Ilustración original generada por scripts/create_examples.py"
+  },
+  {
+    "file": "barras.jpg",
+    "subject": "Estadística",
+    "reference": "Gráfico de barras: grupos A, B y C leyeron 4, 7 y 10 libros, respectivamente.",
+    "source": "Ilustración original generada por scripts/create_examples.py"
+  },
+  {
+    "file": "astronomia.jpeg",
+    "subject": "Astronomía",
+    "reference": "Esquema sin escala del Sol amarillo, la Tierra azul y verde y la Luna gris.",
+    "source": "Ilustración original generada por scripts/create_examples.py"
+  },
+  {
+    "file": "planta.png",
+    "subject": "Biología",
+    "reference": "Planta con flor rosa y amarilla, hojas verdes, tallo y raíces; partes rotuladas.",
+    "source": "Ilustración original generada por scripts/create_examples.py"
+  }
+]

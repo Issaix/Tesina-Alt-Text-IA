@@ -1,11 +1,20 @@
 from fastapi import FastAPI
 
-from app.api.health import router
+from app import __version__
+from app.api.describe import router as describe_router
+from app.api.health import router as health_router
 
-app = FastAPI(
-    title="Tesina Alt-Text IA",
-    description="Microservicio para generar descripciones textuales en español de imágenes educativas.",
-    version="0.1.0",
-)
 
-app.include_router(router)
+def create_app() -> FastAPI:
+    """Construye la API sin cargar los modelos."""
+    application = FastAPI(
+        title="Tesina Alt-Text IA",
+        description="Genera una descripción en español a partir de una imagen educativa.",
+        version=__version__,
+    )
+    application.include_router(health_router)
+    application.include_router(describe_router)
+    return application
+
+
+app = create_app()

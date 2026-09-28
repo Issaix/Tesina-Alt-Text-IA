@@ -1,41 +1,29 @@
-# Sprint 0: puesta a punto
+# Sprint 0: preparación del proyecto
 
-## Estado de los requisitos
+En este sprint se preparó la estructura del microservicio y una primera ruta para comprobar que la API respondía. Este documento conserva lo realizado en esa etapa; las instrucciones actuales están en el [README](../README.md).
 
-| Requisito | Estado y evidencia |
+## Trabajo realizado
+
+| Actividad | Resultado |
 |---|---|
-| Crear el repositorio en GitHub y configurar accesos | Realizado y confirmado por el autor |
-| Configurar el entorno local | Entorno `.venv` utilizado correctamente en las comprobaciones de S0-03 y S0-04; dependencias registradas en `requirements.txt` |
-| Definir la estructura base | Implementada en S0-03 |
-| Implementar un endpoint REST mínimo | `GET /health` implementado y comprobado en S0-04 |
-| Elaborar un README con descripción y ejecución | Disponible en [README.md](../README.md) |
-| Registrar las primeras tareas en el tablero | Realizado y confirmado por el autor |
+| Crear el repositorio y configurar accesos | Confirmado por el autor. |
+| Preparar el entorno local | Se utilizó `.venv` y se registraron las dependencias. |
+| Organizar la aplicación | Se separó la creación de la API de sus rutas. |
+| Crear una ruta de comprobación | Se implementó `GET /health`. |
+| Documentar la ejecución | Se añadieron instrucciones al README. |
+| Registrar las tareas del tablero | Confirmado por el autor. |
 
-Los requisitos listados cuentan con comprobaciones locales o confirmación del autor. El autor realizó la publicación en GitHub, la configuración de accesos y el registro de tareas en el tablero; estas acciones no se verificaron de forma independiente durante la revisión local.
+La publicación en GitHub, los accesos y el tablero fueron confirmados por el autor. Las pruebas locales se centraron en el arranque y las respuestas de la API.
 
-## S0-03: estructura base
+## Estructura inicial
 
-**Objetivo:** preparar una aplicación FastAPI que pueda arrancar y ofrecer documentación automática.
+`app/main.py` creaba la aplicación FastAPI. Las rutas se agruparon en `app/api`, donde se añadió `health.py`. Los archivos `__init__.py` definían los paquetes de Python.
 
-| Archivo | Función actual |
-|---|---|
-| `app/__init__.py` | Define el paquete de la aplicación |
-| `app/main.py` | Inicializa FastAPI y registra las rutas |
-| `app/api/__init__.py` | Define el paquete de rutas |
-| `app/api/health.py` | Contiene el endpoint de salud incorporado en S0-04 |
-| `docs/sprint-0.md` | Resume las tareas y sus verificaciones |
+Durante S0-03 se comprobaron la importación, el arranque y las respuestas de `/docs` y `/openapi.json`. La ruta `/health` se incorporó después, en S0-04.
 
-Se separó la aplicación principal de las rutas para mantener el código sencillo y organizado. Los metadatos son: título `Tesina Alt-Text IA`, versión `0.1.0` y descripción «Microservicio para generar descripciones textuales en español de imágenes educativas.»
+## Ruta de comprobación
 
-En S0-03 se verificaron la importación, el arranque, `/docs` y `/openapi.json` con HTTP 200. En esa etapa no había rutas propias: `/` y `/health` devolvían 404. El archivo de salud quedó reservado y se implementó después, en S0-04.
-
-## S0-04: endpoint de salud
-
-**Objetivo:** comprobar que la aplicación responde solicitudes. No verifica modelos de IA, procesamiento de imágenes ni servicios externos.
-
-**Archivos modificados:** `app/api/health.py`, `app/main.py`, `README.md` y este documento.
-
-**Contrato:** `GET /health`, sin parámetros ni cuerpo de petición. Devuelve HTTP 200, con tipo `application/json`:
+`GET /health` no recibe parámetros y devuelve HTTP 200 con este cuerpo:
 
 ```json
 {
@@ -45,39 +33,18 @@ En S0-03 se verificaron la importación, el arranque, `/docs` y `/openapi.json` 
 }
 ```
 
-`app/main.py` registra el router mediante `app.include_router(router)`, sin prefijo. FastAPI dirige la petición a `health_check` y convierte el diccionario devuelto en JSON. La documentación agrupa la operación bajo `Health`, con resumen y descripción en español.
+Esta ruta comprueba que la API responde. No carga modelos ni revisa servicios externos.
 
-### Verificaciones realizadas
+## Pruebas realizadas
 
-Se utilizó el intérprete de `.venv`. Para S0-04 se seleccionó el puerto libre **54022** y se inició una instancia propia con:
+Se inició una instancia local en el puerto 54022 con el intérprete de `.venv`:
 
 ```powershell
 .\.venv\Scripts\python.exe -m uvicorn app.main:app --reload --port 54022
 ```
 
-Las solicitudes se comprobaron con `urllib.request.urlopen` y `json.load` de la biblioteca estándar de Python, comparando el cuerpo completo y el esquema OpenAPI.
+Se comprobaron el arranque, el JSON de `/health`, el HTML de `/docs` y el esquema de `/openapi.json`. La versión coincidía entre la aplicación y la respuesta. Al terminar, se detuvo el servidor de prueba.
 
-| Comprobación | Resultado |
-|---|---|
-| Importación y arranque con `--reload` | Correctos, sin errores de arranque |
-| `GET /health` | HTTP 200, `application/json` y JSON exacto |
-| `GET /docs` | HTTP 200; HTML de Swagger UI presente |
-| `GET /openapi.json` | HTTP 200; incluye GET `/health`, etiqueta `Health` y respuesta 200 |
-| Contrato OpenAPI | Sin parámetros ni cuerpo de petición; única ruta propia: `/health` |
-| Versión | `0.1.0` en la aplicación y en la respuesta |
-| Cierre | Servidor propio y proceso de recarga detenidos con `Ctrl + C` |
+En esa etapa las comprobaciones se hicieron con herramientas de la biblioteca estándar de Python. Todavía no había una suite de pruebas automatizadas ni se había realizado una revisión visual de Swagger UI.
 
-Estos resultados corresponden a las comprobaciones de implementación registradas en esta conversación; no se repitieron al simplificar la documentación. No se instalaron dependencias ni se creó una suite de pruebas. No se detuvieron servidores ajenos.
-
-La revisión visual de Swagger UI no se realizó. Puede comprobarse manualmente en `/docs` mediante **GET /health → Try it out → Execute**.
-
-## Criterios de terminado
-
-| Criterio | Verificación |
-|---|---|
-| El código está en el repositorio | Archivos presentes en el proyecto local; publicación en GitHub confirmada por el autor |
-| Se ejecuta sin errores | Arranque y comprobaciones HTTP satisfactorios en S0-03 y S0-04 |
-| Incluye una nota mínima de uso | El README explica preparación, inicio, consulta y cierre |
-| Cumple el criterio de la tarea | S0-03 y S0-04 verificadas localmente; GitHub, accesos y tablero confirmados por el autor; README revisado |
-
-La recepción de imágenes y la generación de descripciones quedan pendientes para el sprint 1. Las instrucciones de ejecución habituales están en el [README](../README.md).
+La recepción de imágenes y la generación de descripciones se dejaron para el [Sprint 1](sprint-1.md).

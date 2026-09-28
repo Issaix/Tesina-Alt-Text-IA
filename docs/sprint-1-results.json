@@ -1,0 +1,63 @@
+{
+  "timestamp_utc": "2026-09-27T23:31:47.064558+00:00",
+  "caption_model": "Salesforce/blip-image-captioning-base",
+  "caption_revision": "82a37760796d32b1411fe092ab5d4e227313294b",
+  "translation_model": "Helsinki-NLP/opus-mt-en-es",
+  "translation_revision": "5bc4493d463cf000c1f0b50f8d56886a392ed4ab",
+  "transport": "HTTP multipart/form-data",
+  "device": "cpu",
+  "results": [
+    {
+      "file": "triangulo.png",
+      "subject": "Geometría",
+      "reference": "Triángulo rectángulo con catetos de 3 y 4 cm e hipotenusa de 5 cm.",
+      "source": "Ilustración original generada por scripts/create_examples.py",
+      "sha256": "7b1114f4321a2bc81b8edb714e359364f02f7a55bde8d3a8cc3fa144aa75f0e2",
+      "status_code": 200,
+      "response": {
+        "description": "un triángulo se muestra en el lado derecho de un triángulo derecho"
+      },
+      "seconds": 15.387,
+      "passed": true
+    },
+    {
+      "file": "barras.jpg",
+      "subject": "Estadística",
+      "reference": "Gráfico de barras: grupos A, B y C leyeron 4, 7 y 10 libros, respectivamente.",
+      "source": "Ilustración original generada por scripts/create_examples.py",
+      "sha256": "6cb43b12728c002867b0bbcb96a2adc7a0e64225e0c8744dc432a75600ed5fbc",
+      "status_code": 200,
+      "response": {
+        "description": "un gráfico de barras muestra el número de personas que están utilizando Internet"
+      },
+      "seconds": 5.098,
+      "passed": true
+    },
+    {
+      "file": "astronomia.jpeg",
+      "subject": "Astronomía",
+      "reference": "Esquema sin escala del Sol amarillo, la Tierra azul y verde y la Luna gris.",
+      "source": "Ilustración original generada por scripts/create_examples.py",
+      "sha256": "a42a78e1743a09e93f92e99c9c65d3344e5132681b8b926a1c45186e4bf49930",
+      "status_code": 200,
+      "response": {
+        "description": "un diagrama de los planetas y sus nombres"
+      },
+      "seconds": 3.215,
+      "passed": true
+    },
+    {
+      "file": "planta.png",
+      "subject": "Biología",
+      "reference": "Planta con flor rosa y amarilla, hojas verdes, tallo y raíces; partes rotuladas.",
+      "source": "Ilustración original generada por scripts/create_examples.py",
+      "sha256": "9d7d6d8f2562a3ca783a827b6d1c8af82c8240ed7c81e5345f022c62f5b19568",
+      "status_code": 200,
+      "response": {
+        "description": "un diagrama de una flor con el nombre de la planta"
+      },
+      "seconds": 4.11,
+      "passed": true
+    }
+  ]
+}
