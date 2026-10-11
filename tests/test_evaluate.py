@@ -28,6 +28,14 @@ def test_response_contract(tmp_path, status, body, passed):
 
 
 def test_failed_requests_do_not_lose_the_report(tmp_path, monkeypatch):
+    # Esta prueba usa cuatro casos propios, independientemente del conjunto educativo.
+    directory = tmp_path / "examples" / "educational"
+    directory.mkdir(parents=True)
+    manifest = [{"file": f"image-{index}.png"} for index in range(4)]
+    for item in manifest:
+        (directory / item["file"]).write_bytes(b"example")
+    (directory / "manifest.json").write_text(json.dumps(manifest), encoding="utf-8")
+    monkeypatch.setattr(evaluate, "ROOT", tmp_path)
     calls = []
 
     def handle(request):

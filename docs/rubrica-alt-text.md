@@ -1,0 +1,102 @@
+# Rúbrica de calidad del texto alternativo
+
+Esta rúbrica sirve para revisar las descripciones de imágenes educativas del proyecto. Una buena descripción permite entender qué muestra la imagen y recuperar la información necesaria para la actividad, sin añadir datos que no aparecen en ella.
+
+La puntuación y los umbrales son una propuesta de trabajo de la tesina. No son una escala oficial de WCAG ni sustituyen una evaluación con usuarios de lectores de pantalla.
+
+## Qué debe contener una buena descripción
+
+El texto empieza por el objeto, la escena o el tipo de representación. Después explica las características y relaciones que importan para la actividad. Los detalles decorativos solo se incluyen si ayudan a distinguir o entender el contenido.
+
+| Tipo de imagen | Información que debe conservar |
+|---|---|
+| Fotografía | Sujeto principal, acción o postura visible y elementos del entorno que aportan contexto. No atribuir emociones, identidad, edad o causas sin información que las respalde. |
+| Diagrama | Tema, partes importantes y relaciones entre ellas. Si hay flechas, explicar su sentido; si representa un proceso, conservar el orden de las etapas. |
+| Gráfica | Tipo de gráfica, tema, variables, categorías, unidades y datos relevantes. Incluir comparaciones, cambios y extremos cuando formen parte del objetivo. Mencionar escalas truncadas o condiciones de lectura relevantes. |
+
+En las gráficas pequeñas de este conjunto, todos los valores son parte de la información esperada. En una gráfica más extensa se debe definir antes de puntuar qué datos necesita la actividad y qué información se ofrecerá mediante una tabla o descripción larga. No se inventan cifras a partir de detalles ilegibles.
+
+La descripción debe estar en español claro y seguir un orden fácil de escuchar. No hace falta comenzar siempre con "imagen de". Sí conviene indicar "gráfica de líneas", "diagrama" o "fotografía" cuando eso ayude a interpretar el contenido. No se fija un máximo universal de caracteres: la extensión depende de la información que deba conservarse.
+
+## Contexto y referencias
+
+El [manifiesto de imágenes](../examples/educational/manifest.json) incluye tres campos para la revisión:
+
+- `context`: el objetivo de la actividad para la que se evalúa la imagen.
+- `reference`: una descripción correcta de referencia.
+- `required_content`: la información que debe aparecer para cubrir ese objetivo.
+
+La referencia es una redacción posible. Se aceptan sinónimos, cambios de orden y otras formulaciones que transmitan la misma información. No se juzga por coincidencia literal de palabras.
+
+Las advertencias de `required_content` señalan afirmaciones que deben evitarse; no hay que repetir esas advertencias dentro de la descripción.
+
+El contexto ayuda al revisor a decidir qué detalles importan. La API actual recibe solo la imagen, por lo que no se exige al modelo que conozca información externa, como el nombre de una persona obtenido de la fuente. Los contenidos obligatorios de este conjunto se pueden comprobar en las imágenes. Si una referencia contradice la imagen o exige un dato que no se puede observar, se corrige la referencia antes de puntuar.
+
+## Criterios de puntuación
+
+Cada criterio recibe 0, 1 o 2 puntos. El máximo es 10. Todos se aplican a todas las imágenes; en una fotografía, la información esencial son los rasgos relevantes del sujeto, y en una gráfica incluye los datos.
+
+| Criterio | 0 puntos | 1 punto | 2 puntos |
+|---|---|---|---|
+| Identificación del contenido | No identifica el contenido principal o lo confunde con otro. | Identifica una parte, pero deja ambiguo el tema o el tipo de representación. | Identifica correctamente el objeto, la escena o la representación principal. |
+| Contexto y relaciones | No explica el contexto visual relevante o invierte relaciones importantes. | Explica parte del contexto o las relaciones, pero deja alguna sin aclarar. | Conserva las relaciones, el orden o la situación visual que necesita la actividad. |
+| Información esencial | Omite la mayor parte de `required_content` o sus datos centrales. | Incluye parte de lo requerido, pero falta al menos un dato importante. | Incluye toda la información definida en `required_content`, con sus unidades y categorías cuando corresponda. |
+| Fidelidad a la imagen | Añade o cambia información que altera el significado educativo. | Incluye una imprecisión menor o una afirmación secundaria sin respaldo. | Todas las afirmaciones se pueden comprobar en la imagen y no hay contradicciones. |
+| Claridad y concisión | El texto es confuso, contiene repeticiones que impiden entenderlo o no ofrece una descripción comprensible en español. | Se entiende, pero tiene ambigüedades, repeticiones o detalles que distraen. | Es claro, ordenado y suficientemente breve para la información que transmite. |
+
+La información esencial mide lo que falta; la fidelidad mide lo que el texto afirma incorrectamente. Una descripción genérica puede ser fiel a lo visible y aun así resultar insuficiente para la actividad.
+
+## Cómo decidir el resultado
+
+Primero se revisa si existe un error crítico: cambiar el tema, identificar mal el objeto principal, inventar o alterar una cifra o unidad necesaria, o invertir una relación como el sentido de una flecha. Si ocurre alguno, el resultado es **no apta**, aunque la suma sea alta.
+
+Si no hay errores críticos, se aplican estas reglas:
+
+- **Apta para el contexto definido:** de 8 a 10 puntos, con 2 en identificación, información esencial y fidelidad, y al menos 1 en cada criterio restante.
+- **Requiere revisión:** de 6 a 10 puntos, si no cumple todas las condiciones anteriores.
+- **No apta:** de 0 a 5 puntos.
+
+Una omisión de datos obligatorios impide declarar la descripción apta, aunque el resto esté bien redactado. "Apta" se refiere a este contenido y contexto de revisión; no certifica la accesibilidad de la página o del material completo.
+
+## Ejemplo de aplicación
+
+Para la gráfica de libros leídos por los grupos A, B y C:
+
+| Descripción de ejemplo | Valoración |
+|---|---|
+| "Gráfica de barras sobre libros leídos: A leyó 4, B leyó 7 y C leyó 10. C tiene el mayor valor y A el menor." | 2 en cada criterio: 10 puntos. Conserva el tema, las categorías, los datos y la comparación. Apta. |
+| "Una gráfica de barras." | Identificación: 1; contexto: 0; información: 0; fidelidad: 2; claridad: 2. Total: 5. No apta porque no permite realizar la comparación. |
+| "Gráfica de libros leídos: A leyó 4, B leyó 7 y C leyó 8." | Error crítico: cambia el valor de C. No apta, independientemente de los otros puntos. |
+
+Estos ejemplos ilustran el uso de la rúbrica. No son una nueva evaluación de las salidas del modelo.
+
+## Registro de una revisión
+
+1. Abrir la imagen y leer su contexto, referencia e información obligatoria.
+2. Leer la salida del modelo y comparar sus afirmaciones con lo visible.
+3. Puntuar los cinco criterios y anotar brevemente las omisiones o errores.
+4. Aplicar las reglas de decisión y escribir la corrección necesaria.
+
+Se puede copiar esta ficha para cada salida:
+
+| Campo | Registro |
+|---|---|
+| Archivo y fecha de revisión | |
+| Salida evaluada y versión del modelo | |
+| Identificación, de 0 a 2 | |
+| Contexto y relaciones, de 0 a 2 | |
+| Información esencial, de 0 a 2 | |
+| Fidelidad, de 0 a 2 | |
+| Claridad, de 0 a 2 | |
+| Total, de 0 a 10 | |
+| Error crítico, si existe | |
+| Resultado y justificación | |
+| Corrección necesaria | |
+
+## Texto breve y descripción larga
+
+Para imágenes sencillas puede bastar un texto breve. Las imágenes complejas pueden necesitar además una descripción larga o una tabla que conserve sus datos y relaciones. Las referencias extensas del conjunto representan esa información completa; no implican que deba colocarse íntegra en el atributo HTML `alt`.
+
+Si más adelante el material ofrece una descripción larga o una tabla accesible junto a la imagen, se revisará el conjunto de esas alternativas. Actualmente el servicio devuelve una sola descripción, por lo que se valora ese texto disponible.
+
+Esta distinción sigue las orientaciones de W3C WAI sobre [imágenes informativas](https://www.w3.org/WAI/tutorials/images/informative/) e [imágenes complejas](https://www.w3.org/WAI/tutorials/images/complex/). La primera guía explica la importancia del propósito y el contexto; la segunda muestra cómo combinar una identificación breve con información detallada para diagramas y gráficas.

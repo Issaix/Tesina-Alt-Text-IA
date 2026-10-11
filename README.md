@@ -109,13 +109,15 @@ Instala las herramientas de desarrollo:
 .\.venv\Scripts\python.exe -m pip install -r requirements-dev.txt
 ```
 
-Con el servidor encendido, prueba las cuatro imágenes educativas incluidas:
+Con el servidor encendido, prueba las veinte imágenes educativas incluidas:
 
 ```powershell
 .\.venv\Scripts\python.exe -m scripts.evaluate
 ```
 
 El resultado se guarda en `.cache/evaluation.json`, sin modificar el informe original del sprint. El evaluador conserva también las peticiones fallidas y termina con un código distinto de cero si alguna no funciona. Puedes cambiar el destino con `--output` o el servidor con `--base-url`.
+
+El [catálogo de imágenes](examples/educational/README.md) incluye diagramas, gráficas y fotografías con sus descripciones de referencia. La [rúbrica de calidad](docs/rubrica-alt-text.md) explica cómo revisar el objeto principal, el contexto, los datos y la fidelidad del texto. Esta revisión de calidad se hace manualmente.
 
 Para revisar el código y ejecutar las pruebas automatizadas, no hace falta iniciar el servidor:
 
@@ -125,7 +127,7 @@ Para revisar el código y ejecutar las pruebas automatizadas, no hace falta inic
 .\.venv\Scripts\python.exe -m pytest -q
 ```
 
-Las pruebas automatizadas usan un sustituto del modelo para comprobar la API sin descargar pesos. La evaluación de las cuatro imágenes sí ejecuta los modelos reales. Los detalles de mantenimiento están en la [guía de desarrollo](docs/desarrollo.md).
+Las pruebas automatizadas usan un sustituto del modelo para comprobar la API sin descargar pesos. La evaluación de las imágenes sí ejecuta los modelos reales. Los detalles de mantenimiento están en la [guía de desarrollo](docs/desarrollo.md).
 
 ## Si algo falla
 

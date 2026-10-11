@@ -123,10 +123,17 @@ def main() -> None:
         "Biología",
         "Planta con flor rosa y amarilla, hojas verdes, tallo y raíces; partes rotuladas.",
     )
-    (DIRECTORY / "manifest.json").write_text(
+    manifest_path = DIRECTORY / "manifest.json"
+    if manifest_path.exists():
+        existing = json.loads(manifest_path.read_text(encoding="utf-8"))
+        # Las referencias revisadas y las imágenes añadidas pertenecen al conjunto,
+        # aunque este generador solo dibuje las cuatro láminas originales.
+        known_files = {record["file"] for record in existing}
+        records = existing + [record for record in records if record["file"] not in known_files]
+    manifest_path.write_text(
         json.dumps(records, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
-    print(f"{len(records)} imágenes guardadas en {DIRECTORY}")
+    print(f"4 láminas regeneradas en {DIRECTORY}")
 
 
 if __name__ == "__main__":

@@ -3,24 +3,186 @@
     "file": "triangulo.png",
     "subject": "Geometría",
     "reference": "Triángulo rectángulo con catetos de 3 y 4 cm e hipotenusa de 5 cm.",
-    "source": "Ilustración original generada por scripts/create_examples.py"
+    "source": "Ilustración original generada por scripts/create_examples.py",
+    "type": "diagrama",
+    "context": "Identificar los lados y las medidas de un triángulo rectángulo.",
+    "required_content": "Triángulo rectángulo; catetos de 3 y 4 cm; hipotenusa de 5 cm."
   },
   {
     "file": "barras.jpg",
     "subject": "Estadística",
-    "reference": "Gráfico de barras: grupos A, B y C leyeron 4, 7 y 10 libros, respectivamente.",
-    "source": "Ilustración original generada por scripts/create_examples.py"
+    "reference": "Gráfico de barras: grupos A, B y C leyeron 4, 7 y 10 libros, respectivamente. El grupo C leyó más libros y el grupo A, menos.",
+    "source": "Ilustración original generada por scripts/create_examples.py",
+    "type": "gráfica",
+    "context": "Comparar cuántos libros leyeron tres grupos.",
+    "required_content": "Gráfico de barras sobre libros leídos; A: 4, B: 7 y C: 10 libros; C tiene el mayor valor y A el menor."
   },
   {
     "file": "astronomia.jpeg",
     "subject": "Astronomía",
-    "reference": "Esquema sin escala del Sol amarillo, la Tierra azul y verde y la Luna gris.",
-    "source": "Ilustración original generada por scripts/create_examples.py"
+    "reference": "Esquema sin escala que muestra, de izquierda a derecha, el Sol, la Tierra y la Luna. Los tamaños y las distancias no representan sus proporciones reales.",
+    "source": "Ilustración original generada por scripts/create_examples.py",
+    "type": "diagrama",
+    "context": "Distinguir los cuerpos representados en un esquema astronómico sin escala.",
+    "required_content": "Sol, Tierra y Luna, en ese orden de izquierda a derecha; el esquema no representa tamaños ni distancias a escala."
   },
   {
     "file": "planta.png",
     "subject": "Biología",
-    "reference": "Planta con flor rosa y amarilla, hojas verdes, tallo y raíces; partes rotuladas.",
-    "source": "Ilustración original generada por scripts/create_examples.py"
+    "reference": "Diagrama de una planta con sus partes rotuladas: flor en la parte superior, hojas a ambos lados del tallo y raíces bajo la línea del suelo.",
+    "source": "Ilustración original generada por scripts/create_examples.py",
+    "type": "diagrama",
+    "context": "Reconocer las partes rotuladas de una planta.",
+    "required_content": "Flor, hojas, tallo y raíces; flor en la parte superior, hojas a los lados del tallo y raíces bajo la línea del suelo."
+  },
+  {
+    "file": "estados_agua.png",
+    "subject": "Ciencias naturales",
+    "type": "diagrama",
+    "context": "Relacionar cada cambio de estado del agua con su estado inicial y final.",
+    "reference": "Diagrama de los estados sólido, líquido y gaseoso del agua. Del sólido al líquido ocurre la fusión y del líquido al sólido, la solidificación. Del líquido al gas ocurre la evaporación y del gas al líquido, la condensación.",
+    "required_content": "Sólido, líquido y gas; fusión de sólido a líquido; solidificación de líquido a sólido; evaporación de líquido a gas; condensación de gas a líquido.",
+    "source": "Lámina original del proyecto, generada por examples/educational/generate_additions.py."
+  },
+  {
+    "file": "cadena_alimentaria.png",
+    "subject": "Biología",
+    "type": "diagrama",
+    "context": "Interpretar el sentido de las flechas en una cadena alimentaria.",
+    "reference": "Cadena alimentaria formada por pasto, saltamontes, rana y serpiente. Las flechas van del alimento al organismo que lo consume: el saltamontes come pasto, la rana come al saltamontes y la serpiente come a la rana.",
+    "required_content": "Pasto, saltamontes, rana y serpiente en ese orden; las flechas van del alimento al consumidor.",
+    "source": "Lámina original del proyecto, generada por examples/educational/generate_additions.py."
+  },
+  {
+    "file": "temperaturas.png",
+    "subject": "Estadística",
+    "type": "gráfica",
+    "context": "Leer una serie temporal y reconocer aumentos, descensos y extremos. Los datos son ficticios.",
+    "reference": "Gráfica de líneas de la temperatura registrada a las 12:00 de lunes a viernes. El eje horizontal indica el día y el vertical, grados Celsius, con marcas de 16 a 26. Los valores son 18 el lunes, 21 el martes, 19 el miércoles, 24 el jueves y 22 el viernes. La temperatura sube, baja, vuelve a subir y baja al final. El mínimo es 18 el lunes y el máximo, 24 el jueves. Son datos ficticios.",
+    "required_content": "Gráfica de líneas; temperatura a las 12:00; días y grados Celsius; escala visible de 16 a 26; valores 18, 21, 19, 24 y 22 de lunes a viernes; mínimo el lunes y máximo el jueves; hay descensos el miércoles y el viernes; datos ficticios.",
+    "source": "Lámina original del proyecto, generada por examples/educational/generate_additions.py."
+  },
+  {
+    "file": "transporte.png",
+    "subject": "Estadística",
+    "type": "gráfica",
+    "context": "Relacionar cantidades y porcentajes en un grupo de 20 estudiantes. Los datos son ficticios.",
+    "reference": "Gráfica circular sobre cómo llegan a la escuela 20 estudiantes: 10 van a pie, el 50 %; 6 en bicicleta, el 30 %; y 4 en automóvil, el 20 %. Ir a pie es la opción más frecuente y el automóvil, la menos frecuente. Son datos ficticios.",
+    "required_content": "Gráfica circular; total de 20 estudiantes; a pie: 10 y 50 %; bicicleta: 6 y 30 %; automóvil: 4 y 20 %; mayor proporción a pie y menor en automóvil; datos ficticios.",
+    "source": "Lámina original del proyecto, generada por examples/educational/generate_additions.py."
+  },
+  {
+    "file": "astronauta.png",
+    "subject": "Tecnología espacial",
+    "type": "fotografía",
+    "context": "Observar la vestimenta y el equipo que aparecen en un retrato relacionado con la exploración espacial.",
+    "reference": "Una astronauta con traje naranja sostiene un casco de visor oscuro. Al fondo se ven una bandera de Estados Unidos y una maqueta de un transbordador espacial.",
+    "required_content": "Astronauta con traje naranja y casco de visor oscuro sostenido delante del cuerpo. No describir una caminata espacial ni una escena en órbita.",
+    "source": "NASA, fotografía de Eileen Collins, distribuida por scikit-image 0.25.2. Dominio público según la documentación de scikit-image.",
+    "source_url": "https://raw.githubusercontent.com/scikit-image/scikit-image/v0.25.2/skimage/data/astronaut.png",
+    "license": "Dominio público",
+    "license_url": "https://scikit-image.org/docs/stable/api/skimage.data.html#skimage.data.astronaut"
+  },
+  {
+    "file": "gato.png",
+    "subject": "Biología",
+    "type": "fotografía",
+    "context": "Reconocer rasgos externos visibles de un mamífero: pelaje, ojos, nariz y bigotes.",
+    "reference": "Primer plano de la cara de un gato atigrado de pelaje marrón, con ojos abiertos, nariz rosada y bigotes blancos largos. Las orejas se ven parcialmente en la parte superior.",
+    "required_content": "Gato en primer plano; pelaje atigrado; ojos, nariz y bigotes visibles. No atribuir raza, edad, emociones ni un hábitat que no se muestra.",
+    "source": "Stefan van der Walt, fotografía Chelsea, distribuida por scikit-image 0.25.2 bajo CC0.",
+    "source_url": "https://raw.githubusercontent.com/scikit-image/scikit-image/v0.25.2/skimage/data/chelsea.png",
+    "license": "CC0",
+    "license_url": "https://scikit-image.org/docs/stable/api/skimage.data.html#skimage.data.chelsea"
+  },
+  {
+    "file": "fracciones.png",
+    "subject": "Matemáticas",
+    "type": "diagrama",
+    "context": "Comparar fracciones equivalentes mediante dos barras del mismo tamaño.",
+    "reference": "Dos barras iguales muestran la equivalencia entre 1/2 y 2/4. La primera se divide en dos partes iguales y tiene una coloreada; la segunda se divide en cuatro partes iguales y tiene dos coloreadas. Ambas representan la misma porción.",
+    "required_content": "Barras del mismo tamaño; una de dos partes y dos de cuatro partes coloreadas; equivalencia 1/2 = 2/4.",
+    "source": "Lámina original del proyecto, generada por examples/educational/generate_more_examples.py."
+  },
+  {
+    "file": "coordenadas.png",
+    "subject": "Matemáticas",
+    "type": "diagrama",
+    "context": "Leer pares ordenados y ubicar puntos a ambos lados de los ejes.",
+    "reference": "Plano cartesiano con el eje x horizontal y el eje y vertical, ambos con marcas de -3 a 3. Aparecen los puntos A (2, 1), B (-2, 2) y C (-1, -2), en los cuadrantes primero, segundo y tercero, respectivamente.",
+    "required_content": "Ejes x e y; A (2, 1), B (-2, 2), C (-1, -2); conservar el orden y los signos de las coordenadas.",
+    "source": "Lámina original del proyecto, generada por examples/educational/generate_more_examples.py."
+  },
+  {
+    "file": "circuito.png",
+    "subject": "Física",
+    "type": "diagrama",
+    "context": "Reconocer los componentes y la continuidad de un circuito sencillo.",
+    "reference": "Esquema de un circuito cerrado con una pila a la izquierda, un interruptor cerrado arriba y una lámpara a la derecha. Los cables conectan los tres componentes en un solo recorrido sin interrupciones. La pila muestra sus polos positivo y negativo.",
+    "required_content": "Pila, interruptor cerrado, lámpara y cables en un único recorrido cerrado; no inventar valores de tensión ni corriente.",
+    "source": "Lámina original del proyecto, generada por examples/educational/generate_more_examples.py."
+  },
+  {
+    "file": "tipos_triangulos.png",
+    "subject": "Geometría",
+    "type": "diagrama",
+    "context": "Distinguir triángulos según sus lados usando la clasificación indicada en la lámina.",
+    "reference": "Tres triángulos clasificados por sus lados: equilátero, con tres lados iguales; isósceles, con solo dos lados iguales; y escaleno, con tres lados diferentes. La lámina separa el equilátero del isósceles.",
+    "required_content": "Las tres clases y sus relaciones de igualdad entre lados; respetar la convención de la lámina, que separa el equilátero del isósceles; no inventar medidas.",
+    "source": "Lámina original del proyecto, generada por examples/educational/generate_more_examples.py."
+  },
+  {
+    "file": "rectangulo.png",
+    "subject": "Geometría",
+    "type": "diagrama",
+    "context": "Distinguir el área del perímetro y conservar sus unidades.",
+    "reference": "Rectángulo de 8 cm de base y 4 cm de altura. Su área se calcula como 8 por 4 y es de 32 centímetros cuadrados. Su perímetro se calcula como 8 más 4 más 8 más 4 y es de 24 cm.",
+    "required_content": "Rectángulo de 8 por 4 cm; área de 32 centímetros cuadrados y perímetro de 24 cm; no intercambiar magnitudes ni unidades.",
+    "source": "Lámina original del proyecto, generada por examples/educational/generate_more_examples.py."
+  },
+  {
+    "file": "ciclo_mariposa.png",
+    "subject": "Biología",
+    "type": "diagrama",
+    "context": "Seguir el orden de las etapas de un ciclo de vida.",
+    "reference": "Diagrama del ciclo de vida de una mariposa con cuatro etapas conectadas por flechas: huevo, larva, pupa y adulto. Una flecha del adulto al huevo cierra el ciclo.",
+    "required_content": "Huevo, larva, pupa y adulto, en ese orden; regreso del adulto al huevo; no inventar duraciones ni especies.",
+    "source": "Lámina original del proyecto, generada por examples/educational/generate_more_examples.py."
+  },
+  {
+    "file": "precipitacion.png",
+    "subject": "Estadística",
+    "type": "gráfica",
+    "context": "Leer precipitaciones mensuales e identificar un valor nulo. Los datos son ficticios.",
+    "reference": "Gráfica de barras de la precipitación mensual, con los meses en el eje horizontal y milímetros en el vertical, de 0 a 80. Enero registra 20 mm, febrero 0, marzo 60 y abril 40. El máximo es marzo y en febrero no hay precipitación. Son datos ficticios.",
+    "required_content": "Barras; meses y milímetros; enero 20, febrero 0, marzo 60 y abril 40; máximo en marzo y mínimo de cero en febrero; datos ficticios.",
+    "source": "Lámina original del proyecto, generada por examples/educational/generate_more_examples.py."
+  },
+  {
+    "file": "reciclaje.png",
+    "subject": "Estadística",
+    "type": "gráfica",
+    "context": "Comparar cantidades en barras horizontales. Los datos son ficticios.",
+    "reference": "Gráfica de barras horizontales de residuos recolectados para reciclar. El eje horizontal indica la masa en kilogramos y el vertical, el material: papel, 8 kg; vidrio, 5 kg; y plástico, 3 kg. El papel tiene la mayor masa y el plástico, la menor. Son datos ficticios.",
+    "required_content": "Barras horizontales; masa en kg; papel 8, vidrio 5 y plástico 3; extremos correctos; datos ficticios.",
+    "source": "Lámina original del proyecto, generada por examples/educational/generate_more_examples.py."
+  },
+  {
+    "file": "temperaturas_negativas.png",
+    "subject": "Estadística",
+    "type": "gráfica",
+    "context": "Interpretar una serie temporal con valores positivos, negativos y cero. Los datos son ficticios.",
+    "reference": "Gráfica de líneas de la temperatura durante una madrugada. El eje horizontal muestra la hora y el vertical, grados Celsius, de -4 a 4. A las 00:00 hay 2 grados; a las 02:00, -2; a las 04:00, -4; y a las 06:00, 0. La temperatura desciende hasta el mínimo de -4 y luego sube a cero. Son datos ficticios.",
+    "required_content": "Horas y grados Celsius; pares 00:00 y 2, 02:00 y -2, 04:00 y -4, 06:00 y 0; conservar signos; descenso hasta las 04:00 y recuperación; datos ficticios.",
+    "source": "Lámina original del proyecto, generada por examples/educational/generate_more_examples.py."
+  },
+  {
+    "file": "dispersion_plantas.png",
+    "subject": "Estadística",
+    "type": "gráfica",
+    "context": "Leer una gráfica de dispersión y distinguir una asociación de una relación causal. Los datos son ficticios.",
+    "reference": "Gráfica de dispersión de cinco plantas según su exposición diaria a la luz y su altura. El eje horizontal indica horas de luz, de 0 a 5, y el vertical, altura en centímetros, de 0 a 20. Los pares son 1 hora y 5 cm, 2 y 9, 3 y 8, 4 y 14, y 5 y 17. En general, las alturas son mayores con más horas de luz, aunque la planta de 3 horas es más baja que la de 2. Son datos ficticios y no demuestran causalidad.",
+    "required_content": "Dispersión; horas de luz y altura en cm; pares (1, 5), (2, 9), (3, 8), (4, 14), (5, 17); tendencia general creciente con una excepción; no afirmar causalidad; datos ficticios.",
+    "source": "Lámina original del proyecto, generada por examples/educational/generate_more_examples.py."
   }
 ]
