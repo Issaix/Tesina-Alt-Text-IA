@@ -2,6 +2,8 @@
 
 Este servicio recibe una imagen educativa y genera una descripción en español. La idea es ayudar a preparar textos alternativos que puedan leer los lectores de pantalla.
 
+La línea A se limita a fotografías e ilustraciones de propósito general. Las gráficas, los diagramas y los esquemas con datos corresponden a otra línea y se excluyeron del conjunto de pruebas.
+
 Es parte de una tesina de Ingeniería en Computación Inteligente de la Universidad Autónoma de Aguascalientes. En esta primera versión, el servicio ya recibe imágenes, las procesa y devuelve el resultado en JSON. La calidad del texto todavía necesita revisión: el modelo puede omitir información o inventar detalles.
 
 ## Requisitos
@@ -58,20 +60,20 @@ En la documentación interactiva, abre **POST /describe**, pulsa **Try it out**,
 También puedes enviar una imagen desde otra terminal:
 
 ```powershell
-curl.exe --fail-with-body -X POST "http://127.0.0.1:8000/describe" -F "image=@examples/educational/triangulo.png;type=image/png"
+curl.exe --fail-with-body -X POST "http://127.0.0.1:8000/describe" -F "image=@examples/educational/gato.png;type=image/png"
 ```
 
 En PowerShell conviene escribir `curl.exe` para evitar el alias de algunas versiones. Cambia la ruta del ejemplo para probar una imagen propia.
 
-Esta es una respuesta real de la imagen del triángulo incluida en el proyecto:
+Esta es una respuesta real para la fotografía del gato incluida en el conjunto principal:
 
 ```json
 {
-  "description": "un triángulo se muestra en el lado derecho de un triángulo derecho"
+  "description": "un primer plano de un gato con ojos verdes"
 }
 ```
 
-La respuesta permite comprobar que el flujo funciona, aunque la descripción todavía es imprecisa. Antes de usar el texto, compáralo con la imagen y corrige lo que haga falta.
+La respuesta reconoce al gato, pero omite rasgos definidos para la actividad, como el pelaje atigrado y los bigotes. Antes de usar el texto, compáralo con la imagen y corrige lo que haga falta.
 
 ### Formatos y límites
 
@@ -109,15 +111,17 @@ Instala las herramientas de desarrollo:
 .\.venv\Scripts\python.exe -m pip install -r requirements-dev.txt
 ```
 
-Con el servidor encendido, prueba las veinte imágenes educativas incluidas:
+Con el servidor encendido, evalúa las 20 imágenes del conjunto (10 fotografías y 10 ilustraciones):
 
 ```powershell
 .\.venv\Scripts\python.exe -m scripts.evaluate
 ```
 
-El resultado se guarda en `.cache/evaluation.json`, sin modificar el informe original del sprint. El evaluador conserva también las peticiones fallidas y termina con un código distinto de cero si alguna no funciona. Puedes cambiar el destino con `--output` o el servidor con `--base-url`.
+El resultado se guarda en `.cache/evaluation.json` y `.cache/evaluation.md`, sin modificar el informe original del sprint. El evaluador conserva las peticiones fallidas y termina con código 1 si alguna no funciona. `passed` solo indica que se cumplió el contrato HTTP; la calidad queda pendiente hasta incorporar una revisión con la rúbrica. Puedes cambiar el destino con `--output` o el servidor con `--base-url`.
 
-El [catálogo de imágenes](examples/educational/README.md) incluye diagramas, gráficas y fotografías con sus descripciones de referencia. La [rúbrica de calidad](docs/rubrica-alt-text.md) explica cómo revisar el objeto principal, el contexto, los datos y la fidelidad del texto. Esta revisión de calidad se hace manualmente.
+La [guía de evaluación](docs/evaluacion.md) explica cómo añadir puntuaciones y comparar las salidas con las referencias.
+
+El [catálogo](examples/educational/README.md) reúne las 20 fotografías e ilustraciones con su procedencia y licencia. La [rúbrica de calidad](docs/rubrica-alt-text.md) explica cómo revisar el objeto principal, el contexto, la información esencial y la fidelidad del texto. Esta revisión requiere comparar cada salida con la imagen.
 
 Para revisar el código y ejecutar las pruebas automatizadas, no hace falta iniciar el servidor:
 
@@ -143,8 +147,8 @@ Si falta algún archivo en caché, retira esa variable con `Remove-Item Env:HF_H
 
 ## Resultados y siguientes pasos
 
-Las cuatro imágenes del Sprint 1 se procesaron correctamente por HTTP. Eso no significa que sus descripciones sean correctas: el modelo llegó a describir un gráfico de libros leídos como si tratara sobre personas que utilizan Internet.
+El [informe de evaluación](docs/evaluacion-principal.md) compara las salidas del set de 20 imágenes con sus referencias mediante la rúbrica. Las 20 peticiones respondieron correctamente por HTTP; la revisión preliminar clasificó las 20 salidas como «requiere revisión», con media de 7,95/10 por omisiones de contenido obligatorio. Las puntuaciones del asistente son preliminares y requieren validación del autor. La [discusión de limitaciones](docs/limitaciones-modelo.md) recoge los errores observados dentro del alcance de la línea A.
 
-Puedes consultar las respuestas y observaciones en el [informe del Sprint 1](docs/sprint-1.md). El [registro del Sprint 0](docs/sprint-0.md) conserva la preparación inicial del proyecto.
+Las evaluaciones del set anterior quedaron en el [archivo histórico](docs/historico/evaluacion-inicial/README.md). Los informes del [Sprint 1](docs/sprint-1.md) y del [Sprint 0](docs/sprint-0.md) conservan la evidencia inicial del proyecto.
 
-Este servicio produce borradores de texto alternativo. El [criterio WCAG 1.1.1](https://www.w3.org/WAI/WCAG22/Understanding/non-text-content.html) exige que la alternativa cumpla el propósito del contenido original. Todavía falta mejorar la interpretación de gráficos y etiquetas, incorporar el contexto de la lección y evaluar los textos con usuarios de lectores de pantalla. La contenerización y la integración con el orquestador quedan para las siguientes etapas.
+Este servicio produce borradores de texto alternativo. El [criterio WCAG 1.1.1](https://www.w3.org/WAI/WCAG22/Understanding/non-text-content.html) exige que la alternativa cumpla el propósito del contenido original. Dentro de la línea A, falta ampliar la diversidad de fotografías e ilustraciones, incorporar el contexto de la lección y evaluar los textos con usuarios de lectores de pantalla. La interpretación especializada de gráficas y diagramas corresponde a otra línea. La contenerización y la integración con el orquestador quedan para las siguientes etapas.

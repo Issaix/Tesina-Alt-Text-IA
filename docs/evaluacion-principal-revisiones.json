@@ -1,0 +1,342 @@
+[
+  {
+    "file": "astronauta.png",
+    "sha256": "88431cd9653ccd539741b555fb0a46b61558b301d4110412b5bc28b5e3ea6cb5",
+    "description_sha256": "74b9fbf5cc36e43a5b341207c9477fc9fa86de39d031b3383419d257f9f797f4",
+    "scores": {
+      "identification": 2,
+      "context": 2,
+      "essential": 1,
+      "fidelity": 1,
+      "clarity": 2
+    },
+    "critical_error": "",
+    "notes": "Reconoce el traje espacial naranja y el casco sostenido. Omite el visor oscuro. La atribución de hombre es innecesaria y discrepa de la referencia de la astronauta; se considera una imprecisión secundaria, no un cambio del tema principal.",
+    "correction": "Evitar esa atribución y añadir que el casco tiene visor oscuro y se sostiene delante del cuerpo.",
+    "reviewer": "Codex (asistente de IA; revisión preliminar pendiente de validación del autor)",
+    "reviewed_at": "2026-10-17"
+  },
+  {
+    "file": "gato.png",
+    "sha256": "596aa1e7cb875eb79f437e310381d26b338a81c2da23439704a73c4651e8c4bb",
+    "description_sha256": "0ab92399cffb515ecaba6ddc6a09f2cfc517543f908ca18a9447c8c1c0a9a032",
+    "scores": {
+      "identification": 2,
+      "context": 2,
+      "essential": 1,
+      "fidelity": 2,
+      "clarity": 2
+    },
+    "critical_error": "",
+    "notes": "Identifica el gato en primer plano y sus ojos. No inventa un entorno, pero omite el pelaje atigrado, la nariz y los bigotes requeridos para la observación de rasgos externos.",
+    "correction": "Añadir el pelaje atigrado, la nariz y los bigotes visibles.",
+    "reviewer": "Codex (asistente de IA; revisión preliminar pendiente de validación del autor)",
+    "reviewed_at": "2026-10-17"
+  },
+  {
+    "file": "fotografo.png",
+    "sha256": "b0793d2adda0fa6ae899c03989482bff9a42d3d5690fc7e3648f2795d730c23a",
+    "description_sha256": "8e385fa55c71d736762fabad1dab592ae746f0423216d3c24656e5ad675eb304",
+    "scores": {
+      "identification": 2,
+      "context": 1,
+      "essential": 1,
+      "fidelity": 1,
+      "clarity": 2
+    },
+    "critical_error": "",
+    "notes": "Reconoce la persona y la cámara, pero no el trípode ni la situación al aire libre. La palabra traje es imprecisa frente al abrigo visible; no se presupone qué lleva debajo.",
+    "correction": "Describir a una persona inclinada hacia una cámara sobre un trípode, en un espacio abierto; evitar atribuir un traje no visible.",
+    "reviewer": "Codex (asistente de IA; revisión preliminar pendiente de validación del autor)",
+    "reviewed_at": "2026-10-17"
+  },
+  {
+    "file": "cafe.png",
+    "sha256": "cc02f8ca188b167c775a7101b5d767d1e71792cf762c33d6fa15a4599b5a8de7",
+    "description_sha256": "716c06365d7fad6fc6262303a8591fc4377628a76137547d93902550f7131dc8",
+    "scores": {
+      "identification": 2,
+      "context": 1,
+      "essential": 1,
+      "fidelity": 2,
+      "clarity": 2
+    },
+    "critical_error": "",
+    "notes": "Identifica la taza de café y la mesa de madera. La frase es fiel y clara, pero faltan el plato, la cucharilla y su disposición junto a la taza.",
+    "correction": "Añadir el plato bajo la taza y la cucharilla a su lado.",
+    "reviewer": "Codex (asistente de IA; revisión preliminar pendiente de validación del autor)",
+    "reviewed_at": "2026-10-17"
+  },
+  {
+    "file": "cohete.jpg",
+    "sha256": "c2dd0de7c538df8d111e479619b129464d0269d0ae5fd18ca91d33a7fdfea95c",
+    "description_sha256": "cfb9d37348010dceb16567e2af913090f040a1544f61d34c3d092a162a5dbc40",
+    "scores": {
+      "identification": 2,
+      "context": 1,
+      "essential": 1,
+      "fidelity": 2,
+      "clarity": 2
+    },
+    "critical_error": "",
+    "notes": "Reconoce el cohete situado en tierra bajo un cielo oscuro. No afirma que esté volando. Faltan la plataforma, las torres y la iluminación que contextualizan la escena.",
+    "correction": "Precisar que el cohete está vertical sobre una plataforma iluminada, rodeado de torres.",
+    "reviewer": "Codex (asistente de IA; revisión preliminar pendiente de validación del autor)",
+    "reviewed_at": "2026-10-17"
+  },
+  {
+    "file": "caballo.png",
+    "sha256": "c7fb60789fe394c485f842291ea3b21e50d140f39d6dcb5fb9917cc178225455",
+    "description_sha256": "b91ec2554687714e067cefe1cb38ea1c27faedbd4030ca0181cb29ab527e713f",
+    "scores": {
+      "identification": 2,
+      "context": 1,
+      "essential": 1,
+      "fidelity": 2,
+      "clarity": 2
+    },
+    "critical_error": "",
+    "notes": "Identifica correctamente la silueta de un caballo y el fondo blanco. Omite el perfil y las orientaciones de cabeza y cola exigidas en este contexto, así como el negro de la silueta.",
+    "correction": "Añadir silueta negra de perfil, con cabeza a la derecha y cola a la izquierda.",
+    "reviewer": "Codex (asistente de IA; revisión preliminar pendiente de validación del autor)",
+    "reviewed_at": "2026-10-17"
+  },
+  {
+    "file": "campo_estelar.jpg",
+    "sha256": "3a19c5dd8a927a9334bb1229a6d63711b1c0c767fb27e2286e7c84a3e2c2f5f4",
+    "description_sha256": "815b3dc47d296c030b95f291b89bb7077fee9cdf69515bdde5e64564e40233d6",
+    "scores": {
+      "identification": 2,
+      "context": 1,
+      "essential": 1,
+      "fidelity": 2,
+      "clarity": 2
+    },
+    "critical_error": "",
+    "notes": "Reconoce el campo astronómico oscuro y las galaxias. La afirmación es compatible con la imagen, pero no transmite la diversidad de formas y tamaños requerida por la actividad.",
+    "correction": "Describir los puntos luminosos y las formas alargadas o espirales de distintos tamaños, sin inventar nombres ni distancias.",
+    "reviewer": "Codex (asistente de IA; revisión preliminar pendiente de validación del autor)",
+    "reviewed_at": "2026-10-17"
+  },
+  {
+    "file": "ladrillos.png",
+    "sha256": "7966caf324f6ba843118d98f7a07746d22f6a343430add0233eca5f6eaaa8fcf",
+    "description_sha256": "3ed11da594a83e76c08dd5d8cb5bc0274c650bcf16fb77da3e08ce4a9a39cbf8",
+    "scores": {
+      "identification": 2,
+      "context": 1,
+      "essential": 1,
+      "fidelity": 2,
+      "clarity": 2
+    },
+    "critical_error": "",
+    "notes": "Identifica una pared de ladrillos y reconoce que la imagen es monocroma. Omite las formas rectangulares y las juntas visibles que permiten describir la textura.",
+    "correction": "Añadir que es un detalle de ladrillos rectangulares separados por juntas claras.",
+    "reviewer": "Codex (asistente de IA; revisión preliminar pendiente de validación del autor)",
+    "reviewed_at": "2026-10-17"
+  },
+  {
+    "file": "pasto.png",
+    "sha256": "b6b6022426b38936c43a4ac09635cd78af074e90f42ffa8227ac8b7452d39f89",
+    "description_sha256": "718c110a297b9d12902e0c878c9701dec49c08a03e44a92dabfbbfa88af57c34",
+    "scores": {
+      "identification": 2,
+      "context": 1,
+      "essential": 1,
+      "fidelity": 2,
+      "clarity": 2
+    },
+    "critical_error": "",
+    "notes": "Reconoce la hierba y el blanco y negro, sin inventar especie ni ubicación. Omite el primer plano y las pequeñas hojas que se superponen al pasto.",
+    "correction": "Añadir la vista cercana y las hojas pequeñas visibles entre el pasto.",
+    "reviewer": "Codex (asistente de IA; revisión preliminar pendiente de validación del autor)",
+    "reviewed_at": "2026-10-17"
+  },
+  {
+    "file": "grava.png",
+    "sha256": "c48615b451bf1e606fbd72c0aa9f8cc0f068ab7111ef7d93bb9b0f2586440c12",
+    "description_sha256": "df734294864e344a7f8fda2f41aeeba487d81681836db5078206492c94748eba",
+    "scores": {
+      "identification": 2,
+      "context": 1,
+      "essential": 1,
+      "fidelity": 2,
+      "clarity": 2
+    },
+    "critical_error": "",
+    "notes": "Identifica la grava sin detalles falsos. No describe el primer plano, las piedras pequeñas ni sus formas irregulares, necesarios para la observación de la textura.",
+    "correction": "Precisar que muchas piedras pequeñas e irregulares cubren la imagen en una vista cercana.",
+    "reviewer": "Codex (asistente de IA; revisión preliminar pendiente de validación del autor)",
+    "reviewed_at": "2026-10-17"
+  },
+  {
+    "file": "arbol.png",
+    "sha256": "1056977c645099dba66a92950989acfcffe48f3f21aed17b013602625de61cc7",
+    "description_sha256": "4081e8264e1d79c4a232f8d06f17bc28c20fd0b59fb9204a440e02b1286f7bbe",
+    "scores": {
+      "identification": 2,
+      "context": 1,
+      "essential": 1,
+      "fidelity": 2,
+      "clarity": 2
+    },
+    "critical_error": "",
+    "notes": "Reconoce el árbol y su color verde, sin inventar una especie. Omite el tronco y la relación entre tronco y copa requerida para observar sus partes.",
+    "correction": "Añadir el tronco oscuro debajo de la copa verde.",
+    "reviewer": "Codex (asistente de IA; revisión preliminar pendiente de validación del autor)",
+    "reviewed_at": "2026-10-17"
+  },
+  {
+    "file": "bicicleta.png",
+    "sha256": "364fe4a27c4322f722d01e183fc4cfc7d6c88dcefdb8a4c98df0134b0fc22244",
+    "description_sha256": "cbf49e7fe027776580213698b0d05e56b39da659e4c893bd266ece605db5deed",
+    "scores": {
+      "identification": 2,
+      "context": 1,
+      "essential": 1,
+      "fidelity": 2,
+      "clarity": 2
+    },
+    "critical_error": "",
+    "notes": "Reconoce la bicicleta y una forma roja del cuadro. La descripción es compatible con el dibujo, pero no conserva las dos ruedas ni el perfil del vehículo.",
+    "correction": "Describir una bicicleta roja de perfil con dos ruedas, sin añadir ciclista ni movimiento.",
+    "reviewer": "Codex (asistente de IA; revisión preliminar pendiente de validación del autor)",
+    "reviewed_at": "2026-10-17"
+  },
+  {
+    "file": "mariposa.png",
+    "sha256": "e39f9a559798544beda6015dbef6b3d03353367d6d9aa8c334b03c9b99d9f563",
+    "description_sha256": "84999461447185c157766b850c5c64e8b3e36d5b2e3a62f16c989a2936c4efc9",
+    "scores": {
+      "identification": 2,
+      "context": 1,
+      "essential": 1,
+      "fidelity": 2,
+      "clarity": 2
+    },
+    "critical_error": "",
+    "notes": "Reconoce una mariposa azul. Omite las alas extendidas, el cuerpo y las antenas exigidos para observar sus rasgos externos.",
+    "correction": "Añadir las alas azules extendidas y el cuerpo con antenas.",
+    "reviewer": "Codex (asistente de IA; revisión preliminar pendiente de validación del autor)",
+    "reviewed_at": "2026-10-17"
+  },
+  {
+    "file": "pez.png",
+    "sha256": "acc0c7d2069c80320bb2aca68e432463fadf2df357cb3a05dc74ecb9fac129ff",
+    "description_sha256": "cd83af1033bfb693be94f91f3c51a14c7fd629db4d523b5368a120238c235e0f",
+    "scores": {
+      "identification": 2,
+      "context": 1,
+      "essential": 1,
+      "fidelity": 2,
+      "clarity": 2
+    },
+    "critical_error": "",
+    "notes": "Reconoce el pez y el azul, sin inventar un acuario. No describe el perfil, la orientación de cabeza y cola ni las aletas.",
+    "correction": "Añadir cabeza hacia la derecha, cola a la izquierda y aletas arriba y abajo.",
+    "reviewer": "Codex (asistente de IA; revisión preliminar pendiente de validación del autor)",
+    "reviewed_at": "2026-10-17"
+  },
+  {
+    "file": "girasol.png",
+    "sha256": "4dc908f328b82c0b64722593555dfd493c383d8e4538b1cfc95376fe1e4a239b",
+    "description_sha256": "742568a0c3d3575446a937be42c561668ae4e7acbac377a5fa66992ce40988a0",
+    "scores": {
+      "identification": 2,
+      "context": 1,
+      "essential": 1,
+      "fidelity": 2,
+      "clarity": 2
+    },
+    "critical_error": "",
+    "notes": "Identifica correctamente una flor amarilla. No es obligatorio reconocer la especie como girasol, pero faltan el tallo y las hojas verdes definidos en la referencia.",
+    "correction": "Añadir el tallo y las hojas verdes junto a la flor de pétalos amarillos.",
+    "reviewer": "Codex (asistente de IA; revisión preliminar pendiente de validación del autor)",
+    "reviewed_at": "2026-10-17"
+  },
+  {
+    "file": "libro.png",
+    "sha256": "1c2ea5590075e2b4d39435bcf4020a487c6c2474e40d746cf7afc12cafd80d5c",
+    "description_sha256": "a89d870128a50c7e18fe3aaabafb828b2763bc689b132466efd08130a3487a89",
+    "scores": {
+      "identification": 2,
+      "context": 1,
+      "essential": 1,
+      "fidelity": 2,
+      "clarity": 2
+    },
+    "critical_error": "",
+    "notes": "Identifica correctamente un icono de libro abierto. No describe las dos páginas ni las líneas que representan texto; no inventa un título o palabras legibles.",
+    "correction": "Añadir dos páginas con líneas oscuras que simbolizan texto.",
+    "reviewer": "Codex (asistente de IA; revisión preliminar pendiente de validación del autor)",
+    "reviewed_at": "2026-10-17"
+  },
+  {
+    "file": "manzana.png",
+    "sha256": "8534c1bec8bde9d9641656508ab9476ad46acac394bd2de25bc0e6eeca4f5a72",
+    "description_sha256": "898f93fada5ce82ad5d4e4ee697962fa3c0a565217f410606a68c8a507a87b86",
+    "scores": {
+      "identification": 2,
+      "context": 2,
+      "essential": 1,
+      "fidelity": 2,
+      "clarity": 2
+    },
+    "critical_error": "",
+    "notes": "Reconoce la manzana roja y la hoja verde en la parte superior. La disposición es correcta, pero omite el tallo incluido en el contenido obligatorio.",
+    "correction": "Añadir el tallo visible en la parte superior.",
+    "reviewer": "Codex (asistente de IA; revisión preliminar pendiente de validación del autor)",
+    "reviewed_at": "2026-10-17"
+  },
+  {
+    "file": "paraguas.png",
+    "sha256": "f45023bb4678581dffb8c08eb37140f35b8e68f9dc0b8249dc5864085952c1c7",
+    "description_sha256": "cd66bfbcdba08b583a6ed2f73431ae95321a9f925ebf50af6552cdc7ec072fd4",
+    "scores": {
+      "identification": 2,
+      "context": 1,
+      "essential": 1,
+      "fidelity": 2,
+      "clarity": 2
+    },
+    "critical_error": "",
+    "notes": "Reconoce el paraguas y su color púrpura, sin inventar lluvia. No especifica que está abierto ni que tiene un mango curvo.",
+    "correction": "Añadir que el paraguas está abierto y tiene un mango en forma de gancho.",
+    "reviewer": "Codex (asistente de IA; revisión preliminar pendiente de validación del autor)",
+    "reviewed_at": "2026-10-17"
+  },
+  {
+    "file": "casa.png",
+    "sha256": "b60915871876016aae8a6c67c399bea7fd974f38456e84623d6fcd5a30633e09",
+    "description_sha256": "d384fd779dc0a71e6028a9ef0aacec0dc00db4be4726e30cad077875f8bf1b1a",
+    "scores": {
+      "identification": 2,
+      "context": 1,
+      "essential": 1,
+      "fidelity": 2,
+      "clarity": 2
+    },
+    "critical_error": "",
+    "notes": "Reconoce una casa con tejado rojo. No conserva la puerta y la ventana necesarias para reconocer sus elementos visibles.",
+    "correction": "Añadir la puerta y la ventana; no es necesario inventar habitantes ni ubicación.",
+    "reviewer": "Codex (asistente de IA; revisión preliminar pendiente de validación del autor)",
+    "reviewed_at": "2026-10-17"
+  },
+  {
+    "file": "aguila.png",
+    "sha256": "928f1bbe7403b533265f56db3a6b07c835dfa8e2513f5c5075ca2f1960f6179e",
+    "description_sha256": "525aebaed183cdb5099ef0b522607a3a6330cff95c12dba1e631c24b6ed3cfa6",
+    "scores": {
+      "identification": 1,
+      "context": 1,
+      "essential": 1,
+      "fidelity": 1,
+      "clarity": 2
+    },
+    "critical_error": "",
+    "notes": "Reconoce un pájaro posado y la imagen en blanco y negro, pero no lo identifica como ave rapaz. Pipa es una expresión imprecisa para el soporte tubular curvo y omite las alas plegadas; no se atribuye ese problema a una etapa concreta sin revisar el inglés intermedio.",
+    "correction": "Describir un ave rapaz o águila posada en un soporte curvo, con las alas plegadas; sustituir pipa por soporte.",
+    "reviewer": "Codex (asistente de IA; revisión preliminar pendiente de validación del autor)",
+    "reviewed_at": "2026-10-17"
+  }
+]

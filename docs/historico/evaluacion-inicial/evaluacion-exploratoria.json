@@ -1,0 +1,734 @@
+{
+  "timestamp_utc": "2026-10-17T21:39:21.498311+00:00",
+  "scope": "exploratorio_fuera_de_alcance",
+  "manifest_sha256": "b26b43760bb835fb0b87f8f461a69e9ded574fa52f7158578938d7ae0a937b38",
+  "base_url": "http://127.0.0.1:54721",
+  "python": "3.12.14",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "libraries": {
+    "torch": "2.7.1",
+    "transformers": "4.52.4",
+    "huggingface-hub": "0.36.2",
+    "Pillow": "12.3.0",
+    "httpx": "0.28.1"
+  },
+  "captioning_code_sha256": "a5de4db523220437a6e9206a2e7fa691acda19732dfe15e1efb2da9530d9fa51",
+  "model_metadata_source": "Configuración del código local; no consultada al servidor.",
+  "caption_model": "Salesforce/blip-image-captioning-base",
+  "caption_revision": "82a37760796d32b1411fe092ab5d4e227313294b",
+  "translation_model": "Helsinki-NLP/opus-mt-en-es",
+  "translation_revision": "5bc4493d463cf000c1f0b50f8d56886a392ed4ab",
+  "transport": "HTTP multipart/form-data",
+  "device": "cpu",
+  "results": [
+    {
+      "file": "triangulo.png",
+      "subject": "Geometría",
+      "reference": "Triángulo rectángulo con catetos de 3 y 4 cm e hipotenusa de 5 cm.",
+      "source": "Ilustración original generada por scripts/create_examples.py",
+      "type": "diagrama",
+      "context": "Identificar los lados y las medidas de un triángulo rectángulo.",
+      "required_content": "Triángulo rectángulo; catetos de 3 y 4 cm; hipotenusa de 5 cm.",
+      "scope": "exploratorio_fuera_de_alcance",
+      "sha256": "7b1114f4321a2bc81b8edb714e359364f02f7a55bde8d3a8cc3fa144aa75f0e2",
+      "status_code": 200,
+      "response": {
+        "description": "un triángulo se muestra en el lado derecho de un triángulo derecho"
+      },
+      "passed": true,
+      "seconds": 94.101,
+      "quality": {
+        "file": "triangulo.png",
+        "sha256": "7b1114f4321a2bc81b8edb714e359364f02f7a55bde8d3a8cc3fa144aa75f0e2",
+        "description_sha256": "654ff2b825529d53fd85a3061f194bc4b64a31ef66b7de3e40a78963cdc93b3f",
+        "scores": {
+          "identification": 1,
+          "context": 0,
+          "essential": 0,
+          "fidelity": 0,
+          "clarity": 0
+        },
+        "critical_error": "Introduce una relación entre dos triángulos que no aparece en la lámina.",
+        "notes": "Reconoce la palabra triángulo, pero no describe el ángulo recto ni las medidas. La repetición y la relación derecha entre figuras hacen confuso el texto.",
+        "correction": "Describir un solo triángulo rectángulo, con catetos de 3 y 4 cm e hipotenusa de 5 cm.",
+        "reviewer": "Codex (asistente de IA; revisión preliminar pendiente de validación del autor)",
+        "reviewed_at": "2026-10-17",
+        "status": "reviewed",
+        "total": 1,
+        "decision": "no_apta"
+      }
+    },
+    {
+      "file": "barras.jpg",
+      "subject": "Estadística",
+      "reference": "Gráfico de barras: grupos A, B y C leyeron 4, 7 y 10 libros, respectivamente. El grupo C leyó más libros y el grupo A, menos.",
+      "source": "Ilustración original generada por scripts/create_examples.py",
+      "type": "gráfica",
+      "context": "Comparar cuántos libros leyeron tres grupos.",
+      "required_content": "Gráfico de barras sobre libros leídos; A: 4, B: 7 y C: 10 libros; C tiene el mayor valor y A el menor.",
+      "scope": "exploratorio_fuera_de_alcance",
+      "sha256": "6cb43b12728c002867b0bbcb96a2adc7a0e64225e0c8744dc432a75600ed5fbc",
+      "status_code": 200,
+      "response": {
+        "description": "un gráfico de barras muestra el número de personas que están utilizando Internet"
+      },
+      "passed": true,
+      "seconds": 30.654,
+      "quality": {
+        "file": "barras.jpg",
+        "sha256": "6cb43b12728c002867b0bbcb96a2adc7a0e64225e0c8744dc432a75600ed5fbc",
+        "description_sha256": "6f9e1f25e80128b0c8481dfdabf127fdaabe5d8b7b195895a5c2c9cef36055d1",
+        "scores": {
+          "identification": 1,
+          "context": 0,
+          "essential": 0,
+          "fidelity": 0,
+          "clarity": 2
+        },
+        "critical_error": "Cambia el tema de libros leídos por personas que utilizan Internet.",
+        "notes": "Reconoce las barras, pero inventa el tema y omite categorías, valores y comparación. La fluidez no compensa el error de contenido.",
+        "correction": "Indicar libros leídos: A 4, B 7 y C 10; máximo C y mínimo A.",
+        "reviewer": "Codex (asistente de IA; revisión preliminar pendiente de validación del autor)",
+        "reviewed_at": "2026-10-17",
+        "status": "reviewed",
+        "total": 3,
+        "decision": "no_apta"
+      }
+    },
+    {
+      "file": "astronomia.jpeg",
+      "subject": "Astronomía",
+      "reference": "Esquema sin escala que muestra, de izquierda a derecha, el Sol, la Tierra y la Luna. Los tamaños y las distancias no representan sus proporciones reales.",
+      "source": "Ilustración original generada por scripts/create_examples.py",
+      "type": "diagrama",
+      "context": "Distinguir los cuerpos representados en un esquema astronómico sin escala.",
+      "required_content": "Sol, Tierra y Luna, en ese orden de izquierda a derecha; el esquema no representa tamaños ni distancias a escala.",
+      "scope": "exploratorio_fuera_de_alcance",
+      "sha256": "a42a78e1743a09e93f92e99c9c65d3344e5132681b8b926a1c45186e4bf49930",
+      "status_code": 200,
+      "response": {
+        "description": "un diagrama de los planetas y sus nombres"
+      },
+      "passed": true,
+      "seconds": 15.493,
+      "quality": {
+        "file": "astronomia.jpeg",
+        "sha256": "a42a78e1743a09e93f92e99c9c65d3344e5132681b8b926a1c45186e4bf49930",
+        "description_sha256": "12590925f778a740e88362ab4472739560998c39aaab087dc70ac3cc29ae447b",
+        "scores": {
+          "identification": 1,
+          "context": 0,
+          "essential": 0,
+          "fidelity": 0,
+          "clarity": 2
+        },
+        "critical_error": "Presenta como planetas al conjunto que incluye el Sol y la Luna.",
+        "notes": "Identifica que hay un diagrama, pero confunde los cuerpos representados y no conserva el orden ni la advertencia de escala.",
+        "correction": "Nombrar Sol, Tierra y Luna de izquierda a derecha y aclarar que tamaños y distancias no están a escala.",
+        "reviewer": "Codex (asistente de IA; revisión preliminar pendiente de validación del autor)",
+        "reviewed_at": "2026-10-17",
+        "status": "reviewed",
+        "total": 3,
+        "decision": "no_apta"
+      }
+    },
+    {
+      "file": "planta.png",
+      "subject": "Biología",
+      "reference": "Diagrama de una planta con sus partes rotuladas: flor en la parte superior, hojas a ambos lados del tallo y raíces bajo la línea del suelo.",
+      "source": "Ilustración original generada por scripts/create_examples.py",
+      "type": "diagrama",
+      "context": "Reconocer las partes rotuladas de una planta.",
+      "required_content": "Flor, hojas, tallo y raíces; flor en la parte superior, hojas a los lados del tallo y raíces bajo la línea del suelo.",
+      "scope": "exploratorio_fuera_de_alcance",
+      "sha256": "9d7d6d8f2562a3ca783a827b6d1c8af82c8240ed7c81e5345f022c62f5b19568",
+      "status_code": 200,
+      "response": {
+        "description": "un diagrama de una flor con el nombre de la planta"
+      },
+      "passed": true,
+      "seconds": 14.764,
+      "quality": {
+        "file": "planta.png",
+        "sha256": "9d7d6d8f2562a3ca783a827b6d1c8af82c8240ed7c81e5345f022c62f5b19568",
+        "description_sha256": "81ceb4da948bff0866e545ba0be362db7e2da460b5bf7b0509304f8a88325d4e",
+        "scores": {
+          "identification": 1,
+          "context": 0,
+          "essential": 1,
+          "fidelity": 1,
+          "clarity": 2
+        },
+        "critical_error": "",
+        "notes": "Reconoce la flor, que es una parte de la planta. Omite hojas, tallo y raíces, así como sus posiciones. Confunde los rótulos de partes con el nombre de la planta.",
+        "correction": "Describir flor, hojas, tallo y raíces y sus relaciones espaciales; no atribuir un nombre de especie.",
+        "reviewer": "Codex (asistente de IA; revisión preliminar pendiente de validación del autor)",
+        "reviewed_at": "2026-10-17",
+        "status": "reviewed",
+        "total": 5,
+        "decision": "no_apta"
+      }
+    },
+    {
+      "file": "estados_agua.png",
+      "subject": "Ciencias naturales",
+      "type": "diagrama",
+      "context": "Relacionar cada cambio de estado del agua con su estado inicial y final.",
+      "reference": "Diagrama de los estados sólido, líquido y gaseoso del agua. Del sólido al líquido ocurre la fusión y del líquido al sólido, la solidificación. Del líquido al gas ocurre la evaporación y del gas al líquido, la condensación.",
+      "required_content": "Sólido, líquido y gas; fusión de sólido a líquido; solidificación de líquido a sólido; evaporación de líquido a gas; condensación de gas a líquido.",
+      "source": "Lámina original del proyecto, generada por examples/educational/generate_additions.py.",
+      "scope": "exploratorio_fuera_de_alcance",
+      "sha256": "2ffc9d4a55a52997d8e71ff1583d7d3b8f8e7072601c288bc078d5fe5b2aa53a",
+      "status_code": 200,
+      "response": {
+        "description": "un diagrama que muestra el flujo de un líquido en un líquido"
+      },
+      "passed": true,
+      "seconds": 3.464,
+      "quality": {
+        "file": "estados_agua.png",
+        "sha256": "2ffc9d4a55a52997d8e71ff1583d7d3b8f8e7072601c288bc078d5fe5b2aa53a",
+        "description_sha256": "d327596a878c117576ab7a266ac7c5032ee08bcd0e407e17efe611ff682af95a",
+        "scores": {
+          "identification": 1,
+          "context": 0,
+          "essential": 0,
+          "fidelity": 0,
+          "clarity": 1
+        },
+        "critical_error": "Interpreta los cambios entre sólido, líquido y gas como flujo de un líquido en otro líquido.",
+        "notes": "Reconoce un diagrama, pero cambia su significado. No nombra los tres estados ni los cuatro cambios y sus sentidos; la repetición vuelve ambigua la frase.",
+        "correction": "Conservar estados y sentidos: fusión, solidificación, evaporación y condensación.",
+        "reviewer": "Codex (asistente de IA; revisión preliminar pendiente de validación del autor)",
+        "reviewed_at": "2026-10-17",
+        "status": "reviewed",
+        "total": 2,
+        "decision": "no_apta"
+      }
+    },
+    {
+      "file": "cadena_alimentaria.png",
+      "subject": "Biología",
+      "type": "diagrama",
+      "context": "Interpretar el sentido de las flechas en una cadena alimentaria.",
+      "reference": "Cadena alimentaria formada por pasto, saltamontes, rana y serpiente. Las flechas van del alimento al organismo que lo consume: el saltamontes come pasto, la rana come al saltamontes y la serpiente come a la rana.",
+      "required_content": "Pasto, saltamontes, rana y serpiente en ese orden; las flechas van del alimento al consumidor.",
+      "source": "Lámina original del proyecto, generada por examples/educational/generate_additions.py.",
+      "scope": "exploratorio_fuera_de_alcance",
+      "sha256": "d5364ec63f1a1bd47c99c8b91a44cc39d91816b43bdcf88927d1389cc4d91d83",
+      "status_code": 200,
+      "response": {
+        "description": "un diagrama que muestra los pasos en el proceso"
+      },
+      "passed": true,
+      "seconds": 2.482,
+      "quality": {
+        "file": "cadena_alimentaria.png",
+        "sha256": "d5364ec63f1a1bd47c99c8b91a44cc39d91816b43bdcf88927d1389cc4d91d83",
+        "description_sha256": "1d111cb3c1249d8d49363e53e6f04e04d1d2265073baed805f82f44ec62df692",
+        "scores": {
+          "identification": 1,
+          "context": 0,
+          "essential": 0,
+          "fidelity": 2,
+          "clarity": 2
+        },
+        "critical_error": "",
+        "notes": "La frase genérica sobre pasos de un proceso no contradice una secuencia, pero no identifica una cadena alimentaria ni sus organismos o relaciones.",
+        "correction": "Nombrar pasto, saltamontes, rana y serpiente, y explicar que las flechas van del alimento al consumidor.",
+        "reviewer": "Codex (asistente de IA; revisión preliminar pendiente de validación del autor)",
+        "reviewed_at": "2026-10-17",
+        "status": "reviewed",
+        "total": 5,
+        "decision": "no_apta"
+      }
+    },
+    {
+      "file": "temperaturas.png",
+      "subject": "Estadística",
+      "type": "gráfica",
+      "context": "Leer una serie temporal y reconocer aumentos, descensos y extremos. Los datos son ficticios.",
+      "reference": "Gráfica de líneas de la temperatura registrada a las 12:00 de lunes a viernes. El eje horizontal indica el día y el vertical, grados Celsius, con marcas de 16 a 26. Los valores son 18 el lunes, 21 el martes, 19 el miércoles, 24 el jueves y 22 el viernes. La temperatura sube, baja, vuelve a subir y baja al final. El mínimo es 18 el lunes y el máximo, 24 el jueves. Son datos ficticios.",
+      "required_content": "Gráfica de líneas; temperatura a las 12:00; días y grados Celsius; escala visible de 16 a 26; valores 18, 21, 19, 24 y 22 de lunes a viernes; mínimo el lunes y máximo el jueves; hay descensos el miércoles y el viernes; datos ficticios.",
+      "source": "Lámina original del proyecto, generada por examples/educational/generate_additions.py.",
+      "scope": "exploratorio_fuera_de_alcance",
+      "sha256": "213867681fcae19dfb4542be96daede95d64a5bba83636ab6513b5725185afa1",
+      "status_code": 200,
+      "response": {
+        "description": "un gráfico de líneas que muestra el número de personas en el país"
+      },
+      "passed": true,
+      "seconds": 5.848,
+      "quality": {
+        "file": "temperaturas.png",
+        "sha256": "213867681fcae19dfb4542be96daede95d64a5bba83636ab6513b5725185afa1",
+        "description_sha256": "9c1d6c93909e3fe1aa818ae92538573b3fd716465df6386f2d5cd83e4d6c9a8b",
+        "scores": {
+          "identification": 1,
+          "context": 0,
+          "essential": 0,
+          "fidelity": 0,
+          "clarity": 2
+        },
+        "critical_error": "Cambia el tema de temperatura por número de personas en un país.",
+        "notes": "Reconoce una gráfica de líneas, pero inventa la variable y omite días, grados Celsius, valores, escala y cambios.",
+        "correction": "Describir la temperatura a las 12:00 de lunes a viernes: 18, 21, 19, 24 y 22 grados; conservar escala, extremos, descensos y carácter ficticio.",
+        "reviewer": "Codex (asistente de IA; revisión preliminar pendiente de validación del autor)",
+        "reviewed_at": "2026-10-17",
+        "status": "reviewed",
+        "total": 3,
+        "decision": "no_apta"
+      }
+    },
+    {
+      "file": "transporte.png",
+      "subject": "Estadística",
+      "type": "gráfica",
+      "context": "Relacionar cantidades y porcentajes en un grupo de 20 estudiantes. Los datos son ficticios.",
+      "reference": "Gráfica circular sobre cómo llegan a la escuela 20 estudiantes: 10 van a pie, el 50 %; 6 en bicicleta, el 30 %; y 4 en automóvil, el 20 %. Ir a pie es la opción más frecuente y el automóvil, la menos frecuente. Son datos ficticios.",
+      "required_content": "Gráfica circular; total de 20 estudiantes; a pie: 10 y 50 %; bicicleta: 6 y 30 %; automóvil: 4 y 20 %; mayor proporción a pie y menor en automóvil; datos ficticios.",
+      "source": "Lámina original del proyecto, generada por examples/educational/generate_additions.py.",
+      "scope": "exploratorio_fuera_de_alcance",
+      "sha256": "d6bcd8e60f3f3d3195d415580c4a0680537729ef4d435dad4b24b1e917a7367f",
+      "status_code": 200,
+      "response": {
+        "description": "un pastel con un pastel en el medio y un pastel encima"
+      },
+      "passed": true,
+      "seconds": 6.406,
+      "quality": {
+        "file": "transporte.png",
+        "sha256": "d6bcd8e60f3f3d3195d415580c4a0680537729ef4d435dad4b24b1e917a7367f",
+        "description_sha256": "788025fda26342ada2823b63a79309089c5332953d3cad1db00bbf1c7f2e16c2",
+        "scores": {
+          "identification": 0,
+          "context": 0,
+          "essential": 0,
+          "fidelity": 0,
+          "clarity": 0
+        },
+        "critical_error": "Describe pasteles superpuestos en lugar de la distribución de medios de transporte.",
+        "notes": "No identifica la gráfica circular ni los estudiantes, categorías, cantidades o porcentajes. La repetición no ofrece una descripción comprensible de la imagen.",
+        "correction": "Describir 20 estudiantes: a pie 10 (50 %), bicicleta 6 (30 %) y automóvil 4 (20 %), con comparación y datos ficticios.",
+        "reviewer": "Codex (asistente de IA; revisión preliminar pendiente de validación del autor)",
+        "reviewed_at": "2026-10-17",
+        "status": "reviewed",
+        "total": 0,
+        "decision": "no_apta"
+      }
+    },
+    {
+      "file": "fracciones.png",
+      "subject": "Matemáticas",
+      "type": "diagrama",
+      "context": "Comparar fracciones equivalentes mediante dos barras del mismo tamaño.",
+      "reference": "Dos barras iguales muestran la equivalencia entre 1/2 y 2/4. La primera se divide en dos partes iguales y tiene una coloreada; la segunda se divide en cuatro partes iguales y tiene dos coloreadas. Ambas representan la misma porción.",
+      "required_content": "Barras del mismo tamaño; una de dos partes y dos de cuatro partes coloreadas; equivalencia 1/2 = 2/4.",
+      "source": "Lámina original del proyecto, generada por examples/educational/generate_more_examples.py.",
+      "scope": "exploratorio_fuera_de_alcance",
+      "sha256": "a95d87f520dd472c0273cbcf24fce254cf3d48efaed65e759528e7dcc0819aa5",
+      "status_code": 200,
+      "response": {
+        "description": "una recal rectangular, rectangular y rectangular con la misma longitud"
+      },
+      "passed": true,
+      "seconds": 5.69,
+      "quality": {
+        "file": "fracciones.png",
+        "sha256": "a95d87f520dd472c0273cbcf24fce254cf3d48efaed65e759528e7dcc0819aa5",
+        "description_sha256": "d3ee934a2eb28402b6a615a6ae34e726c461d23b8e67150049460ee6c4d6a3fd",
+        "scores": {
+          "identification": 1,
+          "context": 1,
+          "essential": 1,
+          "fidelity": 1,
+          "clarity": 0
+        },
+        "critical_error": "",
+        "notes": "Menciona formas rectangulares de igual longitud, un aspecto visible de las barras. No conserva las divisiones, las partes coloreadas ni la equivalencia; recal y las repeticiones vuelven el texto confuso.",
+        "correction": "Explicar que una de dos partes y dos de cuatro partes están coloreadas en barras iguales: 1/2 = 2/4.",
+        "reviewer": "Codex (asistente de IA; revisión preliminar pendiente de validación del autor)",
+        "reviewed_at": "2026-10-17",
+        "status": "reviewed",
+        "total": 4,
+        "decision": "no_apta"
+      }
+    },
+    {
+      "file": "coordenadas.png",
+      "subject": "Matemáticas",
+      "type": "diagrama",
+      "context": "Leer pares ordenados y ubicar puntos a ambos lados de los ejes.",
+      "reference": "Plano cartesiano con el eje x horizontal y el eje y vertical, ambos con marcas de -3 a 3. Aparecen los puntos A (2, 1), B (-2, 2) y C (-1, -2), en los cuadrantes primero, segundo y tercero, respectivamente.",
+      "required_content": "Ejes x e y; A (2, 1), B (-2, 2), C (-1, -2); conservar el orden y los signos de las coordenadas.",
+      "source": "Lámina original del proyecto, generada por examples/educational/generate_more_examples.py.",
+      "scope": "exploratorio_fuera_de_alcance",
+      "sha256": "95c5086822ea2346b0f2b5d5d9eb32845573b37cdd2591a015982489e3c4cfbb",
+      "status_code": 200,
+      "response": {
+        "description": "un gráfico con un cuadrado y una línea que se dibuja de la misma manera"
+      },
+      "passed": true,
+      "seconds": 6.358,
+      "quality": {
+        "file": "coordenadas.png",
+        "sha256": "95c5086822ea2346b0f2b5d5d9eb32845573b37cdd2591a015982489e3c4cfbb",
+        "description_sha256": "ff0bd522715bcfdabb068f465e2f15075ba2304e2405d30c8e15294ac5ace043",
+        "scores": {
+          "identification": 1,
+          "context": 0,
+          "essential": 0,
+          "fidelity": 1,
+          "clarity": 1
+        },
+        "critical_error": "",
+        "notes": "Reconoce una representación gráfica de manera vaga, pero no identifica el plano cartesiano ni los puntos. La referencia a un cuadrado y a la misma manera es imprecisa y no permite recuperar los pares ordenados.",
+        "correction": "Nombrar ejes x e y y los puntos A (2, 1), B (-2, 2) y C (-1, -2), conservando signos y orden.",
+        "reviewer": "Codex (asistente de IA; revisión preliminar pendiente de validación del autor)",
+        "reviewed_at": "2026-10-17",
+        "status": "reviewed",
+        "total": 3,
+        "decision": "no_apta"
+      }
+    },
+    {
+      "file": "circuito.png",
+      "subject": "Física",
+      "type": "diagrama",
+      "context": "Reconocer los componentes y la continuidad de un circuito sencillo.",
+      "reference": "Esquema de un circuito cerrado con una pila a la izquierda, un interruptor cerrado arriba y una lámpara a la derecha. Los cables conectan los tres componentes en un solo recorrido sin interrupciones. La pila muestra sus polos positivo y negativo.",
+      "required_content": "Pila, interruptor cerrado, lámpara y cables en un único recorrido cerrado; no inventar valores de tensión ni corriente.",
+      "source": "Lámina original del proyecto, generada por examples/educational/generate_more_examples.py.",
+      "scope": "exploratorio_fuera_de_alcance",
+      "sha256": "bc844a5d6273fb1d14627208b614e1fc0780bd6e9d2ebdfe11b92dcf61de3dcb",
+      "status_code": 200,
+      "response": {
+        "description": "diagrama de circuito de circuito"
+      },
+      "passed": true,
+      "seconds": 3.939,
+      "quality": {
+        "file": "circuito.png",
+        "sha256": "bc844a5d6273fb1d14627208b614e1fc0780bd6e9d2ebdfe11b92dcf61de3dcb",
+        "description_sha256": "8abd2d80ef35bb8653c5512b9215446952556c976053bab4930722f5f6858a43",
+        "scores": {
+          "identification": 2,
+          "context": 0,
+          "essential": 0,
+          "fidelity": 2,
+          "clarity": 1
+        },
+        "critical_error": "",
+        "notes": "Reconoce correctamente un diagrama de circuito. No nombra componentes ni explica la continuidad; la repetición de circuito es innecesaria, aunque la frase se entiende.",
+        "correction": "Describir pila, interruptor cerrado, lámpara y cables en un recorrido cerrado, sin inventar tensión ni corriente.",
+        "reviewer": "Codex (asistente de IA; revisión preliminar pendiente de validación del autor)",
+        "reviewed_at": "2026-10-17",
+        "status": "reviewed",
+        "total": 5,
+        "decision": "no_apta"
+      }
+    },
+    {
+      "file": "tipos_triangulos.png",
+      "subject": "Geometría",
+      "type": "diagrama",
+      "context": "Distinguir triángulos según sus lados usando la clasificación indicada en la lámina.",
+      "reference": "Tres triángulos clasificados por sus lados: equilátero, con tres lados iguales; isósceles, con solo dos lados iguales; y escaleno, con tres lados diferentes. La lámina separa el equilátero del isósceles.",
+      "required_content": "Las tres clases y sus relaciones de igualdad entre lados; respetar la convención de la lámina, que separa el equilátero del isósceles; no inventar medidas.",
+      "source": "Lámina original del proyecto, generada por examples/educational/generate_more_examples.py.",
+      "scope": "exploratorio_fuera_de_alcance",
+      "sha256": "c48df6803bc6ee23c26918be3fc1cefa1521230bb3710d8a36f7deea2d3ca003",
+      "status_code": 200,
+      "response": {
+        "description": "un diagrama que muestra los tres triángulos que son similares entre sí triángulos"
+      },
+      "passed": true,
+      "seconds": 6.74,
+      "quality": {
+        "file": "tipos_triangulos.png",
+        "sha256": "c48df6803bc6ee23c26918be3fc1cefa1521230bb3710d8a36f7deea2d3ca003",
+        "description_sha256": "aab1172bf61a517a60d99b3a6565b112755fe6429570ad9a5dc12723058d2a22",
+        "scores": {
+          "identification": 2,
+          "context": 0,
+          "essential": 0,
+          "fidelity": 1,
+          "clarity": 1
+        },
+        "critical_error": "",
+        "notes": "Reconoce los tres triángulos, pero similares es ambiguo y no conserva las diferencias de lados indicadas. Omite las tres clases y sus definiciones; repite triángulos.",
+        "correction": "Distinguir equilátero, isósceles de solo dos lados iguales y escaleno, respetando la convención de la lámina.",
+        "reviewer": "Codex (asistente de IA; revisión preliminar pendiente de validación del autor)",
+        "reviewed_at": "2026-10-17",
+        "status": "reviewed",
+        "total": 4,
+        "decision": "no_apta"
+      }
+    },
+    {
+      "file": "rectangulo.png",
+      "subject": "Geometría",
+      "type": "diagrama",
+      "context": "Distinguir el área del perímetro y conservar sus unidades.",
+      "reference": "Rectángulo de 8 cm de base y 4 cm de altura. Su área se calcula como 8 por 4 y es de 32 centímetros cuadrados. Su perímetro se calcula como 8 más 4 más 8 más 4 y es de 24 cm.",
+      "required_content": "Rectángulo de 8 por 4 cm; área de 32 centímetros cuadrados y perímetro de 24 cm; no intercambiar magnitudes ni unidades.",
+      "source": "Lámina original del proyecto, generada por examples/educational/generate_more_examples.py.",
+      "scope": "exploratorio_fuera_de_alcance",
+      "sha256": "b1c641e944cb4d63cd48a2a9f07775ad3e2740b89b7d878e8c931c1eb4804d08",
+      "status_code": 200,
+      "response": {
+        "description": "superficie 8 cm superficie 8 m quado 4 m"
+      },
+      "passed": true,
+      "seconds": 37.989,
+      "quality": {
+        "file": "rectangulo.png",
+        "sha256": "b1c641e944cb4d63cd48a2a9f07775ad3e2740b89b7d878e8c931c1eb4804d08",
+        "description_sha256": "3d4327ff41f1b07ff712719cb10a6c3b7e6fbbcdb191e61009003f55b8da94de",
+        "scores": {
+          "identification": 0,
+          "context": 0,
+          "essential": 0,
+          "fidelity": 0,
+          "clarity": 0
+        },
+        "critical_error": "Introduce unidades de metros que no corresponden a los centímetros de la lámina.",
+        "notes": "La secuencia superficie 8 cm superficie 8 m quado 4 m no identifica el rectángulo ni distingue área y perímetro. No conserva sus valores y es confusa.",
+        "correction": "Indicar rectángulo de 8 por 4 cm, área de 32 centímetros cuadrados y perímetro de 24 cm.",
+        "reviewer": "Codex (asistente de IA; revisión preliminar pendiente de validación del autor)",
+        "reviewed_at": "2026-10-17",
+        "status": "reviewed",
+        "total": 0,
+        "decision": "no_apta"
+      }
+    },
+    {
+      "file": "ciclo_mariposa.png",
+      "subject": "Biología",
+      "type": "diagrama",
+      "context": "Seguir el orden de las etapas de un ciclo de vida.",
+      "reference": "Diagrama del ciclo de vida de una mariposa con cuatro etapas conectadas por flechas: huevo, larva, pupa y adulto. Una flecha del adulto al huevo cierra el ciclo.",
+      "required_content": "Huevo, larva, pupa y adulto, en ese orden; regreso del adulto al huevo; no inventar duraciones ni especies.",
+      "source": "Lámina original del proyecto, generada por examples/educational/generate_more_examples.py.",
+      "scope": "exploratorio_fuera_de_alcance",
+      "sha256": "7e57e63a00893fe1d86071496f2c1dd7982af2850ac6c8e3785da07c9b0d19c8",
+      "status_code": 200,
+      "response": {
+        "description": "cio vida una impo"
+      },
+      "passed": true,
+      "seconds": 14.27,
+      "quality": {
+        "file": "ciclo_mariposa.png",
+        "sha256": "7e57e63a00893fe1d86071496f2c1dd7982af2850ac6c8e3785da07c9b0d19c8",
+        "description_sha256": "84d0672f47ab2a9c667ea21db1eafd2442183150baaed7cf1e7c2a4ed4bda6ca",
+        "scores": {
+          "identification": 0,
+          "context": 0,
+          "essential": 0,
+          "fidelity": 1,
+          "clarity": 0
+        },
+        "critical_error": "",
+        "notes": "La salida cio vida una impo no permite identificar el proceso ni recuperar las etapas. Es imprecisa e ininteligible; no se identifica una afirmación concreta que permita atribuirle un error crítico específico.",
+        "correction": "Describir huevo, larva, pupa y adulto en orden, y la flecha del adulto al huevo que cierra el ciclo.",
+        "reviewer": "Codex (asistente de IA; revisión preliminar pendiente de validación del autor)",
+        "reviewed_at": "2026-10-17",
+        "status": "reviewed",
+        "total": 1,
+        "decision": "no_apta"
+      }
+    },
+    {
+      "file": "precipitacion.png",
+      "subject": "Estadística",
+      "type": "gráfica",
+      "context": "Leer precipitaciones mensuales e identificar un valor nulo. Los datos son ficticios.",
+      "reference": "Gráfica de barras de la precipitación mensual, con los meses en el eje horizontal y milímetros en el vertical, de 0 a 80. Enero registra 20 mm, febrero 0, marzo 60 y abril 40. El máximo es marzo y en febrero no hay precipitación. Son datos ficticios.",
+      "required_content": "Barras; meses y milímetros; enero 20, febrero 0, marzo 60 y abril 40; máximo en marzo y mínimo de cero en febrero; datos ficticios.",
+      "source": "Lámina original del proyecto, generada por examples/educational/generate_more_examples.py.",
+      "scope": "exploratorio_fuera_de_alcance",
+      "sha256": "f23066ecd1cb35707b5e5547854dfb5b730d736d0e2d9fda80f69f36d0776399",
+      "status_code": 200,
+      "response": {
+        "description": "un gráfico de barras que muestra el porcentaje del número de personas que se encuentran en la región"
+      },
+      "passed": true,
+      "seconds": 35.151,
+      "quality": {
+        "file": "precipitacion.png",
+        "sha256": "f23066ecd1cb35707b5e5547854dfb5b730d736d0e2d9fda80f69f36d0776399",
+        "description_sha256": "14a304a358e2f47d38621b14b58caa4dc964e6144c1e6edaa9511cee55483f6d",
+        "scores": {
+          "identification": 1,
+          "context": 0,
+          "essential": 0,
+          "fidelity": 0,
+          "clarity": 2
+        },
+        "critical_error": "Sustituye la precipitación mensual en milímetros por porcentajes de personas en una región.",
+        "notes": "Reconoce las barras, pero cambia tema y magnitud y omite meses, cantidades, valor cero y comparación.",
+        "correction": "Indicar enero 20 mm, febrero 0, marzo 60 y abril 40; máximo en marzo y mínimo cero en febrero; son datos ficticios.",
+        "reviewer": "Codex (asistente de IA; revisión preliminar pendiente de validación del autor)",
+        "reviewed_at": "2026-10-17",
+        "status": "reviewed",
+        "total": 3,
+        "decision": "no_apta"
+      }
+    },
+    {
+      "file": "reciclaje.png",
+      "subject": "Estadística",
+      "type": "gráfica",
+      "context": "Comparar cantidades en barras horizontales. Los datos son ficticios.",
+      "reference": "Gráfica de barras horizontales de residuos recolectados para reciclar. El eje horizontal indica la masa en kilogramos y el vertical, el material: papel, 8 kg; vidrio, 5 kg; y plástico, 3 kg. El papel tiene la mayor masa y el plástico, la menor. Son datos ficticios.",
+      "required_content": "Barras horizontales; masa en kg; papel 8, vidrio 5 y plástico 3; extremos correctos; datos ficticios.",
+      "source": "Lámina original del proyecto, generada por examples/educational/generate_more_examples.py.",
+      "scope": "exploratorio_fuera_de_alcance",
+      "sha256": "40d97c8420c56c087d439d913487465a5b04feb15cba4eb1644ebe671dc13d43",
+      "status_code": 200,
+      "response": {
+        "description": "un gráfico de barras que muestra el porcentaje del número de personas en México"
+      },
+      "passed": true,
+      "seconds": 30.192,
+      "quality": {
+        "file": "reciclaje.png",
+        "sha256": "40d97c8420c56c087d439d913487465a5b04feb15cba4eb1644ebe671dc13d43",
+        "description_sha256": "7a977b9ed6a3ca9857b4598cf1038aa75983efc5c4c735b738a9556da18e649c",
+        "scores": {
+          "identification": 1,
+          "context": 0,
+          "essential": 0,
+          "fidelity": 0,
+          "clarity": 2
+        },
+        "critical_error": "Cambia masa de residuos en kilogramos por porcentajes de personas en México.",
+        "notes": "Reconoce una gráfica de barras, pero inventa tema, unidad y ubicación. No conserva materiales, valores ni extremos.",
+        "correction": "Describir barras horizontales: papel 8 kg, vidrio 5 kg y plástico 3 kg, con extremos y datos ficticios.",
+        "reviewer": "Codex (asistente de IA; revisión preliminar pendiente de validación del autor)",
+        "reviewed_at": "2026-10-17",
+        "status": "reviewed",
+        "total": 3,
+        "decision": "no_apta"
+      }
+    },
+    {
+      "file": "temperaturas_negativas.png",
+      "subject": "Estadística",
+      "type": "gráfica",
+      "context": "Interpretar una serie temporal con valores positivos, negativos y cero. Los datos son ficticios.",
+      "reference": "Gráfica de líneas de la temperatura durante una madrugada. El eje horizontal muestra la hora y el vertical, grados Celsius, de -4 a 4. A las 00:00 hay 2 grados; a las 02:00, -2; a las 04:00, -4; y a las 06:00, 0. La temperatura desciende hasta el mínimo de -4 y luego sube a cero. Son datos ficticios.",
+      "required_content": "Horas y grados Celsius; pares 00:00 y 2, 02:00 y -2, 04:00 y -4, 06:00 y 0; conservar signos; descenso hasta las 04:00 y recuperación; datos ficticios.",
+      "source": "Lámina original del proyecto, generada por examples/educational/generate_more_examples.py.",
+      "scope": "exploratorio_fuera_de_alcance",
+      "sha256": "2f00e0246c23203080ef4ffa06221766e20bfaaa531ad42f05ef2ca430847dcd",
+      "status_code": 200,
+      "response": {
+        "description": "un gráfico de línea con una flecha azul apuntando hacia el centro"
+      },
+      "passed": true,
+      "seconds": 23.455,
+      "quality": {
+        "file": "temperaturas_negativas.png",
+        "sha256": "2f00e0246c23203080ef4ffa06221766e20bfaaa531ad42f05ef2ca430847dcd",
+        "description_sha256": "6eea4a2e6ccdac6e5723852bc2eaff42cb6735e0d12bd96a81d63a696af51565",
+        "scores": {
+          "identification": 1,
+          "context": 0,
+          "essential": 0,
+          "fidelity": 0,
+          "clarity": 2
+        },
+        "critical_error": "Interpreta la línea de datos como una flecha hacia el centro que no aparece en la gráfica.",
+        "notes": "Reconoce una gráfica de líneas y el color azul, pero omite la temperatura, las horas, los valores, sus signos y la evolución.",
+        "correction": "Indicar 00:00 y 2 grados, 02:00 y -2, 04:00 y -4, 06:00 y 0; descenso y recuperación, unidades y datos ficticios.",
+        "reviewer": "Codex (asistente de IA; revisión preliminar pendiente de validación del autor)",
+        "reviewed_at": "2026-10-17",
+        "status": "reviewed",
+        "total": 3,
+        "decision": "no_apta"
+      }
+    },
+    {
+      "file": "dispersion_plantas.png",
+      "subject": "Estadística",
+      "type": "gráfica",
+      "context": "Leer una gráfica de dispersión y distinguir una asociación de una relación causal. Los datos son ficticios.",
+      "reference": "Gráfica de dispersión de cinco plantas según su exposición diaria a la luz y su altura. El eje horizontal indica horas de luz, de 0 a 5, y el vertical, altura en centímetros, de 0 a 20. Los pares son 1 hora y 5 cm, 2 y 9, 3 y 8, 4 y 14, y 5 y 17. En general, las alturas son mayores con más horas de luz, aunque la planta de 3 horas es más baja que la de 2. Son datos ficticios y no demuestran causalidad.",
+      "required_content": "Dispersión; horas de luz y altura en cm; pares (1, 5), (2, 9), (3, 8), (4, 14), (5, 17); tendencia general creciente con una excepción; no afirmar causalidad; datos ficticios.",
+      "source": "Lámina original del proyecto, generada por examples/educational/generate_more_examples.py.",
+      "scope": "exploratorio_fuera_de_alcance",
+      "sha256": "5ad6401fb8e355d2bed6ac65d7986c65d4ca5c4cde3e929193297e98e440b288",
+      "status_code": 200,
+      "response": {
+        "description": "un gráfico que muestra el número de diferentes partes en los datos"
+      },
+      "passed": true,
+      "seconds": 20.38,
+      "quality": {
+        "file": "dispersion_plantas.png",
+        "sha256": "5ad6401fb8e355d2bed6ac65d7986c65d4ca5c4cde3e929193297e98e440b288",
+        "description_sha256": "cac19cd1d6e330c549439d75cbfc7e64140fd652573bd6784c032409682d0c43",
+        "scores": {
+          "identification": 1,
+          "context": 0,
+          "essential": 0,
+          "fidelity": 1,
+          "clarity": 1
+        },
+        "critical_error": "",
+        "notes": "Reconoce una gráfica, pero la frase sobre número de diferentes partes no identifica plantas, luz o altura. Es vaga e imprecisa; no permite recuperar pares de valores ni tendencia.",
+        "correction": "Describir dispersión de horas de luz y altura en cm: (1,5), (2,9), (3,8), (4,14), (5,17); tendencia creciente con excepción, sin afirmar causalidad; datos ficticios.",
+        "reviewer": "Codex (asistente de IA; revisión preliminar pendiente de validación del autor)",
+        "reviewed_at": "2026-10-17",
+        "status": "reviewed",
+        "total": 3,
+        "decision": "no_apta"
+      }
+    }
+  ],
+  "summary": {
+    "images": 18,
+    "http_passed": 18,
+    "reviewed": 18,
+    "pending": 0,
+    "not_evaluated": 0,
+    "decisions": {
+      "apta": 0,
+      "requiere_revision": 0,
+      "no_apta": 18
+    },
+    "mean_score": 2.83
+  },
+  "by_type": {
+    "diagrama": {
+      "images": 11,
+      "http_passed": 11,
+      "reviewed": 11,
+      "pending": 0,
+      "not_evaluated": 0,
+      "decisions": {
+        "apta": 0,
+        "requiere_revision": 0,
+        "no_apta": 11
+      },
+      "mean_score": 3.0
+    },
+    "gráfica": {
+      "images": 7,
+      "http_passed": 7,
+      "reviewed": 7,
+      "pending": 0,
+      "not_evaluated": 0,
+      "decisions": {
+        "apta": 0,
+        "requiere_revision": 0,
+        "no_apta": 7
+      },
+      "mean_score": 2.57
+    }
+  },
+  "review_report_utc": "2026-10-17T21:40:01.733348+00:00",
+  "rubric_sha256": "0704ea8d0db05a1260f6513f4de644fc7ce5e89c7ad4fa4c93a9d2c2d48ae9df"
+}

@@ -30,7 +30,7 @@ Cuando cambies una dependencia, comprueba primero que el servicio y las pruebas 
 | `app/captioning.py` | Descarga, carga y ejecuta los modelos de descripción y traducción. |
 | `scripts/warmup.py` | Prepara los modelos y prueba una inferencia. |
 | `scripts/evaluate.py` | Envía imágenes por HTTP y guarda los resultados, incluidos los fallos. |
-| `scripts/create_examples.py` | Genera las láminas educativas de prueba. |
+| `scripts/create_examples.py` | Verifica los hashes y restaura las imágenes ausentes del set de la línea A. |
 | `tests/` | Comprueba la API, las imágenes, el servicio de modelos y el evaluador. |
 
 La versión de la aplicación está definida en `app/__init__.py`. Tanto OpenAPI como `/health` usan ese mismo valor.
@@ -82,13 +82,15 @@ Revisa tanto el código HTTP como el contenido de cada descripción. El campo `p
 
 El evaluador guarda por separado las respuestas no válidas, los errores de conexión y los archivos ausentes. Continúa con las otras imágenes y termina con código 1 si alguna petición falla. Por defecto escribe en `.cache`, de modo que las pruebas habituales no reemplazan la evidencia del sprint.
 
-Las láminas incluidas se pueden regenerar con:
+La [guía de evaluación](evaluacion.md) explica cómo incorporar revisiones con `--input` y `--reviews`. El manifiesto vigente contiene exactamente 20 imágenes: 10 fotografías y 10 ilustraciones generales. El evaluador rechaza entradas cuyo tipo sea una gráfica o un diagrama.
+
+Para verificar los hashes o restaurar archivos ausentes desde sus fuentes:
 
 ```powershell
 .\.venv\Scripts\python.exe -m scripts.create_examples
 ```
 
-El generador necesita DejaVu Sans, Arial o Liberation Sans. Cambiar de fuente puede modificar la imagen y el resultado del modelo. Si regeneras las imágenes que acompañan un informe, repite la evaluación y comprueba sus hashes antes de actualizarlo.
+El comando conserva los archivos existentes y falla si su hash no coincide. Solo necesita conexión cuando hay que recuperar una imagen. Ya no existen generadores de láminas con datos.
 
 ## Modelos y licencias
 

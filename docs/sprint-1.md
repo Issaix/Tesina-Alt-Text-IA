@@ -1,5 +1,7 @@
 # Sprint 1: descripción de imágenes
 
+**Informe histórico:** las cuatro láminas con datos de esta prueba inicial se retiraron del proyecto por quedar fuera de la línea A. El set vigente contiene 20 fotografías e ilustraciones generales; sus resultados están en el [informe actual](evaluacion-principal.md).
+
 ## Objetivo
 
 El objetivo fue completar una primera versión que recibiera una imagen por HTTP y devolviera una descripción. Se priorizó que el flujo funcionara antes de mejorar la calidad del texto.
@@ -32,22 +34,22 @@ La generación usa tres candidatos de búsqueda y evita repetir secuencias de tr
 
 ## Prueba con imágenes educativas
 
-Se inició Uvicorn en `127.0.0.1:54023` con los pesos descargados y el modo sin conexión activado. Las imágenes se enviaron con el evaluador del proyecto. Para repetir la prueba y elegir dónde guardar el informe:
+Se inició Uvicorn en `127.0.0.1:54023` con los pesos descargados y el modo sin conexión activado. Las imágenes se enviaron con el evaluador del proyecto. Las imágenes de esta prueba ya no forman parte del repositorio. Para evaluar el set vigente de la línea A:
 
 ```powershell
 .\.venv\Scripts\python.exe -m scripts.evaluate --base-url http://127.0.0.1:54023 --output .cache/evaluation.json
 ```
 
-Las cuatro láminas se crearon con Pillow y están incluidas en el repositorio. El [manifiesto](../examples/educational/manifest.json) contiene su procedencia y una descripción de referencia. Esas referencias se usaron para revisar las respuestas, no como entrada del modelo.
+Las cuatro láminas se crearon con Pillow y se incluyeron en la entrega original. El archivo de respuestas conserva su procedencia y referencia. Esas referencias se usaron para revisar las respuestas, no como entrada del modelo. Tras ajustar el set a la ficha de la línea A, estas láminas se eliminaron; los resultados históricos se conservan sin cambios.
 
 Estos fueron los resultados de la entrega inicial, conservados sin corregir el texto generado:
 
 | Imagen | HTTP | Descripción generada | Segundos |
 |---|---|---|---:|
-| [Triángulo](../examples/educational/triangulo.png) | 200 | un triángulo se muestra en el lado derecho de un triángulo derecho | 15.387 |
-| [Gráfico de barras](../examples/educational/barras.jpg) | 200 | un gráfico de barras muestra el número de personas que están utilizando Internet | 5.098 |
-| [Sol, Tierra y Luna](../examples/educational/astronomia.jpeg) | 200 | un diagrama de los planetas y sus nombres | 3.215 |
-| [Planta](../examples/educational/planta.png) | 200 | un diagrama de una flor con el nombre de la planta | 4.110 |
+| Triángulo | 200 | un triángulo se muestra en el lado derecho de un triángulo derecho | 15.387 |
+| Gráfico de barras | 200 | un gráfico de barras muestra el número de personas que están utilizando Internet | 5.098 |
+| Sol, Tierra y Luna | 200 | un diagrama de los planetas y sus nombres | 3.215 |
+| Planta | 200 | un diagrama de una flor con el nombre de la planta | 4.110 |
 
 La primera petición incluyó la carga de los modelos en memoria. Los tiempos corresponden a una sola ejecución y sirven como referencia, no como una medición general de rendimiento.
 
