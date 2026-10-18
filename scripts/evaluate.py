@@ -23,6 +23,10 @@ from app.captioning import (
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_OUTPUT = ROOT / ".cache" / "evaluation.json"
+DATASET_TYPES = {
+    "principal_linea_a": {"fotografía", "ilustración"},
+    "complementario_limitaciones": {"diagrama", "gráfica"},
+}
 CRITERIA = ("identification", "context", "essential", "fidelity", "clarity")
 CRITERIA_LABELS = ("Identificación", "Contexto", "Información esencial", "Fidelidad", "Claridad")
 STATUS_LABELS = {
@@ -114,6 +118,13 @@ def summarize(results: list[dict[str, Any]]) -> dict[str, Any]:
         "mean_score": round(sum(item["total"] for item in reviewed) / len(reviewed), 2)
         if reviewed
         else None,
+        "critical_errors": sum(bool(item["critical_error"]) for item in reviewed),
+        "mean_by_criterion": {
+            key: round(sum(item["scores"][key] for item in reviewed) / len(reviewed), 2)
+            if reviewed
+            else None
+            for key in CRITERIA
+        },
     }
 
 
@@ -124,6 +135,8 @@ def markdown_report(report: dict[str, Any]) -> str:
         f"Ejecución HTTP: {report['timestamp_utc']}",
         "",
         f"Alcance: {report.get('scope', 'No registrado en el informe original.')}",
+        "",
+        report.get("evidence_note", ""),
         "",
         "`passed` comprueba el contrato HTTP; no acredita calidad educativa. "
         "Las puntuaciones proceden de una revisión explícita según la rúbrica.",
@@ -138,6 +151,18 @@ def markdown_report(report: dict[str, Any]) -> str:
             f"| {decisions['apta']} | {decisions['requiere_revision']} | {decisions['no_apta']} "
             f"| {summary['mean_score'] if summary['mean_score'] is not None else '—'} |"
         )
+    lines.extend(
+        [
+            "",
+            f"Revisiones con error crítico: {report['summary']['critical_errors']}.",
+            "",
+            "| Criterio | Media / 2 |",
+            "|---|---:|",
+        ]
+    )
+    for key, label in zip(CRITERIA, CRITERIA_LABELS, strict=True):
+        value = report["summary"]["mean_by_criterion"][key]
+        lines.append(f"| {label} | {value if value is not None else '—'} |")
     for item in report["results"]:
         quality = item["quality"]
         lines.extend(
@@ -224,7 +249,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--input", type=Path, help="Revisar un informe guardado sin repetir HTTP.")
     parser.add_argument("--reviews", type=Path, help="JSON con revisiones y hashes de las salidas.")
     parser.add_argument(
-        "--manifest", type=Path, help="Manifiesto alternativo de fotografías e ilustraciones."
+        "--manifest", type=Path, help="Manifiesto principal o complementario, sin mezclar alcances."
     )
     args = parser.parse_args(argv)
     if args.input:
@@ -244,8 +269,10 @@ def main(argv: Sequence[str] | None = None) -> int:
     for item in manifest:
         if not isinstance(item, dict) or not isinstance(item.get("file"), str):
             parser.error("Cada entrada del manifiesto debe incluir un nombre de archivo.")
-        if item.get("type") is not None and item["type"] not in {"fotografía", "ilustración"}:
-            parser.error("La línea A solo evalúa fotografías e ilustraciones generales.")
+        kind, scope = item.get("type"), item.get("scope", "unspecified")
+        allowed = DATASET_TYPES.get(scope, {"fotografía", "ilustración"})
+        if kind is not None and kind not in allowed:
+            parser.error("El tipo de imagen no corresponde al alcance declarado en el manifiesto.")
         if not (directory / item["file"]).resolve().is_relative_to(directory.resolve()):
             parser.error("Las imágenes deben estar dentro de la carpeta del manifiesto.")
     scopes = {item.get("scope", "unspecified") for item in manifest}
@@ -306,9 +333,14 @@ def save_report(report: dict[str, Any], args: argparse.Namespace, parser: Any) -
             for kind in sorted({item.get("type", "sin_tipo") for item in results})
         }
         report["review_report_utc"] = datetime.now(UTC).isoformat()
-        report["rubric_sha256"] = hashlib.sha256(
+        current_rubric = hashlib.sha256(
             (Path(__file__).resolve().parents[1] / "docs" / "rubrica-alt-text.md").read_bytes()
         ).hexdigest()
+        # Reprocesar respuestas no cambia la rúbrica con la que se puntuaron.
+        if args.reviews or "rubric_sha256" not in report:
+            report["rubric_sha256"] = current_rubric
+            report["rubric_source"] = "docs/rubrica-alt-text.md"
+        report["current_rubric_sha256"] = current_rubric
         if args.output.suffix.lower() != ".json":
             raise ValueError("El informe de salida debe tener extensión .json.")
         args.output.parent.mkdir(parents=True, exist_ok=True)

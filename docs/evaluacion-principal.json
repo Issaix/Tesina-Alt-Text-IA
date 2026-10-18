@@ -842,7 +842,15 @@
       "requiere_revision": 20,
       "no_apta": 0
     },
-    "mean_score": 7.95
+    "mean_score": 7.95,
+    "critical_errors": 0,
+    "mean_by_criterion": {
+      "identification": 1.95,
+      "context": 1.15,
+      "essential": 1.0,
+      "fidelity": 1.85,
+      "clarity": 2.0
+    }
   },
   "by_type": {
     "fotografía": {
@@ -856,7 +864,15 @@
         "requiere_revision": 10,
         "no_apta": 0
       },
-      "mean_score": 7.8
+      "mean_score": 7.8,
+      "critical_errors": 0,
+      "mean_by_criterion": {
+        "identification": 1.9,
+        "context": 1.2,
+        "essential": 1.0,
+        "fidelity": 1.7,
+        "clarity": 2.0
+      }
     },
     "ilustración": {
       "images": 10,
@@ -869,9 +885,22 @@
         "requiere_revision": 10,
         "no_apta": 0
       },
-      "mean_score": 8.1
+      "mean_score": 8.1,
+      "critical_errors": 0,
+      "mean_by_criterion": {
+        "identification": 2.0,
+        "context": 1.1,
+        "essential": 1.0,
+        "fidelity": 2.0,
+        "clarity": 2.0
+      }
     }
   },
-  "review_report_utc": "2026-10-17T21:53:11.856358+00:00",
-  "rubric_sha256": "fa25adf73705a3c0a9594a1d0e57eaa61bbe5e26dbb21890eadf30eb4ba62727"
+  "review_report_utc": "2026-10-18T13:25:00.118576+00:00",
+  "rubric_sha256": "fa25adf73705a3c0a9594a1d0e57eaa61bbe5e26dbb21890eadf30eb4ba62727",
+  "rubric_source": "docs/historico/rubrica-linea-a-2026-10-17.txt",
+  "source_report": "docs/historico/evaluacion-linea-a-20-2026-10-17.json",
+  "source_report_sha256": "d56564facfee93516026fdfca8caf213673c442970e0f650da984e43ac1221b7",
+  "evidence_note": "Respuestas HTTP y revisión preliminar del 17 de octubre de 2026. Reprocesadas el 18 de octubre para actualizar métricas, sin repetir inferencia ni cambiar las puntuaciones. La rúbrica de esas valoraciones se conserva por su hash; la actualización vigente añade la revisión complementaria con las mismas reglas de puntuación.",
+  "current_rubric_sha256": "cc31c62853c8c79784dee2ccbcadb9f14152b91a25fcc757e2cfcd62bfc8e32f"
 }

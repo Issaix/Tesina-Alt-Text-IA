@@ -1,84 +1,96 @@
 # Evaluación de las descripciones
 
-El set vigente de la línea A contiene **20 imágenes: 10 fotografías y 10 ilustraciones de propósito general**. Las gráficas, los diagramas y los esquemas con datos se eliminaron del set. La delimitación procede de la ficha de proyecto proporcionada por el autor.
+La evaluación mantiene el objetivo de la línea A y cumple las actividades de revisión de límites mediante dos conjuntos separados:
 
-## Ejecutar la evaluación
+| Conjunto | Carpeta | Imágenes | Finalidad |
+|---|---|---:|---|
+| Principal | `examples/educational` | 20: 10 fotografías y 10 ilustraciones | Valorar la generación de alt-text para imágenes generales |
+| Complementario | `examples/limitations` | 18: 11 diagramas y 7 gráficas | Documentar dónde falla el flujo ante datos y relaciones |
 
-Prepara los modelos e inicia el servidor como indica el [README](../README.md). En otra terminal, desde la raíz del proyecto:
+Los resultados complementarios no se suman a la calidad del objetivo principal ni convierten el servicio en un intérprete especializado. La [revisión de alineación](alineacion-proyecto.md) relaciona el código con los objetivos de la ficha.
+
+## Ejecutar el servicio sobre los conjuntos
+
+Prepara los modelos e inicia el servidor como indica el [README](../README.md). En otra terminal, desde la raíz:
 
 ```powershell
-.\.venv\Scripts\python.exe -m scripts.evaluate --output .cache/evaluation.json
+.\.venv\Scripts\python.exe -m scripts.evaluate --output .cache/principal.json
+.\.venv\Scripts\python.exe -m scripts.evaluate --manifest examples/limitations/manifest.json --output .cache/limitations.json
 ```
 
-El evaluador envía cada imagen a `POST /describe` y guarda código HTTP, respuesta literal, tiempo, hash, referencia y contexto. Produce informes JSON y Markdown. Conserva los fallos y continúa con las otras imágenes. Usa `--base-url` si el servidor está en otro puerto.
+Usa `--base-url` si el servidor está en otro puerto. Cada comando produce JSON y Markdown. El evaluador envía cada imagen a `POST /describe` y guarda salida literal, código HTTP, tiempo, hash, contexto, referencia y contenido obligatorio. Conserva los fallos y continúa con las demás imágenes.
 
-El campo `passed` y el código de salida 0 indican que se cumplió el contrato HTTP. La calidad queda pendiente hasta incorporar una revisión de contenido. No se puntúa por coincidencia literal con la referencia: se aceptan paráfrasis que conserven la información requerida.
+El campo `passed` y el código de salida 0 comprueban el contrato HTTP. La calidad queda pendiente hasta incorporar una revisión identificada. Los manifiestos deben contener un único alcance y tipos compatibles con él; el predeterminado sigue siendo el principal de 20 imágenes.
 
-## Revisar la calidad
+Para verificar los archivos antes de evaluar:
 
-Abrir cada imagen y comparar la salida con `context`, `reference` y `required_content`, siguiendo la [rúbrica](rubrica-alt-text.md). Registrar una lista JSON de revisiones con:
+```powershell
+.\.venv\Scripts\python.exe -m scripts.create_examples
+.\.venv\Scripts\python.exe -m scripts.create_examples --manifest examples/limitations/manifest.json
+```
+
+Las imágenes principales ausentes se recuperan desde sus fuentes públicas. Las láminas originales del proyecto se recuperan del repositorio; el verificador no inventa sustituciones si falta alguna o cambia su hash.
+
+## Comparar con la referencia
+
+Abrir cada imagen y comparar la salida con `context`, `reference` y `required_content`, siguiendo la [rúbrica](rubrica-alt-text.md). Se aceptan paráfrasis y sinónimos. Las advertencias del manifiesto indican qué no debe afirmarse; no hay que repetirlas en el alt-text.
+
+Registrar una lista JSON de revisiones:
 
 | Campo | Contenido |
 |---|---|
-| `file`, `sha256` | Archivo y hash de la imagen, copiados del informe |
-| `description_sha256` | SHA-256 del texto exacto de la salida en UTF-8 |
+| `file`, `sha256` | Archivo y hash de la imagen |
+| `description_sha256` | SHA-256 de la salida exacta en UTF-8 |
 | `scores` | `identification`, `context`, `essential`, `fidelity` y `clarity`, de 0 a 2 |
 | `critical_error` | Error crítico identificado o cadena vacía |
 | `notes`, `correction` | Justificación y corrección necesaria |
 | `reviewer`, `reviewed_at` | Revisor y fecha |
 
-`scripts.evaluate.description_hash(texto)` calcula el hash de una salida. El evaluador rechaza revisiones duplicadas, hashes que no corresponden y puntuaciones inválidas. Las peticiones fallidas quedan sin evaluación de calidad.
+`scripts.evaluate.description_hash(texto)` calcula el hash del texto. El evaluador rechaza revisiones duplicadas, hashes distintos y puntuaciones inválidas. Una petición fallida queda sin evaluación de calidad.
 
-Para aplicar una revisión sin repetir la inferencia:
-
-```powershell
-.\.venv\Scripts\python.exe -m scripts.evaluate --input .cache/evaluation.json --reviews docs/evaluacion-principal-revisiones.json --output docs/evaluacion-principal.json
-```
-
-Solo reutilizar una revisión si corresponde a las mismas imágenes y salidas. Las puntuaciones del asistente son preliminares y requieren validación del autor antes de utilizarlas como resultados definitivos de la tesina.
-
-## Evidencia vigente
-
-- [Informe legible](evaluacion-principal.md).
-- [Respuestas, metadatos y puntuaciones](evaluacion-principal.json).
-- [Revisiones con sus justificaciones](evaluacion-principal-revisiones.json).
-- [Discusión de limitaciones](limitaciones-modelo.md).
-
-La nueva ejecución usa Windows, CPU y Python 3.12.14 en `.cache/evaluation-venv`, con las dependencias ya declaradas. No sustituye el `.venv` anterior ni modifica dependencias. Los pesos de BLIP y OPUS-MT están fijados a las revisiones de `app/captioning.py`; se usan desde la caché local, con `HF_HUB_OFFLINE=1`.
-
-Comandos utilizados para esta ejecución, en terminales distintas:
+Para aplicar revisiones sin repetir la inferencia:
 
 ```powershell
-$env:HF_HUB_OFFLINE='1'
-.\.cache\evaluation-venv\Scripts\python.exe -m uvicorn app.main:app --host 127.0.0.1 --port 58823
+.\.venv\Scripts\python.exe -m scripts.evaluate --input .cache/principal.json --reviews docs/evaluacion-principal-revisiones.json --output .cache/principal-revisado.json
+.\.venv\Scripts\python.exe -m scripts.evaluate --input .cache/limitations.json --reviews docs/evaluacion-limitaciones-revisiones.json --output .cache/limitations-revisado.json
 ```
+
+Solo reutilizar revisiones para las mismas imágenes, salidas, referencias y criterios. Si cambia la salida, hay que revisarla de nuevo. Las valoraciones del asistente son preliminares y requieren validación del autor para su uso definitivo en la tesina.
+
+Las métricas son medias totales y por criterio, decisiones por tipo de imagen y recuento de errores críticos. Se calculan sobre las salidas revisadas; no se presenta una similitud literal como medida de pertinencia ni se interpreta HTTP 200 como aprobación de calidad.
+
+## Resultados y procedencia
+
+| Conjunto | HTTP correcto | Requieren revisión | No aptas | Errores críticos | Media / 10 |
+|---|---:|---:|---:|---:|---:|
+| Principal | 20/20 | 20 | 0 | 0 | 7,95 |
+| Complementario | 18/18 | 0 | 18 | 10 | 2,83 |
+
+En ambos conjuntos hubo 0 salidas clasificadas como aptas. En el principal faltó al menos un elemento obligatorio por salida. En el complementario se observaron omisiones y cambios de tema, unidades o relaciones.
+
+Informes con cada respuesta y su justificación:
+
+- Principal: [Markdown](evaluacion-principal.md), [JSON](evaluacion-principal.json) y [revisiones](evaluacion-principal-revisiones.json).
+- Complementario: [Markdown](evaluacion-limitaciones.md), [JSON](evaluacion-limitaciones.json) y [revisiones](evaluacion-limitaciones-revisiones.json).
+- Discusión: [limitaciones del modelo](limitaciones-modelo.md).
+
+Las respuestas HTTP y las puntuaciones proceden del **17 de octubre de 2026**, con Windows, Python 3.12.14 y procesamiento en CPU. Las revisiones concretas de BLIP y OPUS-MT, las bibliotecas y los tiempos están en los JSON. La primera petición puede incluir la carga de modelos; estos tiempos no constituyen una comparación de rendimiento.
+
+El **18 de octubre** se recuperaron las 18 imágenes originales por lectura del repositorio. Todas coinciden por SHA-256 con las evaluadas. Se comprobaron también referencias, salidas y código de inferencia. Se conservaron las 20 imágenes principales y se reprocesaron ambos informes para añadir métricas y aclarar la procedencia, sin nuevas peticiones ni nuevas puntuaciones.
+
+Cada JSON conserva la fecha HTTP, el hash y la ubicación de la rúbrica usada en sus valoraciones, además del hash de la rúbrica vigente. La ampliación de esta última añade el apartado complementario y mantiene las cinco reglas de puntuación. Las copias originales permanecen en `docs/historico`.
+
+Comandos utilizados para actualizar los informes desde esa evidencia verificada:
 
 ```powershell
-.\.cache\evaluation-venv\Scripts\python.exe -m scripts.evaluate --base-url http://127.0.0.1:58823 --output .cache/linea-a-20-raw.json
-.\.cache\evaluation-venv\Scripts\python.exe -m scripts.evaluate --input .cache/linea-a-20-raw.json --reviews docs/evaluacion-principal-revisiones.json --output docs/evaluacion-principal.json
+.\.cache\evaluation-venv\Scripts\python.exe -m scripts.evaluate --input .cache/principal-preserved.json --output docs/evaluacion-principal.json
+.\.cache\evaluation-venv\Scripts\python.exe -m scripts.evaluate --input .cache/complementary-preserved.json --output docs/evaluacion-limitaciones.json
 ```
 
-El puerto 58823 corresponde a una instancia propia para esta comprobación. Los tiempos incluyen transporte HTTP e inferencia; la primera petición puede incluir la carga de modelos. Las versiones y hashes se conservan en el JSON.
+Se utilizó el entorno aislado de evaluación con las dependencias ya declaradas. La comprobación terminó con **61 pruebas correctas**, Ruff sin errores y hashes válidos en las 38 imágenes. Hubo dos advertencias de deprecación de las herramientas de pruebas, sin fallos. No se inició un servidor nuevo ni se ejecutaron comandos de Git.
 
-## Resultados de la ejecución actual
+## Límites de la evidencia
 
-Las **20 peticiones respondieron HTTP 200** con el contrato esperado. La revisión preliminar del asistente clasificó las 20 descripciones como **requiere revisión**, con una media de **7,95/10**. Ninguna cubrió todo el contenido obligatorio; no se identificaron errores críticos en esta revisión.
+El principal es una muestra de conveniencia y nueve ilustraciones comparten estilo. Las fuentes públicas podrían haber aparecido en el entrenamiento. El complementario contiene láminas sencillas definidas para esta exploración, no todos los casos posibles de imágenes con datos.
 
-| Tipo | Imágenes | HTTP correcto | Requieren revisión | Media / 10 |
-|---|---:|---:|---:|---:|
-| Fotografía | 10 | 10 | 10 | 7,8 |
-| Ilustración | 10 | 10 | 10 | 8,1 |
-
-Una suma de 8 o más no basta para declarar una salida apta: la rúbrica exige 2 puntos en información esencial. Las comparaciones por tipo son descriptivas y no demuestran una ventaja general de un tipo sobre otro.
-
-La ejecución completa se repitió sobre las 20 imágenes. Para las diez conservadas se reutilizaron los juicios anteriores solo después de confirmar que imagen, referencia y texto generado eran los mismos; las diez añadidas se revisaron tras inspeccionar sus imágenes y salidas.
-
-Al finalizar se detuvo la instancia propia con `Ctrl+C` y los registros confirmaron su cierre. La validación terminó con **59 pruebas correctas**, Ruff sin errores de lint o formato, y los 20 hashes verificados. Persisten dos advertencias de deprecación de las herramientas de pruebas, sin fallos. No se ejecutaron comandos de Git.
-
-## Cambio de conjunto y límites
-
-Se eliminaron las 18 imágenes con datos, su manifiesto y sus generadores. Se añadieron una fotografía y nueve ilustraciones generales al conjunto anterior de 10 imágenes. El catálogo y el manifiesto actuales contienen exactamente 20 archivos distintos, con referencias y licencias. El comando `scripts.create_examples` ahora verifica o restaura estos archivos desde sus fuentes.
-
-Los informes anteriores se conservan como [antecedente histórico](historico/evaluacion-inicial/README.md). Sus resultados no se mezclan con la evaluación vigente.
-
-El set es una muestra de conveniencia. Nueve ilustraciones comparten el estilo de OpenMoji y varias fotografías son texturas o primeros planos; no representa toda la diversidad educativa. Las fuentes públicas pueden haber aparecido en el entrenamiento. No se ha medido el acuerdo entre revisores ni realizado una evaluación con usuarios de lectores de pantalla.
+Falta validar las puntuaciones con el autor y, de ser posible, medir el acuerdo con otro revisor y evaluar con usuarios de lectores de pantalla. Los resultados no certifican conformidad WCAG. La contenerización y la integración real del microservicio también siguen pendientes, como recoge la revisión de objetivos.

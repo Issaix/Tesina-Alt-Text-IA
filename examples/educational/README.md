@@ -51,4 +51,4 @@ Desde la raíz del proyecto:
 
 El comando verifica los hashes y descarga únicamente los archivos ausentes desde las fuentes fijadas. Requiere conexión si falta alguno; no genera diagramas ni modifica imágenes existentes con contenido distinto.
 
-La muestra es de conveniencia: nueve ilustraciones comparten estilo y las fuentes públicas podrían haber estado en datos de entrenamiento. Los resultados no representan toda la diversidad de imágenes educativas. Las imágenes con datos fueron eliminadas; sus evaluaciones anteriores se conservan únicamente como [antecedente histórico](../../docs/historico/evaluacion-inicial/README.md).
+La muestra es de conveniencia: nueve ilustraciones comparten estilo y las fuentes públicas podrían haber estado en datos de entrenamiento. Los resultados no representan toda la diversidad de imágenes educativas. Las 18 imágenes con datos están disponibles en un [conjunto complementario](../limitations/README.md) para estudiar limitaciones. Se añaden a estas 20 imágenes y sus métricas se calculan aparte. Los informes originales se conservan como [antecedente histórico](../../docs/historico/evaluacion-inicial/README.md).

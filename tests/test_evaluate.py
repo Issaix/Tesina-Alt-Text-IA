@@ -171,15 +171,82 @@ def test_datasets_respect_project_scope():
             item.get(key)
             for key in ("reference", "context", "required_content", "source_url", "license")
         )
+    complementary = evaluate.ROOT / "examples" / "limitations"
+    records = json.loads((complementary / "manifest.json").read_text(encoding="utf-8"))
+    assert len(records) == 18
+    assert {item["scope"] for item in records} == {"complementario_limitaciones"}
+    assert sum(item["type"] == "diagrama" for item in records) == 11
+    assert sum(item["type"] == "gráfica" for item in records) == 7
+    assert not {item["sha256"] for item in main} & {item["sha256"] for item in records}
+    assert {p.name for p in complementary.glob("*") if p.suffix in {".png", ".jpg", ".jpeg"}} == {
+        item["file"] for item in records
+    }
+    for item in records:
+        assert (
+            hashlib.sha256((complementary / item["file"]).read_bytes()).hexdigest()
+            == item["sha256"]
+        )
+        assert all(item.get(k) for k in ("reference", "context", "required_content", "source"))
 
 
-def test_diagrams_are_rejected_before_http(tmp_path, monkeypatch):
+def test_diagrams_require_complementary_scope(tmp_path, monkeypatch):
     manifest = tmp_path / "manifest.json"
     manifest.write_text(json.dumps([{"file": "diagram.png", "type": "diagrama"}]))
     monkeypatch.setattr(evaluate.httpx, "Client", lambda **kwargs: pytest.fail("Unexpected HTTP"))
     with pytest.raises(SystemExit) as exc:
         evaluate.main(["--manifest", str(manifest)])
     assert exc.value.code == 2
+
+
+def test_complementary_manifest_is_evaluated_without_mixing_principal(tmp_path, monkeypatch):
+    manifest = tmp_path / "manifest.json"
+    manifest.write_text(
+        json.dumps(
+            [{"file": "diagram.png", "type": "diagrama", "scope": "complementario_limitaciones"}]
+        ),
+        encoding="utf-8",
+    )
+    (tmp_path / "diagram.png").write_bytes(b"test")
+    client_type = httpx.Client
+    monkeypatch.setattr(
+        evaluate.httpx,
+        "Client",
+        lambda **kwargs: client_type(
+            transport=httpx.MockTransport(
+                lambda request: httpx.Response(200, json={"description": "Un diagrama."})
+            ),
+            **kwargs,
+        ),
+    )
+    output = tmp_path / "complementary.json"
+    assert evaluate.main(["--manifest", str(manifest), "--output", str(output)]) == 0
+    report = json.loads(output.read_text(encoding="utf-8"))
+    assert report["scope"] == "complementario_limitaciones"
+    assert report["summary"]["images"] == 1
+    assert report["summary"]["pending"] == 1
+
+
+def test_reprocessing_preserves_original_rubric_and_evidence_date(tmp_path):
+    result = result_fixture()
+    evaluate.apply_reviews([result], [review_fixture()])
+    source = tmp_path / "original.json"
+    source.write_text(
+        json.dumps(
+            {
+                "timestamp_utc": "original-date",
+                "rubric_sha256": "original-rubric",
+                "results": [result],
+            }
+        ),
+        encoding="utf-8",
+    )
+    output = tmp_path / "reprocessed.json"
+    assert evaluate.main(["--input", str(source), "--output", str(output)]) == 0
+    report = json.loads(output.read_text(encoding="utf-8"))
+    assert report["timestamp_utc"] == "original-date"
+    assert report["rubric_sha256"] == "original-rubric"
+    assert report["current_rubric_sha256"] != "original-rubric"
+    assert report["summary"]["critical_errors"] == 0
 
 
 def test_mixed_scopes_are_rejected_before_http(tmp_path, monkeypatch):

@@ -4,12 +4,24 @@ Ejecución HTTP: 2026-10-17T21:52:30.709859+00:00
 
 Alcance: principal_linea_a
 
+Respuestas HTTP y revisión preliminar del 17 de octubre de 2026. Reprocesadas el 18 de octubre para actualizar métricas, sin repetir inferencia ni cambiar las puntuaciones. La rúbrica de esas valoraciones se conserva por su hash; la actualización vigente añade la revisión complementaria con las mismas reglas de puntuación.
+
 `passed` comprueba el contrato HTTP; no acredita calidad educativa. Las puntuaciones proceden de una revisión explícita según la rúbrica.
 
 | Tipo | Imágenes | HTTP | Revisadas | Aptas | Revisión | No aptas | Media / 10 |
 |---|---:|---:|---:|---:|---:|---:|---:|
 | fotografía | 10 | 10 | 10 | 0 | 10 | 0 | 7.8 |
 | ilustración | 10 | 10 | 10 | 0 | 10 | 0 | 8.1 |
+
+Revisiones con error crítico: 0.
+
+| Criterio | Media / 2 |
+|---|---:|
+| Identificación | 1.95 |
+| Contexto | 1.15 |
+| Información esencial | 1.0 |
+| Fidelidad | 1.85 |
+| Claridad | 2.0 |
 
 ## astronauta.png
 

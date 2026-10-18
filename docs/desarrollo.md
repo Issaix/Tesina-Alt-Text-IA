@@ -82,7 +82,7 @@ Revisa tanto el código HTTP como el contenido de cada descripción. El campo `p
 
 El evaluador guarda por separado las respuestas no válidas, los errores de conexión y los archivos ausentes. Continúa con las otras imágenes y termina con código 1 si alguna petición falla. Por defecto escribe en `.cache`, de modo que las pruebas habituales no reemplazan la evidencia del sprint.
 
-La [guía de evaluación](evaluacion.md) explica cómo incorporar revisiones con `--input` y `--reviews`. El manifiesto vigente contiene exactamente 20 imágenes: 10 fotografías y 10 ilustraciones generales. El evaluador rechaza entradas cuyo tipo sea una gráfica o un diagrama.
+La [guía de evaluación](evaluacion.md) explica cómo incorporar revisiones con `--input` y `--reviews`. El manifiesto principal contiene 20 imágenes: 10 fotografías y 10 ilustraciones generales. El complementario contiene 11 diagramas y 7 gráficas, con alcance `complementario_limitaciones`. El evaluador valida la correspondencia entre tipo y alcance y rechaza manifiestos que mezclen ambos conjuntos.
 
 Para verificar los hashes o restaurar archivos ausentes desde sus fuentes:
 
@@ -90,10 +90,12 @@ Para verificar los hashes o restaurar archivos ausentes desde sus fuentes:
 .\.venv\Scripts\python.exe -m scripts.create_examples
 ```
 
-El comando conserva los archivos existentes y falla si su hash no coincide. Solo necesita conexión cuando hay que recuperar una imagen. Ya no existen generadores de láminas con datos.
+El comando conserva los archivos existentes y falla si su hash no coincide. Solo necesita conexión cuando hay que recuperar una imagen. Para comprobar las láminas originales incluidas en el conjunto complementario, usa `--manifest examples/limitations/manifest.json`. Si falta alguna, se debe recuperar del repositorio; no se genera una sustitución con otro hash.
 
 ## Modelos y licencias
 
 BLIP base se distribuye con licencia BSD-3-Clause y OPUS-MT con Apache-2.0. Las revisiones concretas están en `app/captioning.py` y en el informe de evaluación.
 
 Los archivos se descargan desde Hugging Face y se cargan desde rutas locales. La aplicación no solicita conversiones remotas ni envía las imágenes a un servicio de inferencia. El entorno virtual, los pesos y los resultados de trabajo en `.cache` están excluidos de Git.
+
+La [revisión de alineación](alineacion-proyecto.md) relaciona el código con los objetivos de la ficha. Contenerizar el servicio, validar su integración y completar la revisión humana de calidad siguen pendientes.

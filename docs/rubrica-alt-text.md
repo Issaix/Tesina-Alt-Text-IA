@@ -1,6 +1,6 @@
 # Rúbrica de calidad del texto alternativo
 
-Esta rúbrica evalúa descripciones en español de **fotografías e ilustraciones de propósito general** usadas en actividades educativas. Las gráficas, los diagramas y los esquemas con datos quedan fuera de la línea A.
+Esta rúbrica evalúa descripciones en español de **fotografías e ilustraciones de propósito general** usadas en actividades educativas. Las gráficas, los diagramas y los esquemas con datos quedan fuera del objetivo principal y se revisan en un conjunto complementario para documentar limitaciones.
 
 La escala es una propuesta de trabajo de la tesina. No es una escala oficial de WCAG ni sustituye una evaluación con usuarios de lectores de pantalla.
 
@@ -58,3 +58,23 @@ Los ejemplos explican la escala; no son nuevas salidas del modelo.
 Abrir la imagen, leer su contexto y comparar la salida con la referencia. Registrar los cinco puntajes, los errores críticos, una justificación y la corrección necesaria. Identificar al revisor y la fecha. Las valoraciones del asistente son preliminares y requieren validación del autor.
 
 La [guía de evaluación](evaluacion.md) explica el formato de registro y la generación de informes. La extensión del texto depende de la información que necesita la actividad; no se fija un máximo universal de caracteres. Esta revisión sigue la orientación de W3C WAI sobre el propósito y contexto de las [imágenes informativas](https://www.w3.org/WAI/tutorials/images/informative/).
+
+## Revisión complementaria de gráficas y diagramas
+
+Para cumplir las actividades de evaluación de límites se utiliza además el [conjunto complementario](../examples/limitations/manifest.json): 11 diagramas y 7 gráficas. Sus resultados se calculan por separado y no amplían el objetivo de producción de la línea A.
+
+Se mantienen los cinco criterios y las mismas reglas de decisión. Cambia la información esencial que debe conservarse:
+
+| Representación | Información esperada |
+|---|---|
+| Diagrama o esquema | Tema, partes rotuladas y relaciones relevantes; orden de etapas y sentido de flechas cuando existan. |
+| Gráfica | Tipo, tema, variables, categorías, unidades, valores necesarios, comparaciones y extremos. Conservar signos, ceros y escalas relevantes; no inventar cifras ni causalidad. |
+
+En las gráficas pequeñas de este conjunto, todos los valores de `required_content` forman parte de lo esperado. En los diagramas se evalúan las medidas, etiquetas y relaciones indicadas en cada referencia. Si una referencia contradice lo visible, debe corregirse antes de puntuar.
+
+Cambiar el tema, alterar una cifra o unidad necesaria o invertir una relación constituye un error crítico. Omitir información se puntúa en información esencial; afirmar datos falsos se puntúa en fidelidad.
+
+Ejemplo ilustrativo: para libros leídos, «Gráfica de barras: A leyó 4 libros, B 7 y C 10; C tiene el máximo y A el mínimo» conserva el contenido requerido. «Una gráfica de barras» es insuficiente. Cambiar el valor de C a 8 es un error crítico. Estos ejemplos explican la rúbrica y no son nuevas salidas del modelo.
+
+La referencia completa de una imagen compleja puede requerir una descripción larga o una tabla junto al texto breve. No se presupone que todos los datos deban colocarse en un único atributo `alt`. La API actual devuelve una sola cadena y aquí se evalúa esa información disponible, siguiendo la orientación de [W3C WAI sobre imágenes complejas](https://www.w3.org/WAI/tutorials/images/complex/).
+

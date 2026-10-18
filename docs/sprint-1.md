@@ -1,6 +1,6 @@
 # Sprint 1: descripción de imágenes
 
-**Informe histórico:** las cuatro láminas con datos de esta prueba inicial se retiraron del proyecto por quedar fuera de la línea A. El set vigente contiene 20 fotografías e ilustraciones generales; sus resultados están en el [informe actual](evaluacion-principal.md).
+**Informe histórico:** las cuatro láminas de esta prueba inicial forman parte del [conjunto complementario de limitaciones](../examples/limitations/README.md). El set principal contiene 20 fotografías e ilustraciones generales; sus resultados están en el [informe actual](evaluacion-principal.md).
 
 ## Objetivo
 
@@ -34,13 +34,13 @@ La generación usa tres candidatos de búsqueda y evita repetir secuencias de tr
 
 ## Prueba con imágenes educativas
 
-Se inició Uvicorn en `127.0.0.1:54023` con los pesos descargados y el modo sin conexión activado. Las imágenes se enviaron con el evaluador del proyecto. Las imágenes de esta prueba ya no forman parte del repositorio. Para evaluar el set vigente de la línea A:
+Se inició Uvicorn en `127.0.0.1:54023` con los pesos descargados y el modo sin conexión activado. Las imágenes se enviaron con el evaluador del proyecto. Las respuestas siguientes pertenecen a aquella ejecución, no a una nueva. Para evaluar el set principal vigente de la línea A:
 
 ```powershell
 .\.venv\Scripts\python.exe -m scripts.evaluate --base-url http://127.0.0.1:54023 --output .cache/evaluation.json
 ```
 
-Las cuatro láminas se crearon con Pillow y se incluyeron en la entrega original. El archivo de respuestas conserva su procedencia y referencia. Esas referencias se usaron para revisar las respuestas, no como entrada del modelo. Tras ajustar el set a la ficha de la línea A, estas láminas se eliminaron; los resultados históricos se conservan sin cambios.
+Las cuatro láminas se crearon con Pillow y se incluyeron en la entrega original. El archivo de respuestas conserva su procedencia y referencia. Esas referencias se usaron para revisar las respuestas, no como entrada del modelo. Tras ajustar el set a la ficha de la línea A, estas láminas se ubicaron en el conjunto complementario; los resultados históricos se conservan sin cambios.
 
 Estos fueron los resultados de la entrega inicial, conservados sin corregir el texto generado:
 

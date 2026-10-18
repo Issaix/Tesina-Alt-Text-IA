@@ -2,7 +2,7 @@
 
 Este servicio recibe una imagen educativa y genera una descripción en español. La idea es ayudar a preparar textos alternativos que puedan leer los lectores de pantalla.
 
-La línea A se limita a fotografías e ilustraciones de propósito general. Las gráficas, los diagramas y los esquemas con datos corresponden a otra línea y se excluyeron del conjunto de pruebas.
+La línea A se limita a fotografías e ilustraciones de propósito general. Las gráficas, los diagramas y los esquemas con datos se incluyen en pruebas complementarias para estudiar limitaciones; su interpretación especializada corresponde a otra línea. La [revisión de objetivos](docs/alineacion-proyecto.md) explica el avance y los pendientes del proyecto.
 
 Es parte de una tesina de Ingeniería en Computación Inteligente de la Universidad Autónoma de Aguascalientes. En esta primera versión, el servicio ya recibe imágenes, las procesa y devuelve el resultado en JSON. La calidad del texto todavía necesita revisión: el modelo puede omitir información o inventar detalles.
 
@@ -119,7 +119,11 @@ Con el servidor encendido, evalúa las 20 imágenes del conjunto (10 fotografía
 
 El resultado se guarda en `.cache/evaluation.json` y `.cache/evaluation.md`, sin modificar el informe original del sprint. El evaluador conserva las peticiones fallidas y termina con código 1 si alguna no funciona. `passed` solo indica que se cumplió el contrato HTTP; la calidad queda pendiente hasta incorporar una revisión con la rúbrica. Puedes cambiar el destino con `--output` o el servidor con `--base-url`.
 
-La [guía de evaluación](docs/evaluacion.md) explica cómo añadir puntuaciones y comparar las salidas con las referencias.
+La [guía de evaluación](docs/evaluacion.md) explica cómo añadir puntuaciones y comparar las salidas con las referencias. Además de las 20 imágenes principales, hay un [set complementario](examples/limitations/README.md) de 11 diagramas y 7 gráficas. Para evaluarlo por separado:
+
+```powershell
+.\.venv\Scripts\python.exe -m scripts.evaluate --manifest examples/limitations/manifest.json --output .cache/limitations.json
+```
 
 El [catálogo](examples/educational/README.md) reúne las 20 fotografías e ilustraciones con su procedencia y licencia. La [rúbrica de calidad](docs/rubrica-alt-text.md) explica cómo revisar el objeto principal, el contexto, la información esencial y la fidelidad del texto. Esta revisión requiere comparar cada salida con la imagen.
 
@@ -149,6 +153,8 @@ Si falta algún archivo en caché, retira esa variable con `Remove-Item Env:HF_H
 
 El [informe de evaluación](docs/evaluacion-principal.md) compara las salidas del set de 20 imágenes con sus referencias mediante la rúbrica. Las 20 peticiones respondieron correctamente por HTTP; la revisión preliminar clasificó las 20 salidas como «requiere revisión», con media de 7,95/10 por omisiones de contenido obligatorio. Las puntuaciones del asistente son preliminares y requieren validación del autor. La [discusión de limitaciones](docs/limitaciones-modelo.md) recoge los errores observados dentro del alcance de la línea A.
 
-Las evaluaciones del set anterior quedaron en el [archivo histórico](docs/historico/evaluacion-inicial/README.md). Los informes del [Sprint 1](docs/sprint-1.md) y del [Sprint 0](docs/sprint-0.md) conservan la evidencia inicial del proyecto.
+La [evaluación complementaria](docs/evaluacion-limitaciones.md) conserva las respuestas reales de las 18 imágenes con datos: todas respondieron correctamente por HTTP y sus textos se valoraron como no aptos para los contextos definidos, con media de 2,83/10. Se documentan como limitaciones, sin sumarlos a la calidad del conjunto principal. Estas respuestas proceden del 17 de octubre de 2026 y se recuperaron por identidad de hashes; no son una ejecución nueva.
+
+Los informes del [Sprint 1](docs/sprint-1.md) y del [Sprint 0](docs/sprint-0.md), junto con el [archivo histórico](docs/historico/evaluacion-inicial/README.md), conservan la evidencia inicial del proyecto.
 
 Este servicio produce borradores de texto alternativo. El [criterio WCAG 1.1.1](https://www.w3.org/WAI/WCAG22/Understanding/non-text-content.html) exige que la alternativa cumpla el propósito del contenido original. Dentro de la línea A, falta ampliar la diversidad de fotografías e ilustraciones, incorporar el contexto de la lección y evaluar los textos con usuarios de lectores de pantalla. La interpretación especializada de gráficas y diagramas corresponde a otra línea. La contenerización y la integración con el orquestador quedan para las siguientes etapas.

@@ -26,6 +26,12 @@ class ErrorResponse(BaseModel):
     tags=["Descripción"],
     response_model=DescriptionResponse,
     summary="Describir una imagen educativa en español",
+    description=(
+        "Recibe una imagen estática y devuelve un borrador de texto alternativo en español. "
+        "El objetivo principal son fotografías e ilustraciones generales. La calidad requiere "
+        "revisión; no certifica conformidad WCAG ni interpreta de forma especializada "
+        "gráficas o diagramas con datos."
+    ),
     responses={
         400: {"model": ErrorResponse, "description": "Imagen vacía o dañada"},
         413: {"model": ErrorResponse, "description": "Tamaño o resolución excesivos"},

@@ -1,6 +1,6 @@
 # Limitaciones del modelo en la línea A
 
-La evaluación vigente se limita a **fotografías e ilustraciones de propósito general**. El set contiene 20 imágenes, repartidas por igual entre ambos tipos. Las imágenes con datos se retiraron; los informes previos quedaron en el [archivo histórico](historico/evaluacion-inicial/README.md).
+El objetivo principal de la línea A son **fotografías e ilustraciones de propósito general**, evaluadas con un set de 20 imágenes. Las actividades de revisión de límites añaden un conjunto complementario de 18 imágenes con datos: 11 diagramas y 7 gráficas. Sus resultados se mantienen separados.
 
 ## Alcance de los resultados
 
@@ -26,6 +26,27 @@ Se observaron dos patrones: descripciones breves que reconocen el sujeto pero no
 
 En las ilustraciones, acertar el objeto y el color no garantiza conservar los rasgos necesarios. La media ligeramente mayor de las ilustraciones no permite concluir que el modelo funcione mejor en esa categoría: son pocos casos, con objetos y estilos distintos de las fotografías.
 
+## Limitaciones observadas en gráficas y diagramas
+
+El [informe complementario](evaluacion-limitaciones.md) conserva 18 respuestas HTTP correctas, valoradas preliminarmente como no aptas para recuperar los datos de sus contextos. La media es 2,83/10 y se identificaron errores críticos en 10 casos. Estas métricas no se suman al conjunto principal ni indican que la interpretación especializada sea responsabilidad de la línea A.
+
+Las respuestas se obtuvieron el 17 de octubre de 2026. El 18 se recuperaron las imágenes originales y se comprobaron sus hashes, referencias y código de inferencia frente al informe guardado. No se ejecutó una inferencia nueva ni se modificaron las puntuaciones al recuperar la evidencia.
+
+| Imagen | Salida real | Fallo frente a la referencia |
+|---|---|---|
+| Libros leídos | «un gráfico de barras muestra el número de personas que están utilizando Internet» | Reconoce las barras, cambia el tema y omite A: 4, B: 7 y C: 10 libros. |
+| Temperaturas | «un gráfico de líneas que muestra el número de personas en el país» | Cambia temperatura por personas y omite días, grados, escala, valores y extremos. |
+| Rectángulo | «superficie 8 cm superficie 8 m quado 4 m» | Mezcla unidades y no conserva área de 32 cm cuadrados ni perímetro de 24 cm. |
+| Estados del agua | «un diagrama que muestra el flujo de un líquido en un líquido» | No distingue sólido, líquido y gas ni los cambios de estado y sus sentidos. |
+| Ciclo de mariposa | «cio vida una impo» | No ofrece una secuencia comprensible ni conserva huevo, larva, pupa y adulto. |
+| Reciclaje | «un gráfico de barras que muestra el porcentaje del número de personas en México» | Inventa tema, unidad y ubicación en lugar de masa de papel, vidrio y plástico. |
+
+Se observaron omisiones de etiquetas, cifras y relaciones, cambios de tema y problemas de redacción. Reconocer la forma global de una gráfica no implica interpretar sus datos. El flujo actual genera una descripción general y la traduce; no incluye una etapa especializada de lectura de ejes, extracción de valores o reconstrucción de diagramas.
+
+Sin revisar el texto intermedio en inglés no se puede atribuir cada error a BLIP o a OPUS-MT por separado. Los fallos observados pertenecen al flujo completo y a este conjunto concreto, no demuestran que todas las imágenes con datos fallen.
+
+Para imágenes complejas, la [guía de W3C WAI](https://www.w3.org/WAI/tutorials/images/complex/) contempla una identificación breve acompañada de información detallada. La referencia completa de este piloto representa la información que debe conservarse; no se presupone que toda ella deba insertarse en un atributo HTML `alt`.
+
 ## Limitaciones de la evaluación
 
 - El conjunto de 20 imágenes es una muestra de conveniencia, no una muestra representativa de todos los materiales educativos.
@@ -40,4 +61,4 @@ En las ilustraciones, acertar el objeto y el color no garantiza conservar los ra
 
 Las salidas deben tratarse como borradores. La revisión debe comprobar sujeto, rasgos necesarios, disposición de los objetos y cualquier afirmación sin respaldo. Para fortalecer la discusión de la tesina conviene validar las puntuaciones con el asesor y añadir una segunda revisión independiente.
 
-La interpretación especializada de gráficas y diagramas corresponde a otra línea. Su eliminación del set no añade un clasificador a la API: este servicio sigue aceptando archivos de imagen según sus validaciones de formato.
+La interpretación especializada de gráficas y diagramas corresponde a otra línea. Su inclusión en pruebas complementarias no añade un clasificador ni un intérprete especializado a la API: el servicio sigue aceptando archivos según sus validaciones de formato.
