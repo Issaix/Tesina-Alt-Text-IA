@@ -58,7 +58,7 @@ Para aplicar el formato:
 
 Mantén las funciones pequeñas y con una responsabilidad clara. Añade tipos a las interfaces y comentarios cuando expliquen una decisión que no resulte evidente al leer el código. En los documentos, usa español directo, títulos y listas de Markdown. Evita adornos y no presentes resultados esperados como si fueran pruebas realizadas.
 
-El flujo de GitHub Actions en `.github/workflows/quality.yml` repite estas comprobaciones al subir cambios o abrir un pull request. Usa Python 3.12 en Windows y no descarga modelos. Las acciones están fijadas a commits concretos. La configuración se ha revisado localmente; su ejecución en GitHub se podrá comprobar al publicarla.
+El flujo de GitHub Actions en `.github/workflows/quality.yml` repite estas comprobaciones al subir cambios o abrir un pull request. Usa Python 3.12 en Windows, crea un entorno virtual `.venv` e instala allí `requirements-lock.txt`. Todas las comprobaciones usan el intérprete de ese entorno para evitar conflictos con herramientas preinstaladas en el ejecutor, como `pipx`. No descarga modelos y las acciones están fijadas a commits concretos. La corrección del aislamiento deberá confirmarse en GitHub después de subir el cambio.
 
 ## Procesamiento y recursos
 

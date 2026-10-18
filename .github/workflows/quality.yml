@@ -29,13 +29,15 @@ jobs:
           python-version: "3.12"
           cache: pip
           cache-dependency-path: requirements-lock.txt
+      - name: Crear entorno virtual
+        run: python -m venv .venv
       - name: Instalar dependencias
-        run: python -m pip install -r requirements-lock.txt
+        run: .\.venv\Scripts\python.exe -m pip install -r requirements-lock.txt
       - name: Comprobar dependencias
-        run: python -m pip check
+        run: .\.venv\Scripts\python.exe -m pip check
       - name: Revisar código
-        run: python -m ruff check .
+        run: .\.venv\Scripts\python.exe -m ruff check .
       - name: Revisar formato
-        run: python -m ruff format --check .
+        run: .\.venv\Scripts\python.exe -m ruff format --check .
       - name: Ejecutar pruebas
-        run: python -m pytest -q
+        run: .\.venv\Scripts\python.exe -m pytest -q
