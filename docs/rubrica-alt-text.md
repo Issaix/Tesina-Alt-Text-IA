@@ -14,7 +14,7 @@ El [manifiesto](../examples/educational/manifest.json) define para cada imagen:
 - `reference`: una descripción correcta posible.
 - `required_content`: información necesaria para ese propósito y afirmaciones que deben evitarse.
 
-Se aceptan sinónimos y otras redacciones que conserven el significado. Las advertencias no tienen que repetirse en el alt-text. El contexto sirve al revisor; la API recibe únicamente la imagen. No se exige identificar personas, especies, lugares o información obtenida solo de la fuente.
+Se aceptan sinónimos y otras redacciones que conserven el significado. Las advertencias no tienen que repetirse en el alt-text. El contexto se utiliza para evaluar la salida; la API recibe únicamente la imagen. No se exige identificar personas, especies, lugares o información obtenida solo de la fuente.
 
 ## Puntuación
 
@@ -55,13 +55,13 @@ Los ejemplos explican la escala; no son nuevas salidas del modelo.
 
 ## Registro de revisión
 
-Abrir la imagen, leer su contexto y comparar la salida con la referencia. Registrar los cinco puntajes, los errores críticos, una justificación y la corrección necesaria. Identificar al revisor y la fecha. Las valoraciones del asistente son preliminares y requieren validación del autor.
+Abrir la imagen, leer su contexto y comparar la salida con la referencia. Registrar las cinco puntuaciones, los errores críticos, la justificación, la corrección necesaria y la fecha. Las puntuaciones son preliminares hasta completar su validación.
 
 La [guía de evaluación](evaluacion.md) explica el formato de registro y la generación de informes. La extensión del texto depende de la información que necesita la actividad; no se fija un máximo universal de caracteres. Esta revisión sigue la orientación de W3C WAI sobre el propósito y contexto de las [imágenes informativas](https://www.w3.org/WAI/tutorials/images/informative/).
 
 ## Revisión complementaria de gráficas y diagramas
 
-Para cumplir las actividades de evaluación de límites se utiliza además el [conjunto complementario](../examples/limitations/manifest.json): 11 diagramas y 7 gráficas. Sus resultados se calculan por separado y no amplían el objetivo de producción de la línea A.
+Para estudiar las limitaciones se utiliza el [conjunto complementario](../examples/limitations/manifest.json): 11 diagramas y 7 gráficas. Sus resultados se calculan por separado y no amplían el objetivo principal de la línea A.
 
 Se mantienen los cinco criterios y las mismas reglas de decisión. Cambia la información esencial que debe conservarse:
 
@@ -77,4 +77,3 @@ Cambiar el tema, alterar una cifra o unidad necesaria o invertir una relación c
 Ejemplo ilustrativo: para libros leídos, «Gráfica de barras: A leyó 4 libros, B 7 y C 10; C tiene el máximo y A el mínimo» conserva el contenido requerido. «Una gráfica de barras» es insuficiente. Cambiar el valor de C a 8 es un error crítico. Estos ejemplos explican la rúbrica y no son nuevas salidas del modelo.
 
 La referencia completa de una imagen compleja puede requerir una descripción larga o una tabla junto al texto breve. No se presupone que todos los datos deban colocarse en un único atributo `alt`. La API actual devuelve una sola cadena y aquí se evalúa esa información disponible, siguiendo la orientación de [W3C WAI sobre imágenes complejas](https://www.w3.org/WAI/tutorials/images/complex/).
-

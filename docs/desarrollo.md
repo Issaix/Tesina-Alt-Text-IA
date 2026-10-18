@@ -30,7 +30,7 @@ Cuando cambies una dependencia, comprueba primero que el servicio y las pruebas 
 | `app/captioning.py` | Descarga, carga y ejecuta los modelos de descripción y traducción. |
 | `scripts/warmup.py` | Prepara los modelos y prueba una inferencia. |
 | `scripts/evaluate.py` | Envía imágenes por HTTP y guarda los resultados, incluidos los fallos. |
-| `scripts/create_examples.py` | Verifica los hashes y restaura las imágenes ausentes del set de la línea A. |
+| `scripts/create_examples.py` | Verifica los hashes y restaura las imágenes ausentes del conjunto de la línea A. |
 | `tests/` | Comprueba la API, las imágenes, el servicio de modelos y el evaluador. |
 
 La versión de la aplicación está definida en `app/__init__.py`. Tanto OpenAPI como `/health` usan ese mismo valor.

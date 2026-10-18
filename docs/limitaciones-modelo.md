@@ -1,16 +1,16 @@
 # Limitaciones del modelo en la línea A
 
-El objetivo principal de la línea A son **fotografías e ilustraciones de propósito general**, evaluadas con un set de 20 imágenes. Las actividades de revisión de límites añaden un conjunto complementario de 18 imágenes con datos: 11 diagramas y 7 gráficas. Sus resultados se mantienen separados.
+El objetivo principal de la línea A son **fotografías e ilustraciones de propósito general**, evaluadas con un conjunto de 20 imágenes. Las actividades de revisión de límites añaden un conjunto complementario de 18 imágenes con datos: 11 diagramas y 7 gráficas. Sus resultados se mantienen separados.
 
 ## Alcance de los resultados
 
-El servicio describe la imagen con BLIP base y traduce el resultado mediante OPUS-MT. Recibe únicamente la imagen: no conoce el contexto de la actividad ni la referencia utilizada por el revisor. La generación está limitada a 60 tokens en inglés y 100 en español.
+El servicio describe la imagen con BLIP base y traduce el resultado mediante OPUS-MT. Recibe únicamente la imagen: no conoce el contexto de la actividad ni la referencia de evaluación. La generación está limitada a 60 tokens en inglés y 100 en español.
 
 Los resultados corresponden al flujo completo. Sin registrar el texto intermedio en inglés, no es posible atribuir un fallo concreto exclusivamente al modelo visual o a la traducción. Una respuesta HTTP 200 acredita que se generó texto con el contrato esperado, pero no que ese texto sea suficiente para la actividad educativa.
 
-El [informe vigente](evaluacion-principal.md) conserva la salida literal, la referencia, las puntuaciones y la corrección propuesta para cada imagen. Las valoraciones del asistente son preliminares y deben ser validadas por el autor.
+El [informe vigente](evaluacion-principal.md) conserva la salida literal, la referencia, las puntuaciones y la corrección propuesta para cada imagen. Las puntuaciones son preliminares y están pendientes de validación.
 
-## Resultados observados en el set de 20 imágenes
+## Resultados observados en el conjunto de 20 imágenes
 
 Las 20 imágenes se procesaron correctamente por HTTP. La revisión preliminar clasificó sus 20 salidas como **requiere revisión**, con media de **7,95/10**: 7,8 en fotografías y 8,1 en ilustraciones. No se identificaron errores críticos, pero todas las salidas omitieron al menos un elemento obligatorio del contexto definido. Estos resultados no equivalen a una evaluación humana independiente.
 
@@ -54,11 +54,11 @@ Para imágenes complejas, la [guía de W3C WAI](https://www.w3.org/WAI/tutorials
 - Varias fotografías muestran texturas o primeros planos; hay poca diversidad de acciones e interacciones entre personas y objetos.
 - Las fuentes son públicas y podrían haber formado parte del entrenamiento. No se garantiza independencia respecto de esos datos.
 - Los contextos y el contenido obligatorio se fijaron antes de revisar las salidas. Una descripción puede resultar insuficiente para ese contexto aunque sea útil en otro; no se juzga por coincidencia literal con la referencia.
-- No se realizó una evaluación con usuarios de lectores de pantalla ni se midió el acuerdo entre revisores. Una puntuación alta no certifica conformidad WCAG.
+- No se realizó una evaluación con usuarios de lectores de pantalla ni se comprobó la consistencia de las puntuaciones mediante una evaluación independiente. Una puntuación alta no certifica conformidad WCAG.
 - Los tiempos incluyen transporte HTTP e inferencia. La primera petición puede incluir la carga de los modelos; no son una comparación de rendimiento entre modelos.
 
 ## Uso de las descripciones
 
-Las salidas deben tratarse como borradores. La revisión debe comprobar sujeto, rasgos necesarios, disposición de los objetos y cualquier afirmación sin respaldo. Para fortalecer la discusión de la tesina conviene validar las puntuaciones con el asesor y añadir una segunda revisión independiente.
+Las salidas deben tratarse como borradores. La revisión debe comprobar sujeto, rasgos necesarios, disposición de los objetos y cualquier afirmación sin respaldo. Quedan pendientes la validación de las puntuaciones y una evaluación independiente.
 
 La interpretación especializada de gráficas y diagramas corresponde a otra línea. Su inclusión en pruebas complementarias no añade un clasificador ni un intérprete especializado a la API: el servicio sigue aceptando archivos según sus validaciones de formato.

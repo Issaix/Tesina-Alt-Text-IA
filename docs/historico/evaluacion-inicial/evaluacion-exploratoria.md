@@ -4,7 +4,7 @@ Ejecución HTTP: 2026-10-17T21:39:21.498311+00:00
 
 Alcance: exploratorio_fuera_de_alcance
 
-`passed` comprueba el contrato HTTP; no acredita calidad educativa. Las puntuaciones proceden de una revisión explícita según la rúbrica.
+`passed` comprueba el contrato HTTP; no acredita calidad educativa. Las puntuaciones siguen la rúbrica y son preliminares, pendientes de validación.
 
 | Tipo | Imágenes | HTTP | Revisadas | Aptas | Revisión | No aptas | Media / 10 |
 |---|---:|---:|---:|---:|---:|---:|---:|
@@ -30,8 +30,6 @@ Alcance: exploratorio_fuera_de_alcance
 
 **Corrección:** Describir un solo triángulo rectángulo, con catetos de 3 y 4 cm e hipotenusa de 5 cm.
 
-**Revisor:** Codex (asistente de IA; revisión preliminar pendiente de validación del autor) (2026-10-17).
-
 ## barras.jpg
 
 **Contexto:** Comparar cuántos libros leyeron tres grupos.
@@ -50,8 +48,6 @@ Alcance: exploratorio_fuera_de_alcance
 **Error crítico:** Cambia el tema de libros leídos por personas que utilizan Internet.
 
 **Corrección:** Indicar libros leídos: A 4, B 7 y C 10; máximo C y mínimo A.
-
-**Revisor:** Codex (asistente de IA; revisión preliminar pendiente de validación del autor) (2026-10-17).
 
 ## astronomia.jpeg
 
@@ -72,8 +68,6 @@ Alcance: exploratorio_fuera_de_alcance
 
 **Corrección:** Nombrar Sol, Tierra y Luna de izquierda a derecha y aclarar que tamaños y distancias no están a escala.
 
-**Revisor:** Codex (asistente de IA; revisión preliminar pendiente de validación del autor) (2026-10-17).
-
 ## planta.png
 
 **Contexto:** Reconocer las partes rotuladas de una planta.
@@ -92,8 +86,6 @@ Alcance: exploratorio_fuera_de_alcance
 **Error crítico:** Ninguno identificado.
 
 **Corrección:** Describir flor, hojas, tallo y raíces y sus relaciones espaciales; no atribuir un nombre de especie.
-
-**Revisor:** Codex (asistente de IA; revisión preliminar pendiente de validación del autor) (2026-10-17).
 
 ## estados_agua.png
 
@@ -114,8 +106,6 @@ Alcance: exploratorio_fuera_de_alcance
 
 **Corrección:** Conservar estados y sentidos: fusión, solidificación, evaporación y condensación.
 
-**Revisor:** Codex (asistente de IA; revisión preliminar pendiente de validación del autor) (2026-10-17).
-
 ## cadena_alimentaria.png
 
 **Contexto:** Interpretar el sentido de las flechas en una cadena alimentaria.
@@ -134,8 +124,6 @@ Alcance: exploratorio_fuera_de_alcance
 **Error crítico:** Ninguno identificado.
 
 **Corrección:** Nombrar pasto, saltamontes, rana y serpiente, y explicar que las flechas van del alimento al consumidor.
-
-**Revisor:** Codex (asistente de IA; revisión preliminar pendiente de validación del autor) (2026-10-17).
 
 ## temperaturas.png
 
@@ -156,8 +144,6 @@ Alcance: exploratorio_fuera_de_alcance
 
 **Corrección:** Describir la temperatura a las 12:00 de lunes a viernes: 18, 21, 19, 24 y 22 grados; conservar escala, extremos, descensos y carácter ficticio.
 
-**Revisor:** Codex (asistente de IA; revisión preliminar pendiente de validación del autor) (2026-10-17).
-
 ## transporte.png
 
 **Contexto:** Relacionar cantidades y porcentajes en un grupo de 20 estudiantes. Los datos son ficticios.
@@ -176,8 +162,6 @@ Alcance: exploratorio_fuera_de_alcance
 **Error crítico:** Describe pasteles superpuestos en lugar de la distribución de medios de transporte.
 
 **Corrección:** Describir 20 estudiantes: a pie 10 (50 %), bicicleta 6 (30 %) y automóvil 4 (20 %), con comparación y datos ficticios.
-
-**Revisor:** Codex (asistente de IA; revisión preliminar pendiente de validación del autor) (2026-10-17).
 
 ## fracciones.png
 
@@ -198,8 +182,6 @@ Alcance: exploratorio_fuera_de_alcance
 
 **Corrección:** Explicar que una de dos partes y dos de cuatro partes están coloreadas en barras iguales: 1/2 = 2/4.
 
-**Revisor:** Codex (asistente de IA; revisión preliminar pendiente de validación del autor) (2026-10-17).
-
 ## coordenadas.png
 
 **Contexto:** Leer pares ordenados y ubicar puntos a ambos lados de los ejes.
@@ -218,8 +200,6 @@ Alcance: exploratorio_fuera_de_alcance
 **Error crítico:** Ninguno identificado.
 
 **Corrección:** Nombrar ejes x e y y los puntos A (2, 1), B (-2, 2) y C (-1, -2), conservando signos y orden.
-
-**Revisor:** Codex (asistente de IA; revisión preliminar pendiente de validación del autor) (2026-10-17).
 
 ## circuito.png
 
@@ -240,8 +220,6 @@ Alcance: exploratorio_fuera_de_alcance
 
 **Corrección:** Describir pila, interruptor cerrado, lámpara y cables en un recorrido cerrado, sin inventar tensión ni corriente.
 
-**Revisor:** Codex (asistente de IA; revisión preliminar pendiente de validación del autor) (2026-10-17).
-
 ## tipos_triangulos.png
 
 **Contexto:** Distinguir triángulos según sus lados usando la clasificación indicada en la lámina.
@@ -260,8 +238,6 @@ Alcance: exploratorio_fuera_de_alcance
 **Error crítico:** Ninguno identificado.
 
 **Corrección:** Distinguir equilátero, isósceles de solo dos lados iguales y escaleno, respetando la convención de la lámina.
-
-**Revisor:** Codex (asistente de IA; revisión preliminar pendiente de validación del autor) (2026-10-17).
 
 ## rectangulo.png
 
@@ -282,8 +258,6 @@ Alcance: exploratorio_fuera_de_alcance
 
 **Corrección:** Indicar rectángulo de 8 por 4 cm, área de 32 centímetros cuadrados y perímetro de 24 cm.
 
-**Revisor:** Codex (asistente de IA; revisión preliminar pendiente de validación del autor) (2026-10-17).
-
 ## ciclo_mariposa.png
 
 **Contexto:** Seguir el orden de las etapas de un ciclo de vida.
@@ -302,8 +276,6 @@ Alcance: exploratorio_fuera_de_alcance
 **Error crítico:** Ninguno identificado.
 
 **Corrección:** Describir huevo, larva, pupa y adulto en orden, y la flecha del adulto al huevo que cierra el ciclo.
-
-**Revisor:** Codex (asistente de IA; revisión preliminar pendiente de validación del autor) (2026-10-17).
 
 ## precipitacion.png
 
@@ -324,8 +296,6 @@ Alcance: exploratorio_fuera_de_alcance
 
 **Corrección:** Indicar enero 20 mm, febrero 0, marzo 60 y abril 40; máximo en marzo y mínimo cero en febrero; son datos ficticios.
 
-**Revisor:** Codex (asistente de IA; revisión preliminar pendiente de validación del autor) (2026-10-17).
-
 ## reciclaje.png
 
 **Contexto:** Comparar cantidades en barras horizontales. Los datos son ficticios.
@@ -344,8 +314,6 @@ Alcance: exploratorio_fuera_de_alcance
 **Error crítico:** Cambia masa de residuos en kilogramos por porcentajes de personas en México.
 
 **Corrección:** Describir barras horizontales: papel 8 kg, vidrio 5 kg y plástico 3 kg, con extremos y datos ficticios.
-
-**Revisor:** Codex (asistente de IA; revisión preliminar pendiente de validación del autor) (2026-10-17).
 
 ## temperaturas_negativas.png
 
@@ -366,8 +334,6 @@ Alcance: exploratorio_fuera_de_alcance
 
 **Corrección:** Indicar 00:00 y 2 grados, 02:00 y -2, 04:00 y -4, 06:00 y 0; descenso y recuperación, unidades y datos ficticios.
 
-**Revisor:** Codex (asistente de IA; revisión preliminar pendiente de validación del autor) (2026-10-17).
-
 ## dispersion_plantas.png
 
 **Contexto:** Leer una gráfica de dispersión y distinguir una asociación de una relación causal. Los datos son ficticios.
@@ -386,5 +352,3 @@ Alcance: exploratorio_fuera_de_alcance
 **Error crítico:** Ninguno identificado.
 
 **Corrección:** Describir dispersión de horas de luz y altura en cm: (1,5), (2,9), (3,8), (4,14), (5,17); tendencia creciente con excepción, sin afirmar causalidad; datos ficticios.
-
-**Revisor:** Codex (asistente de IA; revisión preliminar pendiente de validación del autor) (2026-10-17).

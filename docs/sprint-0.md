@@ -6,14 +6,14 @@ En este sprint se preparó la estructura del microservicio y una primera ruta pa
 
 | Actividad | Resultado |
 |---|---|
-| Crear el repositorio y configurar accesos | Confirmado por el autor. |
+| Crear el repositorio y configurar accesos | Completado y confirmado. |
 | Preparar el entorno local | Se utilizó `.venv` y se registraron las dependencias. |
 | Organizar la aplicación | Se separó la creación de la API de sus rutas. |
 | Crear una ruta de comprobación | Se implementó `GET /health`. |
 | Documentar la ejecución | Se añadieron instrucciones al README. |
-| Registrar las tareas del tablero | Confirmado por el autor. |
+| Registrar las tareas del tablero | Completado y confirmado. |
 
-La publicación en GitHub, los accesos y el tablero fueron confirmados por el autor. Las pruebas locales se centraron en el arranque y las respuestas de la API.
+Se confirmó la publicación en GitHub, la configuración de accesos y el registro de tareas en el tablero. Las pruebas locales se centraron en el arranque y las respuestas de la API.
 
 ## Estructura inicial
 

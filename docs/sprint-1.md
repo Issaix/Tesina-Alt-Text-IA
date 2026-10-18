@@ -1,6 +1,6 @@
 # Sprint 1: descripción de imágenes
 
-**Informe histórico:** las cuatro láminas de esta prueba inicial forman parte del [conjunto complementario de limitaciones](../examples/limitations/README.md). El set principal contiene 20 fotografías e ilustraciones generales; sus resultados están en el [informe actual](evaluacion-principal.md).
+**Informe histórico:** las cuatro láminas de esta prueba inicial forman parte del [conjunto complementario de limitaciones](../examples/limitations/README.md). El conjunto principal contiene 20 fotografías e ilustraciones generales; sus resultados están en el [informe actual](evaluacion-principal.md).
 
 ## Objetivo
 
@@ -34,13 +34,9 @@ La generación usa tres candidatos de búsqueda y evita repetir secuencias de tr
 
 ## Prueba con imágenes educativas
 
-Se inició Uvicorn en `127.0.0.1:54023` con los pesos descargados y el modo sin conexión activado. Las imágenes se enviaron con el evaluador del proyecto. Las respuestas siguientes pertenecen a aquella ejecución, no a una nueva. Para evaluar el set principal vigente de la línea A:
+Se inició Uvicorn en `127.0.0.1:54023` con los pesos descargados y el modo sin conexión activado. Las imágenes se enviaron con el evaluador del proyecto. Las respuestas siguientes pertenecen a aquella ejecución. Para realizar una prueba nueva, seguir la [guía de evaluación](evaluacion.md).
 
-```powershell
-.\.venv\Scripts\python.exe -m scripts.evaluate --base-url http://127.0.0.1:54023 --output .cache/evaluation.json
-```
-
-Las cuatro láminas se crearon con Pillow y se incluyeron en la entrega original. El archivo de respuestas conserva su procedencia y referencia. Esas referencias se usaron para revisar las respuestas, no como entrada del modelo. Tras ajustar el set a la ficha de la línea A, estas láminas se ubicaron en el conjunto complementario; los resultados históricos se conservan sin cambios.
+Las cuatro láminas se crearon con Pillow y se incluyeron en la entrega original. El archivo de respuestas conserva su procedencia y referencia. Esas referencias se usaron para revisar las respuestas, no como entrada del modelo. Tras ajustar el conjunto a la ficha de la línea A, estas láminas se ubicaron en el conjunto complementario; los resultados históricos se conservan sin cambios.
 
 Estos fueron los resultados de la entrega inicial, conservados sin corregir el texto generado:
 
@@ -65,7 +61,7 @@ El flujo funciona, pero estas descripciones todavía no son suficientes para sus
 
 ## Pruebas y mantenimiento
 
-En la entrega inicial pasaron 26 pruebas automatizadas. Después de la revisión de mantenimiento, la suite cuenta con **37 pruebas aprobadas**. Comprueban formatos, archivos dañados, límites, orientación, transparencia, errores del modelo, disponibilidad de la API durante el procesamiento y conservación de los resultados cuando una evaluación falla.
+En la entrega inicial pasaron 26 pruebas automatizadas. En la revisión de mantenimiento de esa etapa se aprobaron **37 pruebas**. Comprueban formatos, archivos dañados, límites, orientación, transparencia, errores del modelo, disponibilidad de la API durante el procesamiento y conservación de los resultados cuando una evaluación falla.
 
 También se repitieron las cuatro peticiones con los modelos reales tras la revisión. Todas devolvieron HTTP 200 y conservaron las mismas descripciones de la tabla. El registro original del sprint se mantuvo sin cambios.
 

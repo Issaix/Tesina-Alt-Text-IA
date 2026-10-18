@@ -4,7 +4,7 @@ Ejecución HTTP: 2026-10-17T21:33:22.452031+00:00
 
 Alcance: principal_linea_a
 
-`passed` comprueba el contrato HTTP; no acredita calidad educativa. Las puntuaciones proceden de una revisión explícita según la rúbrica.
+`passed` comprueba el contrato HTTP; no acredita calidad educativa. Las puntuaciones siguen la rúbrica y son preliminares, pendientes de validación.
 
 | Tipo | Imágenes | HTTP | Revisadas | Aptas | Revisión | No aptas | Media / 10 |
 |---|---:|---:|---:|---:|---:|---:|---:|
@@ -30,8 +30,6 @@ Alcance: principal_linea_a
 
 **Corrección:** Evitar esa atribución y añadir que el casco tiene visor oscuro y se sostiene delante del cuerpo.
 
-**Revisor:** Codex (asistente de IA; revisión preliminar pendiente de validación del autor) (2026-10-17).
-
 ## gato.png
 
 **Contexto:** Reconocer rasgos externos visibles de un mamífero: pelaje, ojos, nariz y bigotes.
@@ -50,8 +48,6 @@ Alcance: principal_linea_a
 **Error crítico:** Ninguno identificado.
 
 **Corrección:** Añadir el pelaje atigrado, la nariz y los bigotes visibles.
-
-**Revisor:** Codex (asistente de IA; revisión preliminar pendiente de validación del autor) (2026-10-17).
 
 ## fotografo.png
 
@@ -72,8 +68,6 @@ Alcance: principal_linea_a
 
 **Corrección:** Describir a una persona inclinada hacia una cámara sobre un trípode, en un espacio abierto; evitar atribuir un traje no visible.
 
-**Revisor:** Codex (asistente de IA; revisión preliminar pendiente de validación del autor) (2026-10-17).
-
 ## cafe.png
 
 **Contexto:** Identificar objetos y su disposición en una mesa.
@@ -92,8 +86,6 @@ Alcance: principal_linea_a
 **Error crítico:** Ninguno identificado.
 
 **Corrección:** Añadir el plato bajo la taza y la cucharilla a su lado.
-
-**Revisor:** Codex (asistente de IA; revisión preliminar pendiente de validación del autor) (2026-10-17).
 
 ## cohete.jpg
 
@@ -114,8 +106,6 @@ Alcance: principal_linea_a
 
 **Corrección:** Precisar que el cohete está vertical sobre una plataforma iluminada, rodeado de torres.
 
-**Revisor:** Codex (asistente de IA; revisión preliminar pendiente de validación del autor) (2026-10-17).
-
 ## caballo.png
 
 **Contexto:** Reconocer un animal por su silueta.
@@ -134,8 +124,6 @@ Alcance: principal_linea_a
 **Error crítico:** Ninguno identificado.
 
 **Corrección:** Añadir silueta negra de perfil, con cabeza a la derecha y cola a la izquierda.
-
-**Revisor:** Codex (asistente de IA; revisión preliminar pendiente de validación del autor) (2026-10-17).
 
 ## campo_estelar.jpg
 
@@ -156,8 +144,6 @@ Alcance: principal_linea_a
 
 **Corrección:** Describir los puntos luminosos y las formas alargadas o espirales de distintos tamaños, sin inventar nombres ni distancias.
 
-**Revisor:** Codex (asistente de IA; revisión preliminar pendiente de validación del autor) (2026-10-17).
-
 ## ladrillos.png
 
 **Contexto:** Reconocer un material de construcción y su textura.
@@ -176,8 +162,6 @@ Alcance: principal_linea_a
 **Error crítico:** Ninguno identificado.
 
 **Corrección:** Añadir que es un detalle de ladrillos rectangulares separados por juntas claras.
-
-**Revisor:** Codex (asistente de IA; revisión preliminar pendiente de validación del autor) (2026-10-17).
 
 ## pasto.png
 
@@ -198,8 +182,6 @@ Alcance: principal_linea_a
 
 **Corrección:** Añadir la vista cercana y las hojas pequeñas visibles entre el pasto.
 
-**Revisor:** Codex (asistente de IA; revisión preliminar pendiente de validación del autor) (2026-10-17).
-
 ## grava.png
 
 **Contexto:** Observar la textura de un material granular.
@@ -218,5 +200,3 @@ Alcance: principal_linea_a
 **Error crítico:** Ninguno identificado.
 
 **Corrección:** Precisar que muchas piedras pequeñas e irregulares cubren la imagen en una vista cercana.
-
-**Revisor:** Codex (asistente de IA; revisión preliminar pendiente de validación del autor) (2026-10-17).

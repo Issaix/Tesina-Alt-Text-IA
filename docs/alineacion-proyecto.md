@@ -1,42 +1,42 @@
 # Alineación del proyecto con sus objetivos
 
-Revisión del 18 de octubre de 2026, basada en la ficha «Línea A · Descripción automática de imágenes (alt-text con IA)» proporcionada por el autor y en el código disponible. El servicio mantiene el foco en fotografías e ilustraciones generales. Las gráficas y los diagramas se utilizan para evaluar límites, como piden las actividades recientes.
+Esta revisión, del 18 de octubre de 2026, compara el código con la ficha «Línea A · Descripción automática de imágenes (alt-text con IA)».
 
 ## Objetivo general
 
-Diseñar, implementar y evaluar un microservicio que genere alt-text en español para fotografías e ilustraciones de propósito general presentes en contenidos educativos, con una API REST integrable a la arquitectura de remediación de accesibilidad, y valorar la calidad de sus descripciones según el criterio de contenido no textual de WCAG.
+Diseñar, implementar y evaluar un microservicio que genere texto alternativo en español para fotografías e ilustraciones generales de contenidos educativos, mediante una API REST integrable a la arquitectura de remediación de accesibilidad. La calidad se valora según el propósito del contenido no textual de WCAG.
 
-El código sigue esta dirección, pero el objetivo completo aún no se ha alcanzado. La API genera borradores y conserva evidencia de evaluación. La pertinencia final del texto, la contenerización y la integración con el orquestador requieren trabajo adicional.
+El servicio ya genera borradores y dispone de resultados de evaluación. Las gráficas y los diagramas se incluyen para estudiar limitaciones, sin ampliar el objetivo principal.
 
-## Objetivos específicos y evidencia
+## Objetivos específicos
 
-| Objetivo de la ficha | Implementación actual | Estado y pendiente |
+| Objetivo | Implementación | Pendiente |
 |---|---|---|
-| Diseñar la generación en español, el modelo, el flujo y los criterios de calidad | `app/captioning.py` fija BLIP base y OPUS-MT a revisiones concretas. `app/images.py` valida y convierte la imagen a RGB. La rúbrica define cinco criterios. | Flujo implementado. La calidad observada requiere correcciones; falta validación del autor y del contexto educativo. |
-| Implementar un microservicio REST documentado y contenerizado, integrable al orquestador | `app/main.py` registra las rutas. `app/api/describe.py` recibe un archivo multipart y devuelve `description`; OpenAPI documenta el contrato y los errores. | API implementada. No hay Dockerfile ni imagen de contenedor; tampoco se ha comprobado la integración real con el orquestador. |
-| Evaluar con métricas y rúbrica, registrar resultados y limitaciones | `scripts/evaluate.py` conserva respuestas, hashes y referencias; aplica revisiones explícitas y calcula medias, decisiones y errores críticos por conjunto y tipo. | Evidencia disponible: 20 imágenes principales y 18 complementarias. Las puntuaciones son preliminares; falta revisión humana independiente y evaluación con usuarios. |
+| Diseñar la generación en español y los criterios de calidad. | BLIP base y OPUS-MT en `app/captioning.py`; validación de imágenes en `app/images.py`; rúbrica de cinco criterios. | Mejorar la calidad y validar las puntuaciones en su contexto educativo. |
+| Implementar una API REST documentada, contenerizada e integrable al orquestador. | Rutas registradas en `app/main.py`; recepción de imágenes en `app/api/describe.py`; documentación OpenAPI. | Crear el contenedor y comprobar la integración real con el orquestador. |
+| Evaluar las salidas y documentar limitaciones. | `scripts/evaluate.py` guarda respuestas y aplica puntuaciones; informes de 20 imágenes principales y 18 complementarias. | Validación independiente y pruebas con usuarios. |
 
-## Relación con las actividades recientes
+## Actividades recientes
 
-| Actividad | Evidencia actual |
+| Actividad | Evidencia |
 |---|---|
-| Definir una rúbrica con objeto, contexto y datos cuando corresponda | [Rúbrica](rubrica-alt-text.md): criterios generales y aplicación complementaria a datos, unidades, valores y relaciones. |
-| Ampliar el set con imágenes y referencias | 20 fotografías e ilustraciones en [educational](../examples/educational/README.md), más 11 diagramas y 7 gráficas en [limitations](../examples/limitations/README.md). Cada imagen tiene contexto, referencia, contenido obligatorio y hash. |
-| Evaluar `/describe` y registrar resultados | [Informe principal](evaluacion-principal.md) y [complementario](evaluacion-limitaciones.md), con sus respuestas y revisiones JSON. Las métricas permanecen separadas. |
-| Documentar fallos en imágenes con datos | [Limitaciones del modelo](limitaciones-modelo.md), con ejemplos reales de cambios de tema, omisiones, unidades incorrectas y texto confuso. |
+| Definir la calidad del texto alternativo. | [Rúbrica](rubrica-alt-text.md), con criterios para objetos, contexto, datos y relaciones. |
+| Ampliar las imágenes de prueba y sus referencias. | [Conjunto principal](../examples/educational/README.md) y [complementario](../examples/limitations/README.md). |
+| Evaluar `/describe`. | [Informe principal](evaluacion-principal.md) e [informe complementario](evaluacion-limitaciones.md), con métricas separadas. |
+| Documentar errores en gráficas y diagramas. | [Limitaciones del modelo](limitaciones-modelo.md), con respuestas reales y comparación con la referencia. |
 
-## Revisión del recorrido del código
+## Recorrido de una petición
 
-1. FastAPI recibe el archivo en `POST /describe`; la ruta no recibe referencias ni respuestas esperadas.
-2. `app/images.py` comprueba formato, MIME, tamaño y resolución, corrige orientación y transparencias, y devuelve RGB.
-3. `CaptioningService` genera una descripción con BLIP y la traduce con OPUS-MT. No se entrenan modelos ni se añaden motores especializados para gráficas.
-4. La ruta devuelve un JSON con `description` o un error documentado. La imagen y sus recursos temporales se cierran al terminar.
-5. El evaluador envía las imágenes por HTTP y guarda la salida literal. La calidad procede de una revisión identificada, nunca del HTTP 200 por sí solo.
+1. `POST /describe` recibe un archivo; no recibe el contexto ni la referencia.
+2. `app/images.py` comprueba formato, MIME, tamaño y resolución, corrige orientación y transparencia, y convierte la imagen a RGB.
+3. `CaptioningService` genera una descripción con BLIP y la traduce con OPUS-MT.
+4. La API devuelve `description` o un error documentado y libera los recursos de la imagen.
+5. El evaluador guarda la respuesta. La calidad se determina con la rúbrica, no por el código HTTP.
 
-La API valida archivos, pero no clasifica semánticamente si una imagen es fotografía, gráfica o diagrama. Los tipos y el propósito se declaran en los manifiestos de evaluación. El evaluador permite diagramas en el conjunto complementario y evita mezclarlo con el principal.
+La API valida los archivos, pero no identifica si son fotografías, gráficas o diagramas. Los manifiestos declaran el tipo y alcance; el evaluador impide mezclar los dos conjuntos.
 
-## Cambios de esta revisión
+## Procedencia y pendientes
 
-Se recuperaron las 18 láminas originales del repositorio por lectura y se comprobó su identidad con los hashes de las respuestas guardadas. Se actualizó el evaluador para permitir ese alcance complementario y conservar la rúbrica y la fecha de las valoraciones históricas al reprocesarlas. Se aclaró el alcance en OpenAPI y se incorporaron medias por criterio y recuentos de errores críticos.
+Las 18 láminas complementarias se recuperaron del repositorio y sus hashes coinciden con los de las respuestas del 17 de octubre. También coinciden las referencias y el código de inferencia. Se actualizaron las métricas y la documentación sin repetir la generación.
 
-No se necesitó repetir la inferencia: imágenes, referencias, revisiones de modelos y código de inferencia coinciden con la evidencia del 17 de octubre. Los informes indican expresamente esa procedencia. Esta revisión no declara terminada la tesina ni certifica conformidad WCAG.
+Las puntuaciones siguen siendo preliminares. Faltan su validación, la evaluación con usuarios, el contenedor y la integración con el orquestador. La evidencia actual no certifica conformidad WCAG.

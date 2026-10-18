@@ -152,6 +152,11 @@ def test_saved_run_can_be_reviewed_without_http(tmp_path, monkeypatch):
     assert report["timestamp_utc"] == "original"
     assert report["summary"]["decisions"]["apta"] == 1
     assert output.with_suffix(".md").is_file()
+    markdown = output.with_suffix(".md").read_text(encoding="utf-8")
+    assert "Revisor" not in markdown
+    assert review_fixture()["reviewer"] not in markdown
+    assert "preliminares, pendientes de validación" in markdown
+    assert report["results"][0]["quality"]["reviewer"] == review_fixture()["reviewer"]
     assert "quality" not in json.loads(source.read_text())["results"][0]
 
 

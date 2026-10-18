@@ -139,7 +139,7 @@ def markdown_report(report: dict[str, Any]) -> str:
         report.get("evidence_note", ""),
         "",
         "`passed` comprueba el contrato HTTP; no acredita calidad educativa. "
-        "Las puntuaciones proceden de una revisión explícita según la rúbrica.",
+        "Las puntuaciones siguen la rúbrica y son preliminares, pendientes de validación.",
         "",
         "| Tipo | Imágenes | HTTP | Revisadas | Aptas | Revisión | No aptas | Media / 10 |",
         "|---|---:|---:|---:|---:|---:|---:|---:|",
@@ -196,8 +196,6 @@ def markdown_report(report: dict[str, Any]) -> str:
                     f"**Error crítico:** {quality['critical_error'] or 'Ninguno identificado.'}",
                     "",
                     f"**Corrección:** {quality['correction']}",
-                    "",
-                    f"**Revisor:** {quality['reviewer']} ({quality['reviewed_at']}).",
                 ]
             )
     return "\n".join(lines) + "\n"

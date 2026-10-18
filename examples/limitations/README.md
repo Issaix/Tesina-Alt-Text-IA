@@ -1,8 +1,8 @@
 # Conjunto complementario de limitaciones
 
-Estas **18 imágenes —11 diagramas y 7 gráficas—** permiten estudiar los límites del modelo ante información educativa con datos. Se añaden a las 20 imágenes principales de la línea A y se evalúan por separado. No cambian el objetivo de producción del microservicio.
+Estas **18 imágenes: 11 diagramas y 7 gráficas**, permiten estudiar los límites del modelo ante información educativa con datos. Se añaden a las 20 imágenes principales de la línea A y se evalúan por separado. No amplían el objetivo principal del microservicio.
 
-El [manifiesto](manifest.json) incluye tipo, contexto, referencia, contenido obligatorio, procedencia y SHA-256. Las láminas son originales del proyecto. Se recuperaron sin cambios del repositorio el 18 de octubre de 2026; sus hashes coinciden con los de las respuestas reales obtenidas el 17 de octubre. No se atribuye una licencia de redistribución que el autor no haya declarado.
+El [manifiesto](manifest.json) incluye tipo, contexto, referencia, contenido obligatorio, procedencia y SHA-256. Las láminas son originales del proyecto. Se recuperaron sin cambios del repositorio el 18 de octubre de 2026; sus hashes coinciden con los de las respuestas reales obtenidas el 17 de octubre. No se ha declarado una licencia de redistribución para estas láminas.
 
 ## Contenido
 

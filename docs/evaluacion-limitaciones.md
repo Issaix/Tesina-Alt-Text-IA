@@ -6,7 +6,7 @@ Alcance: complementario_limitaciones
 
 Evidencia HTTP y revisión preliminar del 17 de octubre de 2026, recuperadas el 18 de octubre. Las 18 imágenes son idénticas por SHA-256 a las evaluadas y se conservaron referencias, respuestas y puntuaciones. No se ejecutaron peticiones nuevas. Cambiaron la carpeta y la identificación del conjunto, que ahora se presenta como complementario de limitaciones.
 
-`passed` comprueba el contrato HTTP; no acredita calidad educativa. Las puntuaciones proceden de una revisión explícita según la rúbrica.
+`passed` comprueba el contrato HTTP; no acredita calidad educativa. Las puntuaciones siguen la rúbrica y son preliminares, pendientes de validación.
 
 | Tipo | Imágenes | HTTP | Revisadas | Aptas | Revisión | No aptas | Media / 10 |
 |---|---:|---:|---:|---:|---:|---:|---:|
@@ -42,7 +42,6 @@ Revisiones con error crítico: 10.
 
 **Corrección:** Describir un solo triángulo rectángulo, con catetos de 3 y 4 cm e hipotenusa de 5 cm.
 
-**Revisor:** Codex (asistente de IA; revisión preliminar pendiente de validación del autor) (2026-10-17).
 
 ## barras.jpg
 
@@ -63,8 +62,6 @@ Revisiones con error crítico: 10.
 
 **Corrección:** Indicar libros leídos: A 4, B 7 y C 10; máximo C y mínimo A.
 
-**Revisor:** Codex (asistente de IA; revisión preliminar pendiente de validación del autor) (2026-10-17).
-
 ## astronomia.jpeg
 
 **Contexto:** Distinguir los cuerpos representados en un esquema astronómico sin escala.
@@ -83,8 +80,6 @@ Revisiones con error crítico: 10.
 **Error crítico:** Presenta como planetas al conjunto que incluye el Sol y la Luna.
 
 **Corrección:** Nombrar Sol, Tierra y Luna de izquierda a derecha y aclarar que tamaños y distancias no están a escala.
-
-**Revisor:** Codex (asistente de IA; revisión preliminar pendiente de validación del autor) (2026-10-17).
 
 ## planta.png
 
@@ -105,8 +100,6 @@ Revisiones con error crítico: 10.
 
 **Corrección:** Describir flor, hojas, tallo y raíces y sus relaciones espaciales; no atribuir un nombre de especie.
 
-**Revisor:** Codex (asistente de IA; revisión preliminar pendiente de validación del autor) (2026-10-17).
-
 ## estados_agua.png
 
 **Contexto:** Relacionar cada cambio de estado del agua con su estado inicial y final.
@@ -125,8 +118,6 @@ Revisiones con error crítico: 10.
 **Error crítico:** Interpreta los cambios entre sólido, líquido y gas como flujo de un líquido en otro líquido.
 
 **Corrección:** Conservar estados y sentidos: fusión, solidificación, evaporación y condensación.
-
-**Revisor:** Codex (asistente de IA; revisión preliminar pendiente de validación del autor) (2026-10-17).
 
 ## cadena_alimentaria.png
 
@@ -147,8 +138,6 @@ Revisiones con error crítico: 10.
 
 **Corrección:** Nombrar pasto, saltamontes, rana y serpiente, y explicar que las flechas van del alimento al consumidor.
 
-**Revisor:** Codex (asistente de IA; revisión preliminar pendiente de validación del autor) (2026-10-17).
-
 ## temperaturas.png
 
 **Contexto:** Leer una serie temporal y reconocer aumentos, descensos y extremos. Los datos son ficticios.
@@ -167,8 +156,6 @@ Revisiones con error crítico: 10.
 **Error crítico:** Cambia el tema de temperatura por número de personas en un país.
 
 **Corrección:** Describir la temperatura a las 12:00 de lunes a viernes: 18, 21, 19, 24 y 22 grados; conservar escala, extremos, descensos y carácter ficticio.
-
-**Revisor:** Codex (asistente de IA; revisión preliminar pendiente de validación del autor) (2026-10-17).
 
 ## transporte.png
 
@@ -189,8 +176,6 @@ Revisiones con error crítico: 10.
 
 **Corrección:** Describir 20 estudiantes: a pie 10 (50 %), bicicleta 6 (30 %) y automóvil 4 (20 %), con comparación y datos ficticios.
 
-**Revisor:** Codex (asistente de IA; revisión preliminar pendiente de validación del autor) (2026-10-17).
-
 ## fracciones.png
 
 **Contexto:** Comparar fracciones equivalentes mediante dos barras del mismo tamaño.
@@ -209,8 +194,6 @@ Revisiones con error crítico: 10.
 **Error crítico:** Ninguno identificado.
 
 **Corrección:** Explicar que una de dos partes y dos de cuatro partes están coloreadas en barras iguales: 1/2 = 2/4.
-
-**Revisor:** Codex (asistente de IA; revisión preliminar pendiente de validación del autor) (2026-10-17).
 
 ## coordenadas.png
 
@@ -231,8 +214,6 @@ Revisiones con error crítico: 10.
 
 **Corrección:** Nombrar ejes x e y y los puntos A (2, 1), B (-2, 2) y C (-1, -2), conservando signos y orden.
 
-**Revisor:** Codex (asistente de IA; revisión preliminar pendiente de validación del autor) (2026-10-17).
-
 ## circuito.png
 
 **Contexto:** Reconocer los componentes y la continuidad de un circuito sencillo.
@@ -251,8 +232,6 @@ Revisiones con error crítico: 10.
 **Error crítico:** Ninguno identificado.
 
 **Corrección:** Describir pila, interruptor cerrado, lámpara y cables en un recorrido cerrado, sin inventar tensión ni corriente.
-
-**Revisor:** Codex (asistente de IA; revisión preliminar pendiente de validación del autor) (2026-10-17).
 
 ## tipos_triangulos.png
 
@@ -273,8 +252,6 @@ Revisiones con error crítico: 10.
 
 **Corrección:** Distinguir equilátero, isósceles de solo dos lados iguales y escaleno, respetando la convención de la lámina.
 
-**Revisor:** Codex (asistente de IA; revisión preliminar pendiente de validación del autor) (2026-10-17).
-
 ## rectangulo.png
 
 **Contexto:** Distinguir el área del perímetro y conservar sus unidades.
@@ -293,8 +270,6 @@ Revisiones con error crítico: 10.
 **Error crítico:** Introduce unidades de metros que no corresponden a los centímetros de la lámina.
 
 **Corrección:** Indicar rectángulo de 8 por 4 cm, área de 32 centímetros cuadrados y perímetro de 24 cm.
-
-**Revisor:** Codex (asistente de IA; revisión preliminar pendiente de validación del autor) (2026-10-17).
 
 ## ciclo_mariposa.png
 
@@ -315,8 +290,6 @@ Revisiones con error crítico: 10.
 
 **Corrección:** Describir huevo, larva, pupa y adulto en orden, y la flecha del adulto al huevo que cierra el ciclo.
 
-**Revisor:** Codex (asistente de IA; revisión preliminar pendiente de validación del autor) (2026-10-17).
-
 ## precipitacion.png
 
 **Contexto:** Leer precipitaciones mensuales e identificar un valor nulo. Los datos son ficticios.
@@ -335,8 +308,6 @@ Revisiones con error crítico: 10.
 **Error crítico:** Sustituye la precipitación mensual en milímetros por porcentajes de personas en una región.
 
 **Corrección:** Indicar enero 20 mm, febrero 0, marzo 60 y abril 40; máximo en marzo y mínimo cero en febrero; son datos ficticios.
-
-**Revisor:** Codex (asistente de IA; revisión preliminar pendiente de validación del autor) (2026-10-17).
 
 ## reciclaje.png
 
@@ -357,8 +328,6 @@ Revisiones con error crítico: 10.
 
 **Corrección:** Describir barras horizontales: papel 8 kg, vidrio 5 kg y plástico 3 kg, con extremos y datos ficticios.
 
-**Revisor:** Codex (asistente de IA; revisión preliminar pendiente de validación del autor) (2026-10-17).
-
 ## temperaturas_negativas.png
 
 **Contexto:** Interpretar una serie temporal con valores positivos, negativos y cero. Los datos son ficticios.
@@ -378,8 +347,6 @@ Revisiones con error crítico: 10.
 
 **Corrección:** Indicar 00:00 y 2 grados, 02:00 y -2, 04:00 y -4, 06:00 y 0; descenso y recuperación, unidades y datos ficticios.
 
-**Revisor:** Codex (asistente de IA; revisión preliminar pendiente de validación del autor) (2026-10-17).
-
 ## dispersion_plantas.png
 
 **Contexto:** Leer una gráfica de dispersión y distinguir una asociación de una relación causal. Los datos son ficticios.
@@ -398,5 +365,3 @@ Revisiones con error crítico: 10.
 **Error crítico:** Ninguno identificado.
 
 **Corrección:** Describir dispersión de horas de luz y altura en cm: (1,5), (2,9), (3,8), (4,14), (5,17); tendencia creciente con excepción, sin afirmar causalidad; datos ficticios.
-
-**Revisor:** Codex (asistente de IA; revisión preliminar pendiente de validación del autor) (2026-10-17).

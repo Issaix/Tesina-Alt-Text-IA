@@ -1,41 +1,24 @@
 # Tesina Alt-Text IA
 
-Este servicio recibe una imagen educativa y genera una descripción en español. La idea es ayudar a preparar textos alternativos que puedan leer los lectores de pantalla.
+Microservicio REST que recibe imágenes educativas y genera borradores de texto alternativo en español. Forma parte de una tesina de Ingeniería en Computación Inteligente de la Universidad Autónoma de Aguascalientes.
 
-La línea A se limita a fotografías e ilustraciones de propósito general. Las gráficas, los diagramas y los esquemas con datos se incluyen en pruebas complementarias para estudiar limitaciones; su interpretación especializada corresponde a otra línea. La [revisión de objetivos](docs/alineacion-proyecto.md) explica el avance y los pendientes del proyecto.
+La línea A se centra en fotografías e ilustraciones de propósito general. Las gráficas y los diagramas se utilizan en pruebas complementarias para estudiar limitaciones. El servicio usa BLIP base para describir la imagen y OPUS-MT para traducir el resultado. Las descripciones necesitan revisión antes de usarse en materiales educativos.
 
-Es parte de una tesina de Ingeniería en Computación Inteligente de la Universidad Autónoma de Aguascalientes. En esta primera versión, el servicio ya recibe imágenes, las procesa y devuelve el resultado en JSON. La calidad del texto todavía necesita revisión: el modelo puede omitir información o inventar detalles.
+## Preparar el entorno
 
-## Requisitos
+Se ha probado en Windows con Python 3.12 de 64 bits y procesamiento en CPU. No requiere GPU ni clave de API. La primera instalación necesita conexión a PyPI y Hugging Face; los modelos ocupan aproximadamente 1,3 GB.
 
-El proyecto se ha probado en Windows con Python 3.12 de 64 bits y procesamiento en CPU. No necesitas una GPU ni una clave de API.
-
-La primera instalación necesita conexión a PyPI y Hugging Face. Los pesos de los modelos ocupan cerca de 1.3 GB. Como referencia, conviene disponer de 8 GB de RAM y 5 GB de espacio libre para el entorno y los modelos; no son requisitos mínimos medidos. Las imágenes se procesan en tu equipo.
-
-## Instalación
-
-Abre PowerShell en la carpeta del proyecto y ejecuta:
+Desde la raíz del proyecto, ejecutar en PowerShell:
 
 ```powershell
 py -3.12 -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
-```
-
-Si ya tienes el entorno creado, basta con el segundo comando. Si tu equipo no reconoce `py`, utiliza la ruta de tu ejecutable de Python 3.12. Los ejemplos usan directamente el intérprete del entorno, así que no hace falta activarlo.
-
-En Linux o macOS, las rutas equivalentes son `python3.12` y `.venv/bin/python`. Estas plataformas todavía no se han probado.
-
-## Preparar los modelos
-
-Antes de iniciar el servidor, ejecuta:
-
-```powershell
 .\.venv\Scripts\python.exe -m scripts.warmup
 ```
 
-Este comando descarga los modelos en `.cache/models` y comprueba que pueden generar una descripción. La primera vez puede tardar varios minutos. Las siguientes ejecuciones reutilizan los archivos descargados.
+Si el entorno ya existe, omitir el primer comando. Si `py` no está disponible, usar la ruta de Python 3.12. Los comandos utilizan directamente el entorno virtual; no hace falta activarlo.
 
-El servicio usa [BLIP base](https://huggingface.co/Salesforce/blip-image-captioning-base) para describir la imagen en inglés y [OPUS-MT](https://huggingface.co/Helsinki-NLP/opus-mt-en-es) para traducir el texto al español. Las versiones de ambos modelos están fijadas en el código.
+`scripts.warmup` descarga los modelos en `.cache/models` y comprueba que pueden generar una descripción. Las siguientes ejecuciones reutilizan esos archivos. Las imágenes se procesan en el equipo local.
 
 ## Iniciar el servidor
 
@@ -43,118 +26,36 @@ El servicio usa [BLIP base](https://huggingface.co/Salesforce/blip-image-caption
 .\.venv\Scripts\python.exe -m uvicorn app.main:app --host 127.0.0.1 --port 8000
 ```
 
-Deja la terminal abierta mientras haces las pruebas. Para detener el servidor, presiona `Ctrl+C`.
+Mantener la terminal abierta. Para detener el servidor, pulsar `Ctrl + C`. Durante el desarrollo se puede añadir `--reload` al comando.
 
-Puedes abrir estas direcciones:
+- Documentación interactiva: <http://127.0.0.1:8000/docs>.
+- Estado del servicio: <http://127.0.0.1:8000/health>.
+- Esquema OpenAPI: <http://127.0.0.1:8000/openapi.json>.
 
-- [Documentación interactiva](http://127.0.0.1:8000/docs), para enviar imágenes desde el navegador.
-- [Estado del servicio](http://127.0.0.1:8000/health), para comprobar que la API responde.
-- [Esquema OpenAPI](http://127.0.0.1:8000/openapi.json), para consultar sus operaciones y respuestas.
+`GET /health` comprueba que la API responde, sin verificar la disponibilidad de los modelos. Devuelve HTTP 200:
 
-La primera petición tarda más porque carga los modelos en memoria. Después se reutilizan. En esta versión se procesa una imagen a la vez por proceso; usa un solo proceso para evitar cargar varias copias de los modelos.
+```json
+{"status": "ok", "service": "alt-text", "version": "0.1.0"}
+```
 
-## Probar con una imagen
+## Enviar una imagen
 
-En la documentación interactiva, abre **POST /describe**, pulsa **Try it out**, selecciona un archivo en **image** y pulsa **Execute**.
+En `/docs`, abrir **POST /describe**, pulsar **Try it out**, seleccionar un archivo en **image** y pulsar **Execute**.
 
-También puedes enviar una imagen desde otra terminal:
+También se puede enviar una imagen desde otra terminal:
 
 ```powershell
 curl.exe --fail-with-body -X POST "http://127.0.0.1:8000/describe" -F "image=@examples/educational/gato.png;type=image/png"
 ```
 
-En PowerShell conviene escribir `curl.exe` para evitar el alias de algunas versiones. Cambia la ruta del ejemplo para probar una imagen propia.
-
-Esta es una respuesta real para la fotografía del gato incluida en el conjunto principal:
+Una respuesta correcta devuelve HTTP 200 con este formato:
 
 ```json
-{
-  "description": "un primer plano de un gato con ojos verdes"
-}
+{"description": "un primer plano de un gato con ojos verdes"}
 ```
 
-La respuesta reconoce al gato, pero omite rasgos definidos para la actividad, como el pelaje atigrado y los bigotes. Antes de usar el texto, compáralo con la imagen y corrige lo que haga falta.
+Se aceptan JPG, JPEG y PNG estáticos de hasta 10 MiB y 20 megapíxeles. El archivo se envía en el campo `image`, con MIME `image/jpeg` o `image/png`. También se acepta un MIME ausente o `application/octet-stream`; siempre se valida el contenido. No se reciben rutas ni URL de imágenes.
 
-### Formatos y límites
+La primera petición puede tardar más por la carga de los modelos. Se procesa una imagen a la vez por proceso; usar un solo proceso para evitar cargar varias copias de los modelos. Si aparece HTTP 503, consultar la terminal del servidor. Si faltan pesos, repetir `scripts.warmup` con conexión.
 
-El endpoint recibe un archivo en el campo `image` de una petición `multipart/form-data`.
-
-- Acepta JPG, JPEG y PNG estáticos, incluidas extensiones en mayúsculas.
-- El archivo puede ocupar hasta 10 MiB y tener hasta 20 megapíxeles.
-- Comprueba el contenido real, la extensión y el tipo MIME.
-- Corrige la orientación EXIF y coloca un fondo blanco detrás de las zonas transparentes.
-
-El tipo MIME debe ser `image/jpeg` o `image/png`, según el archivo. También se acepta `application/octet-stream` o un MIME ausente, porque siempre se comprueban los bytes. No se reciben rutas, URL ni imágenes en Base64.
-
-El tamaño se comprueba después de recibir el formulario multipart. Por tanto, este límite no restringe el tamaño total de una petición HTTP. Las imágenes no se guardan de forma permanente; durante la recepción pueden usarse archivos temporales que se cierran al terminar.
-
-### Respuestas de la API
-
-| Código | Qué significa |
-|---|---|
-| 200 | Se generó una descripción. El JSON contiene `description`. |
-| 400 | El archivo está vacío, dañado o no puede leerse como imagen. |
-| 413 | La imagen supera el tamaño o la resolución permitidos. |
-| 415 | El formato no se acepta o no coincide con la extensión o el MIME. |
-| 422 | Falta el archivo en `image` o se envió otro tipo de dato. |
-| 503 | El modelo está ocupado o no pudo procesar la imagen. |
-
-Los errores usan el campo `detail`. En el caso de 422, FastAPI devuelve una lista con los errores de validación. Si el modelo está ocupado, la respuesta incluye `Retry-After: 5`; espera unos segundos y vuelve a intentar.
-
-`GET /health` responde con `{"status":"ok","service":"alt-text","version":"0.1.0"}`. Indica que la API está disponible, pero no comprueba los modelos.
-
-## Ejecutar las pruebas
-
-Instala las herramientas de desarrollo:
-
-```powershell
-.\.venv\Scripts\python.exe -m pip install -r requirements-dev.txt
-```
-
-Con el servidor encendido, evalúa las 20 imágenes del conjunto (10 fotografías y 10 ilustraciones):
-
-```powershell
-.\.venv\Scripts\python.exe -m scripts.evaluate
-```
-
-El resultado se guarda en `.cache/evaluation.json` y `.cache/evaluation.md`, sin modificar el informe original del sprint. El evaluador conserva las peticiones fallidas y termina con código 1 si alguna no funciona. `passed` solo indica que se cumplió el contrato HTTP; la calidad queda pendiente hasta incorporar una revisión con la rúbrica. Puedes cambiar el destino con `--output` o el servidor con `--base-url`.
-
-La [guía de evaluación](docs/evaluacion.md) explica cómo añadir puntuaciones y comparar las salidas con las referencias. Además de las 20 imágenes principales, hay un [set complementario](examples/limitations/README.md) de 11 diagramas y 7 gráficas. Para evaluarlo por separado:
-
-```powershell
-.\.venv\Scripts\python.exe -m scripts.evaluate --manifest examples/limitations/manifest.json --output .cache/limitations.json
-```
-
-El [catálogo](examples/educational/README.md) reúne las 20 fotografías e ilustraciones con su procedencia y licencia. La [rúbrica de calidad](docs/rubrica-alt-text.md) explica cómo revisar el objeto principal, el contexto, la información esencial y la fidelidad del texto. Esta revisión requiere comparar cada salida con la imagen.
-
-Para revisar el código y ejecutar las pruebas automatizadas, no hace falta iniciar el servidor:
-
-```powershell
-.\.venv\Scripts\python.exe -m ruff check .
-.\.venv\Scripts\python.exe -m ruff format --check .
-.\.venv\Scripts\python.exe -m pytest -q
-```
-
-Las pruebas automatizadas usan un sustituto del modelo para comprobar la API sin descargar pesos. La evaluación de las imágenes sí ejecuta los modelos reales. Los detalles de mantenimiento están en la [guía de desarrollo](docs/desarrollo.md).
-
-## Si algo falla
-
-Si aparece un error 503, revisa la terminal del servidor. Si está ocupado, espera a que termine la petición anterior. Si falla la carga, comprueba la conexión y el espacio disponible, y vuelve a ejecutar `scripts.warmup`.
-
-Puedes elegir otra carpeta para los pesos con `MODEL_CACHE_DIR`. Después de descargarlos por completo, puedes trabajar sin conexión:
-
-```powershell
-$env:HF_HUB_OFFLINE='1'
-```
-
-Si falta algún archivo en caché, retira esa variable con `Remove-Item Env:HF_HUB_OFFLINE` y repite la preparación con conexión. Al cambiar de carpeta de caché, también debes preparar los modelos en esa ubicación.
-
-## Resultados y siguientes pasos
-
-El [informe de evaluación](docs/evaluacion-principal.md) compara las salidas del set de 20 imágenes con sus referencias mediante la rúbrica. Las 20 peticiones respondieron correctamente por HTTP; la revisión preliminar clasificó las 20 salidas como «requiere revisión», con media de 7,95/10 por omisiones de contenido obligatorio. Las puntuaciones del asistente son preliminares y requieren validación del autor. La [discusión de limitaciones](docs/limitaciones-modelo.md) recoge los errores observados dentro del alcance de la línea A.
-
-La [evaluación complementaria](docs/evaluacion-limitaciones.md) conserva las respuestas reales de las 18 imágenes con datos: todas respondieron correctamente por HTTP y sus textos se valoraron como no aptos para los contextos definidos, con media de 2,83/10. Se documentan como limitaciones, sin sumarlos a la calidad del conjunto principal. Estas respuestas proceden del 17 de octubre de 2026 y se recuperaron por identidad de hashes; no son una ejecución nueva.
-
-Los informes del [Sprint 1](docs/sprint-1.md) y del [Sprint 0](docs/sprint-0.md), junto con el [archivo histórico](docs/historico/evaluacion-inicial/README.md), conservan la evidencia inicial del proyecto.
-
-Este servicio produce borradores de texto alternativo. El [criterio WCAG 1.1.1](https://www.w3.org/WAI/WCAG22/Understanding/non-text-content.html) exige que la alternativa cumpla el propósito del contenido original. Dentro de la línea A, falta ampliar la diversidad de fotografías e ilustraciones, incorporar el contexto de la lección y evaluar los textos con usuarios de lectores de pantalla. La interpretación especializada de gráficas y diagramas corresponde a otra línea. La contenerización y la integración con el orquestador quedan para las siguientes etapas.
+Para ejecutar la evaluación de imágenes y las comprobaciones de desarrollo, consultar la [guía de evaluación](docs/evaluacion.md) y la [guía de desarrollo](docs/desarrollo.md).
